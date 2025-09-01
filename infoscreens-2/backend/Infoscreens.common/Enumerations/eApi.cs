@@ -51,7 +51,7 @@ namespace Infoscreens.Common.Enumerations
         PublicTransport,
 
         [RootUrl("https://apigateway.sociabble.com/streams")]
-        [HeaderParam("X-Sociabble-SubscriptionKey", "734e6c147a6e431487dabf3ac270f477")]
+        [HeaderParam("X-Sociabble-SubscriptionKey", "")]
         [EnumMember(Value = "sociabble")]
         Sociabble,
 
