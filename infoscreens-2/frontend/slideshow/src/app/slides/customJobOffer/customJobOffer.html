@@ -1,0 +1,93 @@
+<banner-layout [slide]="slide">
+  <split-content [firstContentProportion]="30">
+    <image-content firstContent [url]="jobOfferImageLink"></image-content>
+
+    <div secondContent class="text-content">
+      <h1 class="title" [innerHTML]="customJobOffer.title"></h1>
+      <div
+        class="content"
+        [innerHTML]="customJobOffer.description"
+        style="
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin-bottom: 25px;
+        "
+      ></div>
+      <div style="width: 29%; float: left">
+        <div class="subtitle">
+          {{'joboffer.skills' | translateAsync | async}}
+        </div>
+        <ul>
+          <li *ngFor="let skill of skillsColumn1">
+            <span class="skill">{{skill}}</span>
+          </li>
+        </ul>
+      </div>
+      <div style="width: 29%; float: left">
+        <div class="subtitle">&nbsp;</div>
+        <ul>
+          <li *ngFor="let skill of skillsColumn2">
+            <span class="skill">{{skill}}</span>
+          </li>
+        </ul>
+      </div>
+      <div
+        style="
+          width: 42%;
+          min-height: 255px;
+          padding-left: 2%;
+          float: left;
+          border-left-style: solid;
+          border-left-width: 1px;
+          border-color: var(--card-border-color);
+          color: var(--text-color);
+        "
+      >
+        <div class="subtitle">
+          {{'joboffer.contact' | translateAsync | async}}
+        </div>
+        <table>
+          <tr *ngIf="customJobOffer.contact.company">
+            <td class="contact-icon">
+              <i class="fa fa-building"></i>
+            </td>
+            <td>{{jobOffer.contact.company}}</td>
+          </tr>
+          <tr *ngIf="customJobOffer.contact.name">
+            <td class="contact-icon">
+              <i class="fa fa-user"></i>
+            </td>
+            <td>{{jobOffer.contact.name}}</td>
+          </tr>
+          <tr *ngIf="customJobOffer.contact.email">
+            <td class="contact-icon">
+              <i class="fa fa-envelope"></i>
+            </td>
+            <td>{{jobOffer.contact.email}}</td>
+          </tr>
+          <tr *ngIf="customJobOffer.contact.phone">
+            <td class="contact-icon">
+              <i class="fa fa-phone"></i>
+            </td>
+            <td>{{jobOffer.contact.phone}}</td>
+          </tr>
+          <tr *ngIf="customJobOffer.contact.address">
+            <td class="contact-icon">
+              <i class="fa fa-map"></i>
+            </td>
+            <td>{{jobOffer.contact.address}}</td>
+          </tr>
+          <tr *ngIf="customJobOffer.contact.website">
+            <td class="contact-icon">
+              <i class="fa fa-globe"></i>
+            </td>
+            <td>{{jobOffer.contact.website}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </split-content>
+</banner-layout>

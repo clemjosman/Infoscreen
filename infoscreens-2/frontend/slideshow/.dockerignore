@@ -1,0 +1,4 @@
+src/assets/videos/*
+dist
+node_modules
+!src/assets/videos/.gitkeep

@@ -1,0 +1,33 @@
+<banner-layout [slide]="slide">
+  <split-content [firstContentProportion]="30">
+    <image-content firstContent [url]="courseImageSource"></image-content>
+
+    <ng-container secondContent>
+      <div class="text-content" *ngIf="course">
+        <h1 class="title" [innerHTML]="course.name"></h1>
+        <div class="content">
+          {{ course.date }}
+          <br />
+          {{ course.performer }}
+          <br />
+          {{ course.city }}
+          <p *ngIf="course.city && course.address">,</p>
+          {{ course.address }}
+          <br />
+          <p *ngIf="course.placesLeft > 1">
+            {{ course.placesLeft }} {{ 'university.placesLeft' | translateAsync
+            | async }}
+          </p>
+          <p *ngIf="course.placesLeft === 1">
+            {{ course.placesLeft }} {{ 'university.placeLeft' | translateAsync |
+            async }}
+          </p>
+        </div>
+      </div>
+
+      <div class="no-content" *ngIf="!course">
+        <p>{{'university.noCourse' | translateAsync | async}}</p>
+      </div>
+    </ng-container>
+  </split-content>
+</banner-layout>

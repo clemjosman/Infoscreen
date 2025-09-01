@@ -1,0 +1,9 @@
+<div class="breadcrumb text-truncate h1" fxLayout="row" fxLayoutAlign="start center" [@animate]="{value:'*',params:{x:'50px'}}">
+    <button *ngIf="displayBackButton" mat-button fxHide fxShow.gt-xs (click)="goBack()">
+        <mat-icon id="backButtonIcon"class="s-16" fxHide.xs>reply</mat-icon>
+    </button>
+    <div *ngFor="let path of pathArray; last as isLast" fxLayout="row" fxLayoutAlign="start center">
+    <span>{{path | translate}}</span>
+    <mat-icon *ngIf="!isLast" class="separator">chevron_right</mat-icon>
+    </div>
+</div>

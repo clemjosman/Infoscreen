@@ -1,0 +1,15 @@
+<div [ngClass]="layout" class="content-container">
+  <div
+    class="content"
+    [ngStyle]="{'flex-basis': getContentProportion('first'), 'flex-grow': getFlexGrow('first'), 'order': invertContents ? 2 : 1}"
+  >
+    <ng-content select="[firstContent]"></ng-content>
+  </div>
+
+  <div
+    [ngStyle]="{'flex-basis': getContentProportion('second'), 'flex-grow': getFlexGrow('second'), 'order': invertContents ? 1 : 2}"
+    class="content"
+  >
+    <ng-content select="[secondContent]"></ng-content>
+  </div>
+</div>

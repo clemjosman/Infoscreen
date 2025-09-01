@@ -1,0 +1,23 @@
+.breadcrumb {
+    padding: 15px 0px;
+    color: white;
+    font-size: xx-large;
+    font-weight: bolder;
+
+    button {
+        padding: 0px;
+    }
+
+    mat-icon{
+        font-weight: 1000 !important;
+        font-size: xx-large;
+        position: relative;
+        top: -2px;
+        left: -2px;
+        margin: 0px 5px;
+    }
+    #backButtonIcon{
+        font-size: xx-large !important;
+        left: -7px;
+    }
+}

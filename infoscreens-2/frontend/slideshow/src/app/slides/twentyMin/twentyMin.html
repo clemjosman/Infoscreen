@@ -1,0 +1,30 @@
+<banner-layout [slide]="slide">
+  <div class="text-content">
+    <div class="news-container">
+      <div *ngFor="let newsObject of news" class="news-card">
+        <ng-container
+          *ngIf="newsObject && (newsObject.title || newsObject.description)"
+        >
+          <div class="news-image-container">
+            <img [src]="newsObject.imageSrc" class="news-image" />
+          </div>
+          <h1 class="title" [innerHTML]="newsObject.title"></h1>
+          <div
+            class="content"
+            [innerHTML]="newsObject.description"
+            style="
+              display: -webkit-box;
+              -webkit-line-clamp: 4;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            "
+          ></div>
+          <span class="news-infos"
+            >{{newsObject.publicationDate}} - {{newsObject.channelTitle}}</span
+          >
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</banner-layout>

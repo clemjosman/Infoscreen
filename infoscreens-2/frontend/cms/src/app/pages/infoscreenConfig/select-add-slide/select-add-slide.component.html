@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>{{ "label.selectSlideToAdd" | translate }}</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>{{ "label.slide" | translate }}</mat-label>
+    <mat-select [(ngModel)]="selectedSlide">
+      <mat-option *ngFor="let slide of data.allowedSlides" [value]="slide">
+        {{ "slide." + slide | translate }}{{ isSlideUsed(slide) ? "*" : "" }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div *ngIf="data.forbiddenNeighborSlides?.length">
+    {{ "label.followingSlidesCannotBeSelected" | translate }}
+    <ul>
+      <li *ngFor="let slide of data.forbiddenNeighborSlides">
+        {{ "slide." + slide | translate }}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="data.slidesNeedingAdminConfig?.length">
+    {{ "label.followingSlidesNeedAdminConfig" | translate }}
+    <ul>
+      <li *ngFor="let slide of data.slidesNeedingAdminConfig">
+        {{ "slide." + slide | translate }}
+      </li>
+    </ul>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">
+    {{ "general.button.cancel" | translate }}
+  </button>
+  <button
+    mat-button
+    [mat-dialog-close]="selectedSlide"
+    [disabled]="!selectedSlide"
+    sdkFocusInitial
+    color="action"
+  >
+    {{ "general.button.add" | translate }}
+  </button>
+</div>

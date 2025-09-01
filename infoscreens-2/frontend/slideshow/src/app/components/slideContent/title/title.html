@@ -1,0 +1,5 @@
+<div class="titleContainer" [ngClass]="theme">
+  <h1 *ngIf="title" class="title">
+    {{(title || 'error.display') | translateAsync | async}}
+  </h1>
+</div>

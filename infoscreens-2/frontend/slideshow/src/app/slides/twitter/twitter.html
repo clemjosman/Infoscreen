@@ -1,0 +1,48 @@
+<banner-layout [slide]="slide">
+  <div class="tweet-container">
+    <div *ngFor="let tweet of tweets" class="tweet-slot">
+      <div class="tweet">
+        <table class="tweet-content-wrapper">
+          <tr>
+            <td>
+              <div class="tweet-user-info">
+                <div class="tweet-user-image-container">
+                  <img
+                    class="tweet-user-image"
+                    [src]="tweet.userImgSrc | safe"
+                  />
+                </div>
+                <div class="tweet-user-names">
+                  <div class="tweet-user-name">{{tweet.userName}}</div>
+                  <div class="tweet-user-screen-name">
+                    @{{tweet.userScreenName}}
+                  </div>
+                </div>
+              </div>
+              <div class="tweet-content">
+                <div class="tweet-text" [innerHTML]="tweet.content"></div>
+              </div>
+            </td>
+            <td>
+              <div class="tweet-images">
+                <img
+                  class="tweet-image"
+                  *ngIf="tweet.imgSrc"
+                  [src]="tweet.imgSrc | safe"
+                />
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div class="tweet-info-footer">
+          <i class="fa fa-retweet tweet-info-footer-icon"></i
+          ><span class="tweet-info-footer-count">{{tweet.retweetCount}}</span>
+          <i class="fa fa-heart-o tweet-info-footer-icon"></i
+          ><span class="tweet-info-footer-count">{{tweet.retweetCount}}</span>
+          <span class="tweet-info-footer-count">&mdash;</span>
+          <span class="tweet-info-footer-date">{{tweet.publishDate}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</banner-layout>

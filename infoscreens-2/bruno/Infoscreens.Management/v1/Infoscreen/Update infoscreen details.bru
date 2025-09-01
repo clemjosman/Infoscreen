@@ -1,0 +1,22 @@
+meta {
+  name: Update infoscreen details
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{rootUrl}}/v1/infoscreens/DevInfoscreenRPi4
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "displayName": "Dev infoscreen",
+    "description": "Infoscreen used to dev on Raspberry Pi 4"
+  }
+}

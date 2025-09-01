@@ -1,0 +1,40 @@
+{
+    "dev.build": "Build",
+    "devmode": "Developer Modus",
+
+    "general.button.showDetails": "Details anzeigen",
+    "general.button.hideDetails": "Details ausblenden",
+    "general.error": "Fehler",
+    "http.error.xxx.title": "Ein Fehler ist aufgetreten",
+    "http.error.xxx.subTitle": "Ein Fehler ist während einer Serveranfrage aufgetreten. Dadurch konnte die gewünschte Aktion nicht ausgeführt werden. Bitte wenden Sie sich an den Support und geben Sie die folgende Mitteilung an.",
+    "http.error.timeout.title": "Request Timeout",
+    "http.error.timeout.subTitle": "Ein Fehler ist während einer Serveranfrage aufgetreten. Dadurch konnte die gewünschte Aktion nicht ausgeführt werden. Bitte wenden Sie sich an den Support und geben Sie die folgende Mitteilung an.",
+    "http.error.0.title": "Verbindung fehlgeschlagen",
+    "http.error.0.subTitle": "Um die Anwendung zu verwenden, wird ein Internetzugang benötigt.",
+    "http.error.0.message": "Verbindung zum Sserver unmöglich. Vielleicht liegt ein Applikationsfehler vor, aber prüfen Sie bitte Ihre Internetverbindung.",
+    
+    "auth.login.again": "Anmelden",
+    "auth.loginPortal.title": "Anmeldungsart",
+    "auth.logout": "Abmelden",
+    "auth.logout.chooseLogoutType": "Wie möchten Sie sich abmelden?",
+    "auth.logout.local": "Nur Applikation",
+    "auth.logout.successful": "Abmeldung erfolgreich!",
+    "auth.logout.inProgress": "Abmelden ...",
+    "auth.logout.back": "Zurück zu Applikation",
+    "auth.logout.vinci": "VINCI Energies Konto",
+    "auth.retry": "Erneut versuchen",
+    "auth.userUnknown.title": "Benutzer nicht gefunden",
+    "auth.userUnknown.subtitle": "Der angeforderte Benutzer konnte nicht gefunden werden. Bitte registrieren Sie sich zuerst.",
+
+    "help.invitationToContact": "Bei Fragen und Anregungen wenden Sie sich bitte an: ",
+    "help.helpPage": "Hilfeseiten",
+
+    "maintenance.ongoing": "Eine Wartung wird durchgeführt",
+    "maintenance.startTime": "Start",
+    "maintenance.endTime": "Ende",
+    "maintenance.currentTenant": "Aktueller Mandant",
+
+    "page404.title": "Fehler 404",
+    "page404.subtitle": "Sorry, wir konnten diese Seite nicht finden.",
+    "page404.backToHome": "Zurück zu Applikation"
+}

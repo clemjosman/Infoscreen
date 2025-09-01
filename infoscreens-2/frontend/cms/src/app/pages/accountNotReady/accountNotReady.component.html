@@ -1,0 +1,11 @@
+<card-page 
+    [action_template]="actions"
+    [title]="isNotReady ? 'Your account is not ready yet. Please contact an administrator to finish your account setup.' : 'Your account is ready!'"
+></card-page>
+
+<!-- ACTIONS -->
+<ng-template #actions>
+    <button mat-raised-button color="action" (click)="logout()" *ngIf="isNotReady">Logout</button> <!-- TODO: translate ?? (Which language) -->
+    <button mat-raised-button color="action" (click)="goToHomePage()" *ngIf="!isNotReady">Access the website</button> <!-- TODO: translate ?? (Which language) -->
+</ng-template>
+<!-- / ACTIONS -->

@@ -1,0 +1,11 @@
+meta {
+  name: Send push notifications
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{rootUrl}}/v1/notifications/{{tenantCode}}/send
+  body: none
+  auth: inherit
+}

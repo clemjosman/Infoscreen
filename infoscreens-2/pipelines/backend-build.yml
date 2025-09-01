@@ -1,0 +1,121 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+    branches:
+        include:
+            - master
+            - dev
+    paths:
+        include:
+            - functions
+
+resources:
+    - repo: self
+
+variables:
+    ${{ if in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI') }}:
+        tag: 'CI'
+    ${{ else }}:
+        tag: 'PR'
+    # VESACT_NUGET_REGISTRY_ACCESS_TOKEN must be added on DevOps directly as a secret variable
+
+stages:
+    - stage: 'BackendCMS'
+      displayName: 'Backend - CMS'
+      dependsOn: []
+      jobs:
+          - job: 'Build'
+            displayName: '🔨 Build'
+            pool:
+                vmImage: 'ubuntu-latest'
+            steps:
+                #  Creating build tag [.CSPROJ VERSION]-[BUILD ID]-[TAG]
+                - script: |
+                      backendVersion=$(grep -oPm1 "(?<=<Version>)[^<]+" < ./backend/Infoscreens.management/Infoscreens.Management.csproj) 
+                      echo "##vso[task.setvariable variable=backendVersion;isOutput=true;]v$backendVersion-$(Build.BuildId)-$(tag)"
+                  name: BackendCMSBuildNumber
+                  displayName: '📝 Set backend build number'
+                - task: Docker@2
+                  displayName: '🔨 Build backend image'
+                  inputs:
+                      containerRegistry: 'vesact-docker-push'
+                      repository: 'infoscreens/backend/cms'
+                      command: 'build'
+                      buildContext: '**'
+                      dockerfile: './backend/Dockerfile'
+                      tags: '$(BackendCMSBuildNumber.backendVersion)'
+                      arguments: '--build-arg VESACT_NUGET_REGISTRY_ACCESS_TOKEN=$(System.AccessToken) --build-arg PROJECT_DIR=Infoscreens.management --build-arg IS_PROD=true'
+                - script: docker save vesact.azurecr.io/infoscreens/backend/cms:$(BackendCMSBuildNumber.backendVersion) -o $(Pipeline.Workspace)/backend-cms.tar
+                  displayName: '💾 Save Docker image'
+                - publish: $(Pipeline.Workspace)/backend-cms.tar
+                  displayName: '🏺 Copy artifact to pipeline'
+                  artifact: 'backend-cms'
+    - stage: 'BackendCache'
+      displayName: 'Backend - Cache'
+      dependsOn: []
+      jobs:
+          - job: 'Build'
+            displayName: '🔨 Build'
+            pool:
+                vmImage: 'ubuntu-latest'
+            steps:
+                #  Creating build tag [.CSPROJ VERSION]-[BUILD ID]-[TAG]
+                - script: |
+                      backendVersion=$(grep -oPm1 "(?<=<Version>)[^<]+" < ./backend/Infoscreens.cache/Infoscreens.Cache.csproj) 
+                      echo "##vso[task.setvariable variable=backendVersion;isOutput=true;]v$backendVersion-$(Build.BuildId)-$(tag)"
+                  name: BackendCacheBuildNumber
+                  displayName: '📝 Set backend build number'
+                - task: Docker@2
+                  displayName: '🔨 Build backend image'
+                  inputs:
+                      containerRegistry: 'vesact-docker-push'
+                      repository: 'infoscreens/backend/cache'
+                      command: 'build'
+                      buildContext: '**'
+                      dockerfile: './backend/Dockerfile'
+                      tags: '$(BackendCacheBuildNumber.backendVersion)'
+                      arguments: '--build-arg VESACT_NUGET_REGISTRY_ACCESS_TOKEN=$(System.AccessToken) --build-arg PROJECT_DIR=Infoscreens.cache --build-arg IS_PROD=true'
+                - script: docker save vesact.azurecr.io/infoscreens/backend/cache:$(BackendCacheBuildNumber.backendVersion) -o $(Pipeline.Workspace)/backend-cache.tar
+                  displayName: '💾 Save Docker image'
+                - publish: $(Pipeline.Workspace)/backend-cache.tar
+                  displayName: '🏺 Copy artifact to pipeline'
+                  artifact: 'backend-cache'
+    - stage: 'Push'
+      displayName: 'Push Docker images'
+      dependsOn:
+          - BackendCMS
+          - BackendCache
+      condition: succeeded()
+      jobs:
+          - job: 'Push'
+            displayName: '📤 Push'
+            variables:
+                backendVersionCms: $[ stageDependencies.BackendCMS.Build.outputs['BackendCMSBuildNumber.backendVersion'] ]
+                backendVersionCache: $[ stageDependencies.BackendCache.Build.outputs['BackendCacheBuildNumber.backendVersion'] ]
+            steps:
+                - download: current
+                  displayName: '🏺 Get backend cms image'
+                  artifact: 'backend-cms'
+                - download: current
+                  displayName: '🏺 Get backend cache image'
+                  artifact: 'backend-cache'
+                - script: docker load -i $(Pipeline.Workspace)/backend-cms/backend-cms.tar
+                  displayName: '🐋 Load backend cms image into Docker'
+                - script: docker load -i $(Pipeline.Workspace)/backend-cache/backend-cache.tar
+                  displayName: '🐋 Load backend cache image into Docker'
+                - task: Docker@2
+                  displayName: '📤 Push backend cms image'
+                  inputs:
+                      containerRegistry: 'vesact-docker-push'
+                      repository: 'infoscreens/backend/cms'
+                      command: 'push'
+                      tags: '$(backendVersionCms)'
+                - task: Docker@2
+                  displayName: '📤 Push backend cache image'
+                  inputs:
+                      containerRegistry: 'vesact-docker-push'
+                      repository: 'infoscreens/backend/cache'
+                      command: 'push'
+                      tags: '$(backendVersionCache)'

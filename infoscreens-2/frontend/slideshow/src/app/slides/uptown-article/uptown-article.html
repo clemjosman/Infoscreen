@@ -1,0 +1,38 @@
+<banner-layout [slide]="slide">
+  <split-content [firstContentProportion]="40" layout="horizontal">
+    <image-content firstContent [url]="articleImageSource"></image-content>
+
+    <ng-container secondContent>
+      <div class="page-container">
+        <div class="content-container">
+          <div class="text-content" *ngIf="article">
+            <div class="author-container">
+              <img class="author-avatar" [src]="article.user.avatar" />
+              <p class="author-name">{{article.user.fullName}}</p>
+            </div>
+            <div class="content">{{ article.content }}</div>
+            <div class="details">
+              <hr />
+              <div class="details-container">
+                <div class="date-container">
+                  <i class="fa fa-calendar"></i>
+                  <p>{{ article.date }}</p>
+                </div>
+                <div class="like-comment-container">
+                  <i class="fa fa-heart"></i>
+                  <p>{{ article.likeCount }}</p>
+                  <i class="fa fa-comment"></i>
+                  <p>{{ article.commentCount }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="no-content" *ngIf="!article">
+            <p>{{'uptown.noArticle' | translateAsync | async}}</p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </split-content>
+</banner-layout>

@@ -1,0 +1,19 @@
+CREATE TABLE [dbo].[Translations]
+(
+	[Id] INT IDENTITY(1,1) NOT NULL,
+	[TextCode] [nvarchar](100) NOT NULL,
+	
+	CONSTRAINT [PK_Translations] PRIMARY KEY CLUSTERED(
+		[Id] ASC
+	)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+/****** Indexes ******/
+
+CREATE UNIQUE NONCLUSTERED INDEX [IX_Translaions_TextCode] ON [dbo].[Translations]
+(
+	[TextCode]
+)
+WITH (STATISTICS_NORECOMPUTE = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
+GO

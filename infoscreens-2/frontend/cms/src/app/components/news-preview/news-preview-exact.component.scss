@@ -1,0 +1,401 @@
+// cms/src/app/components/news-preview/news-preview-exact.component.scss
+// ⚡ REPRODUCTION 100% EXACTE du slideshow avec viewport adaptatif
+
+// ==========================================
+// VARIABLES EXACTES du slideshow
+// ==========================================
+
+$footer-size: 5rem;
+
+// ==========================================
+// VARIABLES CSS EXACTES du slideshow (light-default theme)
+// ==========================================
+
+:host {
+  --text-color: #00458f;
+  --text-link-color: #039be5;
+  --text-color-secondary: #808080;
+  --background-color: #ffffff;
+  --body-gradient-start-color: #e2e2e2;
+  --body-gradient-end-color: #c9d6ff;
+  --footer-text-color: #00458f;
+  --footer-background-color: #f5f5f5;
+  
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+// ==========================================
+// HEADER DE PRÉVISUALISATION
+// ==========================================
+
+.preview-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  z-index: 10000;
+  font-size: 12px;
+  
+  button {
+    background: #ff4444;
+    color: white;
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    &:hover { background: #ff6666; }
+  }
+}
+
+// ==========================================
+// ⚡ VIEWPORT ADAPTATIF : montre les différences mais tout visible
+// ==========================================
+
+.slideshow-viewport {
+  margin-top: 40px;
+  background: linear-gradient(135deg, var(--body-gradient-start-color), var(--body-gradient-end-color));
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #666;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  
+  display: flex;
+  flex-direction: column;
+  
+  // ⚡ ADAPTATIF : garde les proportions mais s'assure que tout est visible
+  max-width: calc(100vw - 60px);
+  max-height: calc(100vh - 120px);
+  
+  // ⚡ Transform scale pour réduire si nécessaire en gardant les proportions
+  transform-origin: top center;
+}
+
+// ==========================================
+// ÉTATS DE CHARGEMENT
+// ==========================================
+
+.loading, .error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.error {
+  color: #d32f2f;
+}
+
+// ==========================================
+// ⚡ BANNER LAYOUT CONTENT (PAS de bannière, style BannerStyle.None)
+// ==========================================
+
+.banner-layout-content {
+  flex: 1;
+  height: calc(100% - #{$footer-size});
+  width: 100%;
+  overflow: hidden;
+  background: var(--background-color);
+}
+
+// ==========================================
+// ⚡ SPLIT CONTENT EXACT (splitContent.scss)
+// ==========================================
+
+.split-content-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  align-items: stretch;
+  justify-content: center;
+  font-size: 40px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  
+  .content {
+    min-width: 0px;
+    min-height: 0px;
+    flex: 0 0;
+  }
+  
+  // ⚡ VERTICAL = côte à côte (direction: row)
+  &.vertical {
+    flex-direction: row;
+  }
+  
+  // ⚡ HORIZONTAL = l'un au-dessus de l'autre (direction: column)  
+  &.horizontal {
+    flex-direction: column;
+  }
+}
+
+// ==========================================
+// ⚡ IMAGE CONTENT EXACT (image.scss)
+// ==========================================
+
+.image-content-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  
+  .image-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    transform: scale(1.05);
+    background-repeat: no-repeat;
+    filter: blur(15px);
+    -webkit-filter: blur(15px);
+    opacity: 0.5;
+  }
+  
+  .image-center {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+// ==========================================
+// ⚡ PDF CONTENT
+// ==========================================
+
+.pdf-content-wrapper {
+  width: 100%;
+  height: 100%;
+  
+  .pdf-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: white;
+  }
+}
+
+// ==========================================
+// ⚡ TEXT CONTENT EXACT (newsInternal.scss)
+// ==========================================
+
+.content-container {
+  font-size: 20.4pt;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 100%;
+  margin: 0;
+  background-color: var(--background-color);
+  width: 100%;
+}
+
+.text-inset {
+  height: 100%;
+  padding: 30px 30px 0px 30px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  
+  .title {
+    margin: 10px 0px;
+    font-size: 35pt;
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1.2;
+    flex-shrink: 0; // Ne pas rétrécir
+  }
+  
+  // ⚡ WRAPPER pour le contenu + news-infos
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0; // Important pour permettre le overflow
+    overflow: hidden;
+  }
+  
+  .content {
+    margin: 0px;
+    font-size: 25pt;
+    margin-top: 15px;
+    color: var(--text-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    // Styles pour le contenu HTML
+    ::ng-deep {
+      p {
+        margin: 0 0 15px 0;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      
+      ul {
+        padding-left: revert;
+        list-style: disc;
+        
+        li {
+          display: list-item;
+          list-style: disc;
+        }
+      }
+      
+      a {
+        color: var(--text-link-color);
+      }
+      
+      strong {
+        font-weight: 700;
+      }
+    }
+  }
+  
+  // ⚡ NEWS-INFOS : juste après le contenu
+  .news-infos {
+    color: var(--text-color);
+    text-align: left;
+    font-style: italic;
+    margin-top: 10px; // Petit espace après le contenu
+    flex-shrink: 0; // Ne pas rétrécir
+    
+    hr {
+      height: 1px;
+      background-color: #00458f;
+      border: none;
+      max-width: 450px;
+      margin: 0;
+    
+    }
+    
+    i {
+      transform: translateY(-3.5px); 
+  display: inline-block; 
+      color: var(--text-color);
+      text-align: left;
+      font-style: italic;
+    
+    }
+  }
+}
+.news-infos .fa-lock {
+        font-size: 0.75em; // Légèrement plus petit
+        } 
+// ==========================================
+// ⚡ CENTERED TEXT EXACT (centeredText.scss)
+// ==========================================
+
+.centered-text-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  
+  span {
+    font-size: 40px;
+    color: var(--text-color);
+    text-align: center;
+    font-weight: 300;
+  }
+}
+
+// ==========================================
+// ⚡ FOOTER BAR EXACT (footer-bar.scss)
+// ==========================================
+
+footer.footer-bar {
+  flex: 0 0 $footer-size;
+  min-height: 0px;
+  max-height: $footer-size;
+  height: $footer-size;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  color: var(--footer-text-color);
+  background-color: var(--footer-background-color);
+  
+  // ⚡ SHADOW exact du slideshow
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.5),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+  .logo-container {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+
+    &.right {
+      justify-content: flex-end;
+    }
+    img {
+      max-height: 100%;
+      max-width: 100%;
+    }
+  }
+
+  .date-container {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: flex-end; 
+    flex-direction: row;
+    align-items: center;
+    padding-right: 30px;
+
+    .date {
+      margin: 0px;
+      font-weight: 500;
+      font-size: 20pt;
+    
+    }
+  }
+}

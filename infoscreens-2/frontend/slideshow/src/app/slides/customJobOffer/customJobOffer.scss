@@ -1,0 +1,50 @@
+.text-content {
+  font-size: 20.4pt;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 100%;
+  padding: 30px;
+  margin: 0;
+  background-color: var(--background-color);
+}
+
+.title {
+  margin: 10px 0px;
+  font-size: 35pt;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.content {
+  margin: 0px;
+  font-size: 25pt;
+  margin-top: 15px;
+  color: var(--text-color);
+}
+
+.subtitle {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+td {
+  padding: 2px;
+}
+
+ul li {
+  margin: 0px;
+  list-style-type: disc;
+  list-style-position: inside;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.skill {
+  color: var(--text-color);
+}
+
+.contact-icon {
+  padding-right: 8px;
+  color: var(--job-offer-icons-color);
+}

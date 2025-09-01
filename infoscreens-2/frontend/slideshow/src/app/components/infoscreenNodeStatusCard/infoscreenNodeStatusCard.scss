@@ -1,0 +1,57 @@
+.nodeStatusCardContainer {
+  border: solid 1px var(--card-border-color);
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.nodeStatusHeader {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 35px;
+  position: relative;
+  top: -5px;
+}
+
+.nodeStatusIndicator {
+  margin-right: 15px;
+}
+
+.nodeStatusIndicator.offline {
+  position: relative;
+  width: fit-content;
+  float: left;
+  top: -15px;
+  left: 1px;
+  color: red;
+  font-size: 50px;
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+
+.nodeStatusIndicator.online {
+  position: relative;
+  width: fit-content;
+  float: left;
+  top: -6px;
+  left: -1px;
+  color: #01c701;
+  font-size: 42px;
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+
+.nodeStatusDetails {
+  font-size: 20px;
+  margin-top: 23px;
+  position: relative;
+  top: -15px;
+}
+
+.nodeStatusDetails .row {
+  margin-bottom: 0px;
+}
+
+.badHealth {
+  color: red;
+}

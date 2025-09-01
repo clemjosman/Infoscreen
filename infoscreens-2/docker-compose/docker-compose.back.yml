@@ -1,0 +1,93 @@
+444name: infoscreens-backend
+services:
+    infoscreens-backend-cache:
+        hostname: infoscreens-backend-cache
+        container_name: infoscreens-backend-cache
+        build:
+            context: ../backend
+            dockerfile: Dockerfile
+            args:
+                VESACT_NUGET_REGISTRY_ACCESS_TOKEN: ${VESACT_NUGET_REGISTRY_ACCESS_TOKEN}
+                PROJECT_DIR: Infoscreens.cache
+                IS_PROD: false
+        restart: unless-stopped
+        depends_on:
+            - infoscreens-blob
+            - infoscreens-sql-server
+        ports:
+            - 7071:80
+        environment:
+            - ENVIRONMENT=${ENVIRONMENT}
+            - APPINSIGHTS_INSTRUMENTATIONKEY=${APPINSIGHTS_INSTRUMENTATIONKEY}
+            - FUNCTIONS_WORKER_RUNTIME=${FUNCTIONS_WORKER_RUNTIME}
+            - AzureWebJobsStorage=${AZURE_WEB_JOBS_STORAGE}
+            - WEBSITE_CONTENTAZUREFILECONNECTIONSTRING=${WEBSITE_CONTENTAZUREFILECONNECTIONSTRING}
+            - CMS_BLOB_CONNECTION_STRING=${CMS_BLOB_CONNECTION_STRING}
+            - CMS_CONNECTION_STRING=${CMS_CONNECTION_STRING}
+            - AZURE_OPEN_AI_ENDPOINT=${AZURE_OPEN_AI_ENDPOINT}
+            - AZURE_OPEN_AI_KEY=${AZURE_OPEN_AI_KEY}
+
+    infoscreens-backend-cms:
+        hostname: infoscreens-backend-cms
+        container_name: infoscreens-backend-cms
+        build:
+            context: ../backend
+            dockerfile: Dockerfile
+            args:
+                VESACT_NUGET_REGISTRY_ACCESS_TOKEN: ${VESACT_NUGET_REGISTRY_ACCESS_TOKEN}
+                PROJECT_DIR: Infoscreens.management
+                IS_PROD: false
+        restart: unless-stopped
+        depends_on:
+            - infoscreens-blob
+            - infoscreens-sql-server
+        ports:
+            - 7072:80
+        environment:
+            - DEV_OBJECT_ID=${DEV_OBJECT_ID}
+            - MSB_API_KEY=<API_KEY>
+            - ENVIRONMENT=${ENVIRONMENT}
+            - APPINSIGHTS_INSTRUMENTATIONKEY=${APPINSIGHTS_INSTRUMENTATIONKEY}
+            - FUNCTIONS_WORKER_RUNTIME=${FUNCTIONS_WORKER_RUNTIME}
+            - AzureWebJobsStorage=${AZURE_WEB_JOBS_STORAGE}
+            - WEBSITE_CONTENTAZUREFILECONNECTIONSTRING=${WEBSITE_CONTENTAZUREFILECONNECTIONSTRING}
+            - CMS_BLOB_CONNECTION_STRING=${CMS_BLOB_CONNECTION_STRING}
+            - CMS_CONNECTION_STRING=${CMS_CONNECTION_STRING}
+
+    infoscreens-blob:
+        hostname: infoscreens-blob
+        container_name: infoscreens-blob
+        build:
+            context: ../blob-storage
+            dockerfile: Dockerfile
+        ports:
+            - 10000:10000
+            - 10001:10001
+            - 10002:10002
+        volumes:
+            - azurite-data:/opt/azurite
+
+    infoscreens-sql-server:
+        hostname: infoscreens-sql-server
+        container_name: infoscreens-sql-server
+        build:
+            context: ../database
+            dockerfile: Dockerfile
+        ports:
+            - 1433:1433
+        environment:
+            - ACCEPT_EULA=Y
+            - MSSQL_SA_PASSWORD=password123!
+        volumes:
+            - sql-server-data:/var/opt/mssql
+        healthcheck:
+            test: ['CMD', 'bash', 'healtcheck.sh']
+            interval: 10s
+            timeout: 10s
+            retries: 15
+
+volumes:
+    azurite-data:
+        name: infoscreens-backend-blob
+    sql-server-data:
+        name: infoscreens-sql-server

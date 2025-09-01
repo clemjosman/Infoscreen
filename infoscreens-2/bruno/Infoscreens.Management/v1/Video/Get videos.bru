@@ -1,0 +1,11 @@
+meta {
+  name: Get videos
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{rootUrl}}/v1/video/{{tenantCode}}
+  body: none
+  auth: inherit
+}

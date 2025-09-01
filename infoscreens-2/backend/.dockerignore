@@ -1,0 +1,13 @@
+# Config files
+**/.vs
+**/.dockerignore
+**/.git
+**/.env
+
+# Settings
+**/local.settings.json
+**/*.csproj.user
+
+# Local build binaries
+**/bin
+**/obj

@@ -1,0 +1,14 @@
+<div id="app">
+  <div
+    id="app-content"
+    [@.disabled]="isRoutingAnimationsDisabled"
+    [@routeAnimations]="
+      o && o.activatedRouteData && o.activatedRouteData['animation']
+    "
+  >
+    <router-outlet #o="outlet"></router-outlet>
+  </div>
+
+  <footer-bar></footer-bar>
+</div>
+<internet-status></internet-status>

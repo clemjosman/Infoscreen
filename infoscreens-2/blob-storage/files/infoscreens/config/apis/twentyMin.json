@@ -1,0 +1,34 @@
+[
+  {
+    "cachedFilename": "FrontDE.json",
+    "urlExtension": "/20minuten/front"
+  },
+  {
+    "cachedFilename": "FrontFR.json",
+    "urlExtension": "/20minutes/front"
+  },
+  {
+    "cachedFilename": "SwissDE.json",
+    "urlExtension": "/20minuten/schweiz"
+  },
+  {
+    "cachedFilename": "SwissFR.json",
+    "urlExtension": "/20minutes/suisse"
+  },
+  {
+    "cachedFilename": "ForeignDE.json",
+    "urlExtension": "/20minuten/ausland"
+  },
+  {
+    "cachedFilename": "ForeignFR.json",
+    "urlExtension": "/20minutes/monde"
+  },
+  {
+    "cachedFilename": "EconomyAndStockDE.json",
+    "urlExtension": "/20minuten/wirtschaft"
+  },
+  {
+    "cachedFilename": "EconomyAndStockFR.json",
+    "urlExtension": "/20minutes/economie"
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Software developer m/f",
+    "description": "We are looking for a full time software developer to work on websites, servers and databases. We develop various tools used by other companies of the Vinci Energies group in Switzerland like a time recording system or infoscreens.",
+    "imgSrc": "https://cdn.pixabay.com/photo/2017/10/17/10/05/job-2860035_960_720.jpg",
+    "skills": [
+      "C#",
+      "TypeScript",
+      "SQL",
+      "Git",
+      "DevOps",
+      "Agile process management",
+      "Linux"
+    ],
+    "contact": {
+      "name": "Muller Nicolas",
+      "email": "nicolas.muller@actemium.ch",
+      "phone": "+41 61 316 67 00",
+      "address": "Schorenweg 44B, 4144 Arlesheim"
+    }
+  },
+  {
+    "title": "Test title for job offer NUMBER 2",
+    "description": "This is a description and should be a longer text but not too long. Given that there are others things to display on this screen. But if you are interested, contact us and we will be glad to have an interview with you.",
+    "skills": [
+      "C#",
+      "But also longer",
+      "AndAcceptQuiteLongWords",
+      "Maybe this too",
+      "Five seems correct"
+    ],
+    "contact": {
+      "email": "thisisa.testemail@actemium.ch",
+      "phone": "+41 12 345 67 89"
+    }
+  },
+  {
+    "title": "Test title for job offer NUMBER 3",
+    "description": "This is a description and should be a longer text but not too long. Given that there are others things to display on this screen. But if you are interested, contact us and we will be glad to have an interview with you.",
+    "competences": [
+      "C#",
+      "But also longer",
+      "AndAcceptQuiteLongWords",
+      "Maybe this too",
+      "Five seems correct"
+    ],
+    "contact": {
+      "email": "thisisa.testemail@actemium.ch",
+      "phone": "+41 12 345 67 89"
+    }
+  }
+]

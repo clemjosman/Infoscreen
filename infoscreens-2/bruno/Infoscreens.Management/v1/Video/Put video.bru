@@ -1,0 +1,32 @@
+meta {
+  name: Put video
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{rootUrl}}/v1/video/{{tenantCode}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+      "id": 2,
+      "title": {
+          "DE": "Überschrift",
+          "EN": "Heading",
+          "FR": "Titre"
+      },
+    "url": "youtu.be/5I9abMaJmYM",
+    "duration": 185,
+      "isVisible": false,
+      "publicationDate": "2020-01-02 12:00:00.0000000",
+      "attachments": null,
+      "assignedToInfoscreenIds": [2]
+  }
+}

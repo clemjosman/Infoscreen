@@ -1,0 +1,40 @@
+{
+    "dev.build": "Build",
+    "devmode": "Developer mode",
+
+    "general.button.showDetails": "Show details",
+    "general.button.hideDetails": "Hide details",
+    "general.error": "Error",
+    "http.error.xxx.title": "An unexpected error occured",
+    "http.error.xxx.subTitle": "An error has occured during a request to the server and your action could not be completed. Please contact the support referring to the following message.",
+    "http.error.timeout.title": "Request timeout",
+    "http.error.timeout.subTitle": "An error has occured during a request to the server and your action could not be completed. Please contact the support referring to the following message.",
+    "http.error.0.title": "Impossible to connect",
+    "http.error.0.subTitle": "An access to internet is required to properly use the application.",
+    "http.error.0.message": "We cannot connect to the server. The problem is maybe on our side but please check your internet connection.",
+    
+    "auth.login.again": "Reconnect",
+    "auth.loginPortal.title": "Choose how to login",
+    "auth.logout": "Logout",
+    "auth.logout.chooseLogoutType": "How would you like to logout?",
+    "auth.logout.local": "Application only",
+    "auth.logout.successful": "Logout successful!",
+    "auth.logout.inProgress": "Logging you out ...",
+    "auth.logout.back": "Back to application",
+    "auth.logout.vinci": "VINCI Energies account",
+    "auth.retry": "Try again",
+    "auth.userUnknown.title": "User not found",
+    "auth.userUnknown.subtitle": "The requested user could not be found. Please register first.",
+
+    "help.invitationToContact": "In case of issues and ideas, please contact: ",
+    "help.helpPage": "Help pages",
+
+    "maintenance.ongoing": "A maintenance is ongoing",
+    "maintenance.startTime": "Start time",
+    "maintenance.endTime": "End time",
+    "maintenance.currentTenant": "Current tenant",
+
+    "page404.title": "Error 404",
+    "page404.subtitle": "Sorry, we could not find this page.",
+    "page404.backToHome": "Back to application"
+}

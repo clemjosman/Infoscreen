@@ -1,0 +1,29 @@
+@import "~@vesact/web-ui-template/lib/default-colors.scss";
+
+.mat-card.metadata {
+  background-color: #dbebf5;
+}
+
+%edit-button-margin {
+  margin-left: 16px;
+}
+
+.edit-card {
+  .edit-card-header {
+    .edit-buttons {
+      margin-left: auto;
+      margin-bottom: 15px;
+      button {
+        @extend %edit-button-margin;
+      }
+    }
+  }
+  .edit-card-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    button {
+      @extend %edit-button-margin;
+    }
+  }
+}

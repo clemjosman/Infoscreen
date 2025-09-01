@@ -1,0 +1,135 @@
+<!-- cms/src/app/components/device-preview-dialog/device-preview-dialog.component.html -->
+<div class="dialog-container">
+  <h2 mat-dialog-title>
+    <mat-icon>preview</mat-icon>
+    PrÃ©visualisation News Internal
+  </h2>
+  
+  <mat-dialog-content class="dialog-content">
+    <p class="dialog-description">
+      SÃ©lectionnez le type d'appareil et les dimensions pour voir un rendu exactement identique 
+      Ã  celui affichÃ© dans le slideshow.
+    </p>
+    
+    <!-- SÃ©lection du type d'appareil -->
+    <div class="device-type-section">
+      <h3>Type d'appareil</h3>
+      <mat-button-toggle-group 
+        [(ngModel)]="selectedDeviceType" 
+        (change)="onDeviceTypeChange()"
+        class="device-type-toggle">
+        <mat-button-toggle value="tv">
+          <mat-icon>tv</mat-icon>
+          TÃ©lÃ©vision / Ã‰cran
+        </mat-button-toggle>
+        <mat-button-toggle value="mobile">
+          <mat-icon>smartphone</mat-icon>
+          Mobile / Tablette
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    
+    <!-- SÃ©lection des dimensions pour TV -->
+    <div *ngIf="selectedDeviceType === 'tv'" class="dimensions-section">
+      <h3>RÃ©solution d'Ã©cran</h3>
+      <mat-radio-group 
+        [(ngModel)]="selectedPreset" 
+        (change)="onPresetChange()"
+        class="preset-radio-group">
+        <mat-radio-button 
+          *ngFor="let preset of tvPresets" 
+          [value]="preset"
+          class="preset-option">
+          <div class="preset-info">
+            <span class="preset-name">{{ preset.width }}Ã—{{ preset.height }}</span>
+            <span class="preset-description">{{ getResolutionName(preset) }}</span>
+          </div>
+        </mat-radio-button>
+        <mat-radio-button 
+          [value]="customTvPreset"
+          class="preset-option">
+          <div class="preset-info">
+            <span class="preset-name">Dimensions personnalisÃ©es</span>
+          </div>
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    
+    <!-- SÃ©lection des dimensions pour Mobile -->
+    <div *ngIf="selectedDeviceType === 'mobile'" class="dimensions-section">
+      <h3>ModÃ¨le d'appareil</h3>
+      <mat-radio-group 
+        [(ngModel)]="selectedPreset" 
+        (change)="onPresetChange()"
+        class="preset-radio-group">
+        <mat-radio-button 
+          *ngFor="let preset of mobilePresets" 
+          [value]="preset"
+          class="preset-option">
+          <div class="preset-info">
+            <span class="preset-name">{{ preset.width }}Ã—{{ preset.height }}</span>
+            <span class="preset-description">{{ getResolutionName(preset) }}</span>
+          </div>
+        </mat-radio-button>
+        <mat-radio-button 
+          [value]="customMobilePreset"
+          class="preset-option">
+          <div class="preset-info">
+            <span class="preset-name">Dimensions personnalisÃ©es</span>
+          </div>
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    
+    <!-- Dimensions personnalisÃ©es -->
+    <div *ngIf="isCustomPreset()" class="custom-dimensions">
+      <h4>Dimensions personnalisÃ©es</h4>
+      <div class="custom-inputs">
+        <mat-form-field appearance="outline">
+          <mat-label>Largeur (px)</mat-label>
+          <input matInput 
+                 type="number" 
+                 [(ngModel)]="customWidth"
+                 min="320" 
+                 max="7680"
+                 (ngModelChange)="onCustomDimensionsChange()">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+          <mat-label>Hauteur (px)</mat-label>
+          <input matInput 
+                 type="number" 
+                 [(ngModel)]="customHeight"
+                 min="240" 
+                 max="4320"
+                 (ngModelChange)="onCustomDimensionsChange()">
+        </mat-form-field>
+      </div>
+    </div>
+    
+    <!-- AperÃ§u des dimensions -->
+    <div class="preview-info">
+      <h4>AperÃ§u sÃ©lectionnÃ©</h4>
+      <div class="preview-details">
+        <span class="device-icon">
+          <mat-icon>{{ selectedDeviceType === 'tv' ? 'tv' : 'smartphone' }}</mat-icon>
+        </span>
+        <span class="device-text">
+          {{ getFinalDimensions().width }}Ã—{{ getFinalDimensions().height }}px
+          - {{ getResolutionName(getFinalDimensions()) }}
+        </span>
+      </div>
+    </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">Annuler</button>
+    <button mat-raised-button 
+            color="primary" 
+            (click)="onLaunchPreview()"
+            [disabled]="!isValidDimensions()">
+      <mat-icon>launch</mat-icon>
+      Lancer la prÃ©visualisation
+    </button>
+  </mat-dialog-actions>
+</div>

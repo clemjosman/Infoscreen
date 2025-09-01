@@ -1,0 +1,44 @@
+[
+    {
+        "cachedFilename": "Softgarden_Actemium.json",
+        "urlExtension": "/113309_extern",
+        "postprocessing": [
+            {
+                "key": "companyId",
+                "value": "792aa8e9-a0fd-4bc9-a4a5-9cb3c2d3b604"
+            }
+        ],
+        "headers": [
+            {
+                "key": "authorization",
+                "value": "Basic MzljMTcxOTctM2VlZS00NmU5LTkyYTUtNTg4MTFhYjMxZjFl"
+            }
+        ]
+    },
+    {
+        "cachedFilename": "Softgarden_Axians.json",
+        "urlExtension": "/113309_extern",
+        "postprocessing": [
+            {
+                "key": "companyId",
+                "value": "999ee2f8-0f75-4037-8179-cf1f7d35f997"
+            }
+        ],
+        "headers": [
+            {
+                "key": "authorization",
+                "value": "Basic MzljMTcxOTctM2VlZS00NmU5LTkyYTUtNTg4MTFhYjMxZjFl"
+            }
+        ]
+    },
+    {
+        "cachedFilename": "Softgarden_Etavis.json",
+        "urlExtension": "/90991_extern",
+        "headers": [
+            {
+                "key": "authorization",
+                "value": "Basic YjhhNzFmZGItY2FjMy00NGI2LTk1MTgtNDFlMDhkMGI3NWQ5"
+            }
+        ]
+    }
+]

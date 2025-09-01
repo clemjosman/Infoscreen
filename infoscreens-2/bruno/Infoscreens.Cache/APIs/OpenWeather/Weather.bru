@@ -1,0 +1,19 @@
+meta {
+  name: Weather
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://api.openweathermap.org/data/2.5/onecall?appid=a62bb31add1644675a8e5a753cef554f&lat=47.50730758109534&lon=7.612374385946786&lang=de&units=metric
+  body: none
+  auth: none
+}
+
+params:query {
+  appid: a62bb31add1644675a8e5a753cef554f
+  lat: 47.50730758109534
+  lon: 7.612374385946786
+  lang: de
+  units: metric
+}

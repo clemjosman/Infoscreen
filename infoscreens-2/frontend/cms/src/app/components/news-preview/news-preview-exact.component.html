@@ -1,0 +1,102 @@
+<!-- cms/src/app/components/news-preview/news-preview-exact.component.html -->
+<!-- ⚡ REPRODUCTION 100% EXACTE du slideshow newsInternal SANS bannière -->
+
+<!-- Header de prévisualisation (overlay) -->
+<div class="preview-header">
+  <span>📺 {{ deviceData?.width }}×{{ deviceData?.height }} - PRÉVISUALISATION SLIDESHOW</span>
+  <button (click)="closePreview()">✕</button>
+</div>
+
+<!-- États de chargement -->
+<div *ngIf="isLoading" class="loading">Chargement...</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<!-- ⚡ REPRODUCTION 100% EXACTE du slideshow SANS bannière -->
+<div *ngIf="!isLoading && !error" 
+     class="slideshow-viewport"
+     [style.width]="deviceData?.width + 'px'"
+     [style.height]="deviceData?.height + 'px'">
+
+  <!-- ⚡ PAS DE BANNIÈRE ! Structure banner-layout-content directement -->
+  <div class="banner-layout-content">
+    
+    <!-- ⚡ Cas sans news -->
+    <ng-container *ngIf="!news">
+      <div class="centered-text-content">
+        <span>Aucune news disponible</span>
+      </div>
+    </ng-container>
+
+    <!-- ⚡ EXACTEMENT comme newsInternal.html du slideshow -->
+    <ng-container *ngIf="news">
+      <div class="split-content-container" 
+           [ngClass]="news.layout">
+        
+        <!-- ⚡ PREMIÈRE ZONE : image/pdf (firstContent) -->
+        <div class="content" 
+             [style.flex-basis]="getContentProportion('first')"
+             [style.flex-grow]="getFlexGrow('first')"
+             [style.order]="news.fileFirst ? 1 : 2">
+          
+          <!-- Image -->
+          <div *ngIf="hasAttachment() && isImage()" class="image-content-wrapper">
+            <div class="image-container">
+              <div class="image-background" [style.backgroundImage]="'url('+ newsFileLink +')'"></div>
+              <div class="image-center">
+                <img [src]="newsFileLink" [alt]="news.title">
+              </div>
+            </div>
+          </div>
+          
+          <!-- PDF -->
+          <div *ngIf="hasAttachment() && isPdf()" class="pdf-content-wrapper">
+            <iframe [src]="newsFileLink" class="pdf-frame" 
+                    style="width: 100%; height: 100%; border: none;"></iframe>
+          </div>
+          
+          <!-- Image par défaut -->
+          <div *ngIf="!hasAttachment()" class="image-content-wrapper">
+            <div class="image-container">
+              <div class="image-background" [style.backgroundImage]="'url('+ DEFAULT_IMAGE_NEWS +')'"></div>
+              <div class="image-center">
+                <img [src]="DEFAULT_IMAGE_NEWS" [alt]="news.title">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ⚡ DEUXIÈME ZONE : texte (secondContent) -->
+        <div class="content" 
+             [style.flex-basis]="getContentProportion('second')"
+             [style.flex-grow]="getFlexGrow('second')"
+             [style.order]="news.fileFirst ? 2 : 1">
+          
+          <div class="text-content-wrapper">
+            <div class="content-container">
+              <div class="text-inset">
+                <h1 class="title" [innerHTML]="news.title"></h1>
+                <div class="content" [innerHTML]="news.content"></div>
+                
+                <!-- ⚡ DATE DE PUBLICATION EN BAS du contenu texte, comme dans le slideshow -->
+                <div class="news-infos" *ngIf="showFooter && news.publicationDate">
+                  <hr />
+                  {{ news.publicationDate }} - <i class="fa fa-lock"></i>Interne News
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- ⚡ FOOTER exact du slideshow avec logo à gauche et date à DROITE -->
+  <footer class="footer-bar">
+    <div class="logo-container">
+      <img src="assets/images/ActemiumCH_Logo_Colour.png" alt="Actemium">
+    </div>
+    <div class="date-container">
+      <h1 class="date">{{ getFullDateTime() }}</h1>
+    </div>
+  </footer>
+</div> 

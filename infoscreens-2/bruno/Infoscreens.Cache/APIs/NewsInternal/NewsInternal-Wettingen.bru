@@ -1,0 +1,17 @@
+meta {
+  name: NewsInternal-Wettingen
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://infoscreen.actemium.ch/wp-json/wp/v2/posts?_embed&per_page=3&filter[category_name]=local-news-de,wettingen
+  body: none
+  auth: none
+}
+
+params:query {
+  _embed: null
+  per_page: 3
+  filter[category_name]: local-news-de,wettingen
+}

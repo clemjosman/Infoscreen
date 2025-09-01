@@ -1,0 +1,36 @@
+@use "./app/scss/abstract/_variables";
+@import "./app/scss/themes/themes";
+@import "./app/scss/vendors/_star-rating.scss";
+@import "./app/scss/vendors/_weather-icons.min.css";
+@import "./app/scss/vendors/_weather-icons-wind.min.css";
+
+/* CSS reset */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  /*font-family: "...", sans-serif;*/
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-color);
+  box-sizing: border-box; /*Removes margin and padding from width and height*/
+}
+
+/* To avoid having height split when navigating from one slide to an other
+ * Styling in the app-component isn't applied on ng-component (even with wildcard *)
+ */
+router-outlet ~ ng-component {
+  height: calc(100% - variables.$footer-size);
+  max-width: 100%;
+}

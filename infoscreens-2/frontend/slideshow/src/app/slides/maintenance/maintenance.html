@@ -1,0 +1,7 @@
+<div class="text-content">
+  <h1 class="title">
+    {{(maintenanceEndDate ? 'info.maintenanceWithDate' :
+    'info.maintenanceWithoutDate') | translateAsync | async}}
+    {{maintenanceEndDate || ""}}
+  </h1>
+</div>

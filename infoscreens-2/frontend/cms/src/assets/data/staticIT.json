@@ -1,0 +1,40 @@
+{
+    "dev.build": "Build",
+    "devmode": "Modalità sviluppatore",
+
+    "general.button.showDetails": "Mostra i dettagli",
+    "general.button.hideDetails": "Nascondi dettagli",
+    "general.error": "Errore",
+    "http.error.xxx.title": "Si è verificato un'errore inatteso",
+    "http.error.xxx.subTitle": "È apparso un errore durante una richiesta e di conseguenza la vostra azione non e potuta essere realizzata. Contattare il supporto facendo riferimento al messaggio apparso qua sotto.",
+    "http.error.timeout.title": "Richiesta scaduta",
+    "http.error.timeout.subTitle": "È apparso un errore durante una richiesta e di conseguenza la vostra azione non e potuta essere realizzata. Contattare il supporto facendo riferimento al messaggio apparso qua sotto.",
+    "http.error.0.title": "Impossibile connettersi",
+    "http.error.0.subTitle": "Un accesso a internet è richiesto per utilizzare correttamente l'aaplicazione.",
+    "http.error.0.message": "La connessione al server è impossibile.Il problema può essere per colpa nostra, ma verificare prima la vostra connessione internet.",
+    
+    "auth.login.again": "Ricollegare",
+    "auth.loginPortal.title": "Scegliere come effettuare il login",
+    "auth.logout": "Disconnetti",
+    "auth.logout.chooseLogoutType": "Come vorresti fare il logout?",
+    "auth.logout.local": "Solo applicazione",
+    "auth.logout.successful": "Logout riuscito!",
+    "auth.logout.inProgress": "Ti disconnetti ...",
+    "auth.logout.back": "Torna all'applicazione",
+    "auth.logout.vinci": "Conto VINCI Energies",
+    "auth.retry": "Prova di nuovo",
+    "auth.userUnknown.title": "Utente non trovato",
+    "auth.userUnknown.subtitle": "L'utente richiesto non può essere trovato. Si prega di registrarsi prima.",
+
+    "help.invitationToContact": "Per tutti problemi o proposte, contattare: ",
+    "help.helpPage": "Pagina di aiuto",
+
+    "maintenance.ongoing": "Una manutenzione è in corso",
+    "maintenance.startTime": "Ora d'inizio",
+    "maintenance.endTime": "Ora di fine",
+    "maintenance.currentTenant": "Cliente attuale",
+
+    "page404.title": "Errore 404",
+    "page404.subtitle": "Spiacenti, non abbiamo trovato questa pagina.",
+    "page404.backToHome": "Torna all'applicazione"
+}

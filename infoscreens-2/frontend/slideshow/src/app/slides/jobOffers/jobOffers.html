@@ -1,0 +1,38 @@
+<banner-layout [slide]="slide">
+  <ng-container *ngIf="!job">
+    <centered-text-content textCode="jobOffers.noJob"></centered-text-content>
+  </ng-container>
+
+  <ng-container *ngIf="job">
+    <div firstContent class="content-container" *ngIf="job">
+      <div class="text-inset">
+        <h1 class="title" [innerHTML]="job.title"></h1>
+        <qrcode
+            class="qr-code-float"
+            [qrdata]="job.showUrl"
+            [width]="256"
+            [errorCorrectionLevel]="'M'"
+          ></qrcode>
+        <div class="details-container">
+          <div class="details-wrapper">
+            <div class="details-entry">
+              <span class="icon-container"> <i class="fa fa-users"></i></span
+              ><span>{{job.companyName}}</span>
+            </div>
+            <div class="details-entry">
+              <span class="icon-container"
+                ><i class="fa fa-map-marker"></i></span
+              ><span>{{job.city}} - {{job.countryCode}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="job-content" [innerHTML]="job.content">
+        </div>
+        <div class="job-infos" *ngIf="job.publishedAt">
+          <hr />
+          {{job.publishedAt}}
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</banner-layout>

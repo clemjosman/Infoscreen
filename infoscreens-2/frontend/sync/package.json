@@ -1,0 +1,23 @@
+{
+    "name": "vesact-infoscreen-sync",
+    "version": "0.0.1",
+    "main": "dist/out-tsc/slideshow/sync/main.js",
+    "private": true,
+    "dependencies": {
+        "applicationinsights": "^1.4.0",
+        "core-js": "2.5.7",
+        "fs-jetpack": "^2.2.2",
+        "request": "^2.88.0",
+        "request-promise": "^4.2.4"
+    },
+    "scripts": {
+        "start": "node ./dist/out-tsc/slideshow/sync/main.js",
+        "build": "tsc --p ."
+    },
+    "devDependencies": {
+        "@types/node": "^20.6.0",
+        "@types/webpack-env": "^1.13.9",
+        "tslint": "~5.11.0",
+        "typescript": "~5.7.3"
+    }
+}

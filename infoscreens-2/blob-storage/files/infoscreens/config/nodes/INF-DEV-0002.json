@@ -1,0 +1,177 @@
+{
+    "nodeId": "INF-DEV-0002",
+    "firmwareVersion": "0.2.3",
+    "frontendConfig": {
+        "version": "10265",
+        "language": "de-CH",
+        "timezone": "Europe/Zurich",
+        "uiLogLevel": "info",
+        "syncLogLevel": "info",
+        "msbLogLevel": "info",
+        "disableAnimations": false,
+        "bannerStyle": "top",
+        "footerStyle": "duoBranding",
+        "invertDuoBranding": false,
+        "secondBranding": null,
+        "dateFormat": "long",
+        "theme": "light-default",
+        "rollingMessage": "Welcome Luc and Maxime at Actemium!",
+        "sleepConfig": {
+            "daily": { "startTime": "14:00", "duration": 57600 },
+            "weekend": { "startTime": "15:00", "duration": 219600 }
+        },
+        "slides": {
+            "order": [
+                "customjoboffer",
+                "joboffers",
+                "youtube",
+                "twentymin",
+                "newspublic",
+                "publictransport",
+                "weatherweekly",
+                "weatherdaily",
+                "stock",
+                "infoscreenmonitoring",
+                "spotlight",
+                "universityoverview",
+                "ideabox",
+                "university",
+                "coffee",
+                "traffic",
+                "iframe",
+                "monitoringiframe",
+                "newsinternal"
+            ],
+            "config": {
+                "coffee": { "duration": 30 },
+                "ideabox": { "duration": 30 },
+                "iframe": {
+                    "pages": [
+                        {
+                            "url": "https://www.actemium.ch/",
+                            "duration": 30,
+                            "bannerTitle": "Actemium Website"
+                        }
+                    ]
+                },
+                "infoscreenmonitoring": { "duration": 30 },
+                "customjoboffer": { "duration": 30 },
+                "joboffers": { "duration": 15 },
+                "newspublic": { "duration": 30 },
+                "publictransport": { "duration": 30 },
+                "spotlight": {
+                    "pages": [
+                        {
+                            "url": "https://vesactinfoscreens.blob.core.windows.net/$web/Spotlights/MyActemium_Promotion_DE.html?st=2019-12-30T10%3A22%3A22Z&se=2119-12-31T10%3A22%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=KkF1CT1PP%2BpTUURAAbHHKofher9VYFySfWFDTTJRu7E%3D",
+                            "duration": 30
+                        }
+                    ]
+                },
+                "stock": {
+                    "stock": {
+                        "url": "https://vesactinfoscreens.z6.web.core.windows.net/Stock/vinciStock.html"
+                    },
+                    "exchange": {
+                        "url": "https://vesactinfoscreens.z6.web.core.windows.net/Stock/currencyExchange1.html"
+                    },
+                    "duration": 30
+                },
+                "traffic": {
+                    "gmap": { "longitude": 7.588395, "latitude": 47.559557, "zoom": 14 },
+                    "duration": 30
+                },
+                "twentymin": { "duration": 30 },
+                "university": { "duration": 30 },
+                "universityoverview": {
+                    "page": {
+                        "url": "https://app1.edoobox.com/de/vesact?edref=vesact&edtag=DE&edcode=fXj3zbaMFq1NbjA"
+                    },
+                    "duration": 30
+                },
+                "weatherweekly": { "duration": 30 },
+                "weatherdaily": { "duration": 30 },
+                "monitoringiframe": {
+                    "pages": [
+                        {
+                            "bannerTitle": "Actemium Cloud",
+                            "duration": 30,
+                            "url": "https://grafana.actemium.cloud/d/kwtyVaAmz/vmware-vsphere-overview?orgId=1&kiosk"
+                        }
+                    ]
+                },
+                "newsinternal": { "duration": 30 }
+            }
+        },
+        "localCache": {
+            "refreshRates": {
+                "config": 0.5,
+                "ideabox": 30.0,
+                "infoscreenmonitoring": 15.0,
+                "customjoboffer": 45.0,
+                "joboffers": 20.0,
+                "newsinternal": 30.0,
+                "newspublic": 30.0,
+                "openweather": 20.0,
+                "publictransport": 20.0,
+                "twentymin": 45.0,
+                "university": 60.0
+            }
+        }
+    },
+    "backendConfig": {
+        "dataEndpointConfig": {
+            "ideabox": { "cachedFileName": "BU174_DE.json", "cachedFileNames": null },
+            "customJobOffer": {
+                "cachedFileName": null,
+                "cachedFileNames": ["TestJobFutureLab-DE.json", "TestJobFutureLab2-DE.json"]
+            },
+            "microservicebus": {
+                "cachedFileName": "infoscreensProdNodes.json",
+                "cachedFileNames": null
+            },
+            "newsInternal": { "maxNewsCount": 3 },
+            "newsPublic": {
+                "maxNewsCount": 0,
+                "cachedFileName": "DE.json",
+                "cachedFileNames": null
+            },
+            "openWeather": {
+                "cachedFileName": "Basel_DE.json",
+                "cachedFileNames": null
+            },
+            "jobOffers": {
+                "cachedFileName": null,
+                "cachedFileNames": ["Softgarden_Actemium.json"]
+            },
+            "publicTransport": {
+                "cachedFileName": "UptownTram.json",
+                "cachedFileNames": null
+            },
+            "sociabble": {
+                "cachedFileName": "sociabble.json",
+                "cachedFileNames": null
+            },
+            "twentyMin": {
+                "maxNewsDateAge": 0,
+                "cachedFileName": null,
+                "cachedFileNames": ["SwissDE.json", "ForeignDE.json", "EconomyAndStockDE.json"]
+            },
+            "twitter": {
+                "cachedFileName": null,
+                "cachedFileNames": ["actemiumCH.json"]
+            },
+            "university": {
+                "cachedFileName": "internalDE.json",
+                "cachedFileNames": null
+            },
+            "uptownArticle": {
+                "cachedFileName": "articles.json",
+                "cachedFileNames": null
+            },
+            "uptownEvent": {
+                "cachedFileName": "events.json",
+                "cachedFileNames": null
+            }
+        }
+    }
+}

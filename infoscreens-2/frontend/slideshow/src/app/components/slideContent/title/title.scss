@@ -1,0 +1,40 @@
+:host {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+.titleContainer {
+  width: 1000%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.light {
+  background-color: var(--background-color);
+}
+
+.dark {
+  background-color: var(--dark-background-color);
+}
+
+.title {
+  margin: 0px;
+  font-size: 35pt;
+  font-weight: 700;
+}
+
+.light .title {
+  color: var(--text-color);
+}
+
+.dark .title {
+  color: var(--dark-text-color);
+}

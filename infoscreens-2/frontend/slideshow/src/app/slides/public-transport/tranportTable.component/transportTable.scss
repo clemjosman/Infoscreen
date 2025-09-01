@@ -1,0 +1,24 @@
+.striped {
+  font-size: 23px;
+}
+
+table {
+  color: var(--text-color);
+}
+
+th,
+td {
+  text-align: center;
+}
+
+td i {
+  font-size: 19px;
+}
+
+table.striped > tbody > tr:nth-child(odd) {
+  background-color: var(--public-transport-table-line-contrast-background);
+}
+
+table.striped > tbody > tr:nth-child(even) {
+  background-color: var(--background-color);
+}

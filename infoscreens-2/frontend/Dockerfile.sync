@@ -1,0 +1,31 @@
+FROM node:20-alpine AS build
+WORKDIR /usr/src/app
+
+# Install and register Zscaler certificate
+COPY zscaler-root-ca.crt /usr/local/share/ca-certificates/zscaler-root-ca.crt
+RUN cat /usr/local/share/ca-certificates/zscaler-root-ca.crt >> /etc/ssl/certs/ca-certificates.crt
+ENV NODE_EXTRA_CA_CERTS=/usr/local/share/ca-certificates/zscaler-root-ca.crt
+
+RUN mkdir slideshow common sync
+WORKDIR /usr/src/app/sync
+COPY ./sync/package*.json /usr/src/app/sync
+RUN npm ci
+COPY ./common /usr/src/app/common
+COPY ./slideshow /usr/src/app/slideshow
+COPY ./sync /usr/src/app/sync
+RUN npm run build 
+
+
+FROM node:20-alpine
+ENV NODEJS_DOCKER_ENV=true
+ENV NODE_ENV=production
+
+# Install and register Zscaler certificate
+COPY zscaler-root-ca.crt /usr/local/share/ca-certificates/zscaler-root-ca.crt
+RUN cat /usr/local/share/ca-certificates/zscaler-root-ca.crt >> /etc/ssl/certs/ca-certificates.crt
+ENV NODE_EXTRA_CA_CERTS=/usr/local/share/ca-certificates/zscaler-root-ca.crt
+
+RUN mkdir -p /usr/files
+WORKDIR /usr/src/app
+COPY --from=build /usr/src/app/sync /usr/src/app
+CMD [ "node", "./dist/out-tsc/sync/main.js" ]

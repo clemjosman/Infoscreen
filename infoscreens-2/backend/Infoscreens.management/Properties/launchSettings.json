@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Infoscreens.Management": {
+      "commandName": "Project",
+      "commandLineArgs": "host start --pause-on-error --port 7072"
+    }
+  }
+}

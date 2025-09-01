@@ -1,0 +1,143 @@
+[
+  {
+    "cachedFilename": "MParc.json",
+    "params": [
+      {
+        "key": "id",
+        "value": 8588776
+      }
+    ],
+    "config": {
+      "destinationGroups": [
+        {
+          "name": "publicTransport.toTheCity",
+          "criterias": [
+            {
+              "destination": "Flüh, Bahnhof"
+            },
+            {
+              "destination": "Rodersdorf"
+            },
+            {
+              "lineNumber": "11",
+              "destination": "St-Louis"
+            }
+          ]
+        },
+        {
+          "name": "Dornach",
+          "criterias": [
+            {
+              "destination": "Dornach"
+            }
+          ]
+        },
+        {
+          "name": "Aesch",
+          "criterias": [
+            {
+              "lineNumber": "11",
+              "destination": "Aesch BL, Dorf"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "cachedFilename": "DreispitzTram.json",
+    "params": [
+      {
+        "key": "id",
+        "value": 8500096
+      }
+    ],
+    "config": {
+      "destinationGroups": [
+        {
+          "name": "publicTransport.toTheCity",
+          "criterias": [
+            {
+              "destination": "Flüh, Bahnhof"
+            },
+            {
+              "destination": "Rodersdorf"
+            },
+            {
+              "lineNumber": "11",
+              "destination": "St-Louis"
+            }
+          ]
+        },
+        {
+          "name": "Dornach",
+          "criterias": [
+            {
+              "destination": "Dornach"
+            }
+          ]
+        },
+        {
+          "name": "Aesch",
+          "criterias": [
+            {
+              "lineNumber": "11",
+              "destination": "Aesch BL, Dorf"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "cachedFilename": "UptownTram.json",
+    "params": [
+      {
+        "key": "id",
+        "value": 8589236
+      }
+    ],
+    "config": {
+      "destinationGroups": [
+        {
+          "name": "publicTransport.toTheCity",
+          "criterias": [
+            {
+              "destination": "Dornach"
+            },
+            {
+              "destination": "Rodersdorf"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "cachedFilename": "BernTram.json",
+    "params": [
+      {
+        "key": "id",
+        "value": 8508054
+      }
+    ],
+    "config": {
+      "destinationGroups": [
+        {
+          "name": "publicTransport.toTheCity",
+          "criterias": [
+            {
+              "destination": "Bolligen"
+            },
+            {
+              "destination": "Worb Dorf"
+            },
+            {
+              "destination": "Unterzollikofen"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

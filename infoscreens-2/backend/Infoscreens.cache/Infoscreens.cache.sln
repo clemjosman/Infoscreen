@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infoscreens.Cache", "Infoscreens.Cache.csproj", "{BD691407-5464-B3CB-8868-9A2A76B52D5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD691407-5464-B3CB-8868-9A2A76B52D5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD691407-5464-B3CB-8868-9A2A76B52D5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD691407-5464-B3CB-8868-9A2A76B52D5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD691407-5464-B3CB-8868-9A2A76B52D5E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17128582-9DCC-46C8-B124-FBCEF135D4F0}
+	EndGlobalSection
+EndGlobal

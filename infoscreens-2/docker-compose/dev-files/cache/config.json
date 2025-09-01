@@ -1,0 +1,183 @@
+{
+    "nodeId": "INF-DEV-0001",
+    "maintenanceMode": false,
+    "maintenanceEndDate": "2019-01-01 00:00",
+    "azureFunctionEndpoint": "https://infoscreens-cache-staging.actemium.ch",
+    "nodeTags": [
+        "#ALL",
+        "#InfoscreenDev",
+        "#ActemiumCH"
+    ],
+    "version": "16117",
+    "language": "de-CH",
+    "timezone": "Europe/Zurich",
+    "uiLogLevel": "info",
+    "syncLogLevel": "info",
+    "msbLogLevel": "info",
+    "disableAnimations": false,
+    "bannerStyle": "top",
+    "footerStyle": "rollingText",
+    "invertDuoBranding": false,
+    "secondBranding": null,
+    "dateFormat": "long",
+    "theme": "light-default",
+    "rollingMessage": "",
+    "sleepConfig": {
+        "daily": {
+            "startTime": "18:00",
+            "duration": 57600
+        },
+        "weekend": {
+            "startTime": "18:00",
+            "duration": 219600
+        }
+    },
+    "slides": {
+        "order": [
+            "youtube",
+            "twentymin",
+            "newsinternal",
+            "newspublic",
+            "publictransport",
+            "weatherweekly",
+            "weatherdaily",
+            "stock",
+            "infoscreenmonitoring",
+            "spotlight",
+            "universityoverview",
+            "ideabox",
+            "university",
+            "coffee",
+            "traffic",
+            "iframe",
+            "customjoboffer",
+            "monitoringiframe",
+            "sociabble"
+        ],
+        "config": {
+            "coffee": {
+                "duration": 30
+            },
+            "ideabox": {
+                "duration": 30
+            },
+            "iframe": {
+                "pages": [
+                    {
+                        "url": "https://www.actemium.ch/",
+                        "duration": 30,
+                        "bannerTitle": "Actemium Website"
+                    }
+                ]
+            },
+            "infoscreenmonitoring": {
+                "duration": 30
+            },
+            "customjoboffer": {
+                "duration": 30
+            },
+            "newsinternal": {
+                "duration": 30
+            },
+            "newspublic": {
+                "duration": 30
+            },
+            "publictransport": {
+                "duration": 30
+            },
+            "spotlight": {
+                "pages": [
+                    {
+                        "url": "https://vesactinfoscreens.blob.core.windows.net/$web/Spotlights/MyActemium_Promotion_DE.html?st=2019-12-30T10%3A22%3A22Z&se=2119-12-31T10%3A22%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=KkF1CT1PP%2BpTUURAAbHHKofher9VYFySfWFDTTJRu7E%3D",
+                        "duration": 30
+                    }
+                ]
+            },
+            "stock": {
+                "stock": {
+                    "url": "https://vesactinfoscreens.z6.web.core.windows.net/Stock/vinciStock.html"
+                },
+                "exchange": {
+                    "url": "https://vesactinfoscreens.z6.web.core.windows.net/Stock/currencyExchange1.html"
+                },
+                "duration": 30
+            },
+            "traffic": {
+                "gmap": {
+                    "longitude": 7.588395,
+                    "latitude": 47.559557,
+                    "zoom": 14
+                },
+                "duration": 30
+            },
+            "twentymin": {
+                "duration": 30
+            },
+            "sociabble": {
+                "duration": 30
+            },
+            "university": {
+                "duration": 30
+            },
+            "universityoverview": {
+                "page": {
+                    "url": "https://app1.edoobox.com/de/vesact?edref=vesact&edtag=DE&edcode=fXj3zbaMFq1NbjA"
+                },
+                "duration": 30
+            },
+            "weatherweekly": {
+                "duration": 30
+            },
+            "weatherdaily": {
+                "duration": 30
+            },
+            "monitoringiframe": {
+                "pages": [
+                    {
+                        "bannerTitle": "On-premise monitoring",
+                        "duration": 30,
+                        "url": "https://veeam.actemium.cloud/#/dashboards/16?secret=24ea77cd-6392-4d4c-98c2-afeec50a7bda"
+                    }
+                ]
+            },
+            "youtube": {
+                "videos": [
+                    {
+                        "url": "https://youtu.be/-oemkh5aH8w",
+                        "embedUrl": "https://www.youtube.com/embed/-oemkh5aH8w",
+                        "duration": 34,
+                        "background": null,
+                        "title": {
+                            "de-CH": "The Seabreacher",
+                            "fr-CH": "The Seabreacher"
+                        }
+                    },
+                    {
+                        "url": "https://www.youtube.com/watch?v=5SsuLHM0eVg",
+                        "embedUrl": "https://www.youtube.com/embed/5SsuLHM0eVg",
+                        "duration": 98,
+                        "background": null,
+                        "title": {
+                            "de-CH": "Comment utiliser un masque d’hygiène - vidéo explicative de l'OFSP",
+                            "fr-CH": "Comment utiliser un masque d’hygiène - vidéo explicative de l'OFSP"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "localCache": {
+        "refreshRates": {
+            "config": 0.5,
+            "ideabox": 30,
+            "infoscreenmonitoring": 15,
+            "customjoboffer": 45,
+            "newsinternal": 30,
+            "newspublic": 30,
+            "openweather": 1,
+            "publictransport": 20,
+            "twentymin": 45,
+            "university": 60
+        }
+    }
+}

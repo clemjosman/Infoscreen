@@ -1,0 +1,21 @@
+meta {
+  name: Change language
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{rootUrl}}/v1/user/selectedLanguage
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "NewSelectedLanguageCode": "FR"
+  }
+}

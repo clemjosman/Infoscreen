@@ -1,0 +1,17 @@
+meta {
+  name: Update Firmware
+  type: http
+  seq: 1
+}
+
+put {
+  url: https://msb.actemium.ch/api/organizations/51aabcee-0ba1-4d40-bbcc-caa3f096dede/tags/InfoscreenDev/updatefirmware?force=false&platform=intel-x64-nuc-infoscreen&version=0.1.2
+  body: none
+  auth: none
+}
+
+params:query {
+  force: false
+  platform: intel-x64-nuc-infoscreen
+  version: 0.1.2
+}

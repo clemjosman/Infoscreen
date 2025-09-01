@@ -1,0 +1,32 @@
+meta {
+  name: Post video
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{rootUrl}}/v1/video/{{tenantCode}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+      "id": null,
+      "title": {
+          "DE": "Überschrift",
+          "EN": "Heading",
+          "FR": "Titre"
+      },
+    "url": "www.youtube.com/watch?v=5I9abMaJmYM",
+    "duration": 186,
+      "isVisible": false,
+      "publicationDate": "2020-01-02 12:00:00.0000000",
+      "attachments": null,
+      "assignedToInfoscreenIds": [2]
+  }
+}

@@ -1,0 +1,508 @@
+[
+  {
+    "cachedFilename": "Arlesheim_DE.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "47.50730758109534"
+      },
+      {
+        "key": "lon",
+        "value": "7.612374385946786"
+      },
+      {
+        "key": "lang",
+        "value": "de"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Basel_DE.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "47.53557296833939"
+      },
+      {
+        "key": "lon",
+        "value": "7.609709092786306"
+      },
+      {
+        "key": "lang",
+        "value": "de"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Bern_DE.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "46.94872927918212"
+      },
+      {
+        "key": "lon",
+        "value": "7.44334384505277"
+      },
+      {
+        "key": "lang",
+        "value": "de"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Camorino_IT.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "46.16061734866914"
+      },
+      {
+        "key": "lon",
+        "value": "8.98750042739554"
+      },
+      {
+        "key": "lang",
+        "value": "it"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Clarens_FR.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "46.44213021715732"
+      },
+      {
+        "key": "lon",
+        "value": "6.891528421878977"
+      },
+      {
+        "key": "lang",
+        "value": "fr"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Cressier_FR.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "47.04992246468031"
+      },
+      {
+        "key": "lon",
+        "value": "7.032103099969202"
+      },
+      {
+        "key": "lang",
+        "value": "fr"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Fehraltorf_DE.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "47.388737123742224"
+      },
+      {
+        "key": "lon",
+        "value": "8.750389128933307"
+      },
+      {
+        "key": "lang",
+        "value": "de"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Ittigen_DE.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "46.97520111093878"
+      },
+      {
+        "key": "lon",
+        "value": "7.48074048584665"
+      },
+      {
+        "key": "lang",
+        "value": "de"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Kestenholz_DE.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "47.27631222384394"
+      },
+      {
+        "key": "lon",
+        "value": "7.752817904161397"
+      },
+      {
+        "key": "lang",
+        "value": "de"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Kirchberg_DE.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "47.085016122568"
+      },
+      {
+        "key": "lon",
+        "value": "7.584994636329324"
+      },
+      {
+        "key": "lang",
+        "value": "de"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Lausanne_FR.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "46.572771837136"
+      },
+      {
+        "key": "lon",
+        "value": "6.605847183223965"
+      },
+      {
+        "key": "lang",
+        "value": "fr"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Landquart_DE.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "46.965958453888256"
+      },
+      {
+        "key": "lon",
+        "value": "9.559695696898977"
+      },
+      {
+        "key": "lang",
+        "value": "de"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Luzern_DE.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "47.04983737140216"
+      },
+      {
+        "key": "lon",
+        "value": "8.298955840875552"
+      },
+      {
+        "key": "lang",
+        "value": "de"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Matigny_FR.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "46.1053904969868"
+      },
+      {
+        "key": "lon",
+        "value": "7.081722195675828"
+      },
+      {
+        "key": "lang",
+        "value": "fr"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Monthey_FR.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "46.24491226155216"
+      },
+      {
+        "key": "lon",
+        "value": "6.968981962979273"
+      },
+      {
+        "key": "lang",
+        "value": "fr"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Muellheim_DE.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "47.60457641604306"
+      },
+      {
+        "key": "lon",
+        "value": "9.001850444286212"
+      },
+      {
+        "key": "lang",
+        "value": "de"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Niederuzwil_DE.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "47.451790201372866"
+      },
+      {
+        "key": "lon",
+        "value": "9.141060405246037"
+      },
+      {
+        "key": "lang",
+        "value": "de"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Paris_FR.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "48.856066023365905"
+      },
+      {
+        "key": "lon",
+        "value": "2.3522259891202193"
+      },
+      {
+        "key": "lang",
+        "value": "fr"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Porrentruy_FR.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "47.41776959716908"
+      },
+      {
+        "key": "lon",
+        "value": "7.086260256258414"
+      },
+      {
+        "key": "lang",
+        "value": "fr"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Schaffhausen_DE.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "47.69693225740296"
+      },
+      {
+        "key": "lon",
+        "value": "8.633308580649496"
+      },
+      {
+        "key": "lang",
+        "value": "de"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Schlieren_DE.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "47.39924072982783"
+      },
+      {
+        "key": "lon",
+        "value": "8.44843339774905"
+      },
+      {
+        "key": "lang",
+        "value": "de"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Winterthur_DE.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "47.50002234735383"
+      },
+      {
+        "key": "lon",
+        "value": "8.725394047154978"
+      },
+      {
+        "key": "lang",
+        "value": "de"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Wettingen_DE.json",
+    "urlExtension": "/3.0/onecall",
+    "params": [
+      {
+        "key": "lat",
+        "value": "47.4590598111927"
+      },
+      {
+        "key": "lon",
+        "value": "8.33321100674591"
+      },
+      {
+        "key": "lang",
+        "value": "de"
+      },
+      {
+        "key": "units",
+        "value": "metric"
+      }
+    ]
+  }
+]

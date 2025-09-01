@@ -1,0 +1,16 @@
+@use "./scss/abstract/_variables.scss";
+
+#app {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+#app-content {
+  min-height: 0px;
+  flex: 1 0 calc(100% - variables.$footer-size);
+}

@@ -1,0 +1,7 @@
+<div
+  class="rolling-message-container"
+  *ngIf="message && animationsAllowed"
+  #container
+>
+  <p [ngStyle]="{'animation-duration': animationDuration+'s'}">{{message}}</p>
+</div>

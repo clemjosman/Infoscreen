@@ -1,0 +1,68 @@
+@import "src/mixins";
+
+page-header {
+  content-search-card {
+    margin-bottom: 15px;
+    display: block;
+  }
+}
+
+.datatable-mat-button {
+  min-width: 40px;
+  padding: 0px 5px;
+  margin: 0px 5px;
+}
+
+table {
+  width: 100%;
+}
+
+.top-bg {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 191px;
+
+  @include media-breakpoint("lt-md") {
+    height: 191px;
+  }
+}
+
+.isNotVisible {
+  color: #c4c4c4;
+}
+
+.mat-column-select {
+  overflow: initial;
+  width: 65px;
+  min-width: fit-content;
+}
+
+td.mat-column-title:hover,
+td.mat-column-description:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.mat-column-publicationDate {
+  width: 160px;
+  min-width: fit-content;
+}
+
+.mat-column-status {
+  width: 75px;
+  min-width: fit-content;
+  mat-icon {
+    margin-left: 8px;
+  }
+  mat-icon:hover {
+    cursor: default;
+  }
+}
+
+.mat-column-actions {
+  width: 150px;
+  min-width: fit-content;
+}

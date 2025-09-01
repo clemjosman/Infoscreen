@@ -1,0 +1,42 @@
+<banner-layout [slide]="slide">
+  <ng-container *ngIf="!news">
+    <centered-text-content
+      textCode="newsInternal.noNews"
+    ></centered-text-content>
+  </ng-container>
+
+  <ng-container *ngIf="news">
+    <split-content
+      [layout]="news.layout"
+      [firstContentProportion]="news.file.size"
+      [invertContents]="!news.fileFirst"
+    >
+      <image-content *ngIf="news.fileExtension != 'pdf'" firstContent [url]="newsFileLink"></image-content>
+      <pdf-viewer 
+        *ngIf="news.fileExtension == 'pdf'" 
+        firstContent 
+        [src]="newsFileLink" 
+        [render-text]="true"
+        [original-size]="false"
+        [fit-to-page]="true"
+        [zoom]="0.99"
+        [zoom-scale]="'page-fit'"
+        style="width: 100%; height: 100%"
+        [page]="1">
+      </pdf-viewer>
+
+      <div secondContent class="content-container">
+        <div class="text-inset">
+          <h1 class="title" [innerHTML]="news.title"></h1>
+          <div class="content" [innerHTML]="news.content"></div>
+          <div class="news-infos" *ngIf="showFooter && news.publicationDate">
+            <hr />
+            {{news.publicationDate}} -
+            <i class="fa fa-lock"></i> {{'newsInternal.internal' |
+            translateAsync | async}}
+          </div>
+        </div>
+      </div>
+    </split-content>
+  </ng-container>
+</banner-layout>

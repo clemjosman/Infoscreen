@@ -1,0 +1,30 @@
+meta {
+  name: Log-Add item
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://cluster-test.actemium.ch/log/api/v1/AddItem
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: apikey o6SgtrnGEAD6aMoWLerjFkrk3sFTF0Nh1pPOEfBG
+}
+
+body:json {
+  {
+  	"applicationCode": null,
+  	"logTimeStamp": "2019-11-06T15:16:41.064Z",
+  	"level": 4,
+  	"systemId": "FutureLab",
+  	"eventId": 0,
+  	"threadId": 0,
+  	"identity": "msbNode-ChildProcess",
+  	"category": "Download",
+  	"message": ".. .......... .......... . 100% 376K=11s\\n\\n2019-11-06 16:16:41 (1.53 MB/s) - ‘/home/vesact/Infoscreen/builds/2019-11-06_151629.zip’ saved [17604528/17604528]\\n\\n"
+  }
+}

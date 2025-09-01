@@ -1,0 +1,25 @@
+<banner-layout [slide]="slide">
+  <split-content firstContentProportion="fitFirst">
+    <image-content firstContent [url]="ideaImageSource"></image-content>
+
+    <div class="idea-container" secondContent *ngIf="idea">
+      <star-rating
+        size="large"
+        class="rating"
+        [rating]="idea.averageRating"
+      ></star-rating>
+      <h1 class="title" [innerHTML]="idea.title"></h1>
+      <div
+        class="content"
+        [innerHTML]="idea.text"
+        style="
+          display: -webkit-box;
+          -webkit-line-clamp: 10;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        "
+      ></div>
+    </div>
+  </split-content>
+</banner-layout>

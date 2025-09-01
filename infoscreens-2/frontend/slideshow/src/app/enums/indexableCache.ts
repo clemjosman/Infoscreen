@@ -1,0 +1,23 @@
+// Cache that can be iterated
+export enum IndexableCache {
+  customjoboffer,
+  ideaBox,
+  iframe,
+  joboffers,
+  localVideo,
+  monitoringiframe,
+  newsInternal,
+  newsPublic,
+  sociabble,
+  spotlight,
+  twentyMinChannel1,
+  twentyMinChannel2,
+  twentyMinChannel3,
+  twitter,
+  university,
+  uptownArticle,
+  uptownEvent,
+  weather,
+  youtube,
+  youtubeLarge,
+}

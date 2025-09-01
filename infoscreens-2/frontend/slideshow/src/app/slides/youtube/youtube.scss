@@ -1,0 +1,17 @@
+.content-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+  .iframe-wrapper {
+    width: 60%;
+    max-width: 100%;
+    max-height: 100%;
+    aspect-ratio: 16 / 9;
+  }
+}

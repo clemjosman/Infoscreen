@@ -1,0 +1,11 @@
+meta {
+  name: Get news
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{rootUrl}}/v1/news/{{tenantCode}}
+  body: none
+  auth: inherit
+}

@@ -1,0 +1,83 @@
+@use "../../scss/abstract/_variables.scss";
+
+:host {
+  flex: 0 0 variables.$banner-side-size;
+  z-index: 9;
+}
+:host[banner-top] {
+  height: variables.$banner-top-size;
+  box-shadow: 0px -10px 7px 7px rgb(0 0 0 / 57%);
+}
+
+.slide-banner {
+  height: 100%;
+  position: relative;
+}
+
+.slide-banner-background {
+  /*background-image: linear-gradient(180deg, white 0%, white 23%, rgba(0, 115, 255, 0.25) 100%), url('assets/images/Banner_Background.jpeg');*/
+  /*filter: grayscale(100%) brightness(26%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);*/
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.title {
+  font-size: 50pt;
+  line-height: 48pt;
+  font-weight: 500;
+  color: var(--left-banner-text-color);
+  padding: 50px;
+
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+
+  /*word-break: break-all;*/
+  hyphens: manual;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.twenty-min-logo {
+  width: 100%;
+  padding: 50px 32%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.twitter-logo {
+  width: 100%;
+  padding: 100px 26%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.title-top-banner-container {
+  height: 100%;
+  font-size: 28pt;
+  line-height: 48pt;
+  font-weight: 500;
+  color: var(--top-banner-text-color);
+  background-color: var(--top-banner-background-color);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px 20px;
+
+  img {
+    max-height: 100%;
+    padding: 10px;
+    margin-right: 15px;
+  }
+
+  .title-top-banner {
+    color: var(--top-banner-text-color);
+  }
+}

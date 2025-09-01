@@ -1,0 +1,40 @@
+
+<div class="page-container">
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+
+    <!-- HEADER -->
+     <page-header [pathArray]="pathArray" [displayBreadcrumbBackButton]="false" [contentOnNewLine]="false">
+        <div *ngIf="infoscreens && infoscreenGroups" class="action-bar">
+            <button mat-raised-button color="fuse-white" (click)="refresh(true)">
+                <mat-icon>refresh</mat-icon>
+                {{ 'general.button.refreshList' | translate }}
+            </button>
+        </div>
+     </page-header>
+
+    <!-- LOADING -->
+    <div *ngIf="isLoading" class="fullPage-loadingSpinner-wrapper">
+        <loading-spinner></loading-spinner>
+    </div>
+
+    <div *ngIf="infoscreens && infoscreenGroups &&  infoscreens.length == 0 && infoscreenGroups.length == 0">{{'infoscreen.noneToShow' | translate}}</div>
+    <div *ngIf="infoscreens && infoscreenGroups &&  infoscreens.length > 0 && infoscreenGroups.length > 0" class="infoscreen-group-container">
+        <mat-expansion-panel class="infoscreen-group-card" *ngFor="let group of infoscreenGroups;" [expanded]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{group.name}}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <br/>
+
+            <div class="infoscreen-card-container" *ngIf="getInfoscreensOfGroup(group.id).length > 0">
+                <ng-container *ngFor="let infoscreen of getInfoscreensOfGroup(group.id)">
+                    <infoscreen-card *ngIf="!infoscreensStatus" [infoscreen]="infoscreen" ></infoscreen-card>
+                    <infoscreen-card *ngIf="infoscreensStatus"  [infoscreen]="infoscreen" [status]="getInfoscreenStatus(infoscreen)"></infoscreen-card>
+                </ng-container>
+            </div>
+        </mat-expansion-panel>
+    </div>
+<div>

@@ -1,0 +1,68 @@
+[
+  {
+    "cachedFilename": "baselHack.json",
+    "urlExtension": "/search/tweets.json",
+    "params": [
+      {
+        "key": "q",
+        "value": "%23BaselHack AND -filter:retweets AND -filter:replies"
+      },
+      {
+        "key": "result_type",
+        "value": "recent"
+      },
+      {
+        "key": "tweet_mode",
+        "value": "extended"
+      },
+      {
+        "key": "count",
+        "value": "20"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "actemiumCH.json",
+    "urlExtension": "/statuses/user_timeline.json",
+    "params": [
+      {
+        "key": "screen_name",
+        "value": "ActemiumCH"
+      },
+      {
+        "key": "count",
+        "value": "20"
+      },
+      {
+        "key": "tweet_mode",
+        "value": "extended"
+      },
+      {
+        "key": "result_type",
+        "value": "recent"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "axiansCH.json",
+    "urlExtension": "/statuses/user_timeline.json",
+    "params": [
+      {
+        "key": "screen_name",
+        "value": "AxiansCH"
+      },
+      {
+        "key": "count",
+        "value": "20"
+      },
+      {
+        "key": "tweet_mode",
+        "value": "extended"
+      },
+      {
+        "key": "result_type",
+        "value": "recent"
+      }
+    ]
+  }
+]

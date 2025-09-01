@@ -1,0 +1,11 @@
+meta {
+  name: Get infoscreen
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{rootUrl}}/v1/infoscreens/{{tenantCode}}
+  body: none
+  auth: inherit
+}

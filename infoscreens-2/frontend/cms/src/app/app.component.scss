@@ -1,0 +1,28 @@
+:host {
+  width: 100%;
+}
+
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  
+  &.fullscreen {
+    .main-content {
+      width: 100%;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.main-content {
+  flex: 1;
+  overflow: hidden;
+  
+  &.no-navigation {
+    width: 100%;
+    height: 100vh;
+  }
+}

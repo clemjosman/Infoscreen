@@ -1,0 +1,38 @@
+<table class="striped">
+  <thead>
+    <tr>
+      <th>{{ 'publicTransport.departureLabel' | translateAsync | async}}</th>
+      <th>{{ 'publicTransport.lineLabel' | translateAsync | async}}</th>
+      <th>{{ 'publicTransport.destinationLabel' | translateAsync | async}}</th>
+      <th>{{ 'publicTransport.delayLabel' | translateAsync | async}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of stationBoard | slice:0:maxDisplayed; let i = index">
+      <td>{{ item.departureTimestamp }}</td>
+      <td>
+        <i class="fa fa-bus" *ngIf="item.transportType == 'Bus'"></i>
+        <i class="fa fa-subway" *ngIf="item.transportType == 'Tram'"></i>
+        {{ item.lineNumber }}
+      </td>
+      <td>
+        <div
+          style="
+            text-align: left;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            white-space: pre-wrap;
+          "
+        >
+          {{item.destination}}
+        </div>
+      </td>
+      <td *ngIf="!item.delay; else displayDelay">-</td>
+      <ng-template #displayDelay>
+        <td>{{ item.delay }}</td>
+      </ng-template>
+    </tr>
+  </tbody>
+</table>

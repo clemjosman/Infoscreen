@@ -1,0 +1,36 @@
+<footer
+  class="footer-bar rolling-text"
+  *ngIf="footerStyle === FooterStyle.RollingText"
+>
+  <div class="logo-container">
+    <img
+      class="header-image"
+      src="assets/images/{{ branding }}_Logo_{{getLogoTheme()}}.png"
+    />
+  </div>
+  <rolling-message></rolling-message>
+  <div class="date-container">
+    <h1 class="date">{{ currentTime }}</h1>
+  </div>
+</footer>
+
+<footer
+  class="footer-bar duo-brand"
+  *ngIf="footerStyle === FooterStyle.DuoBranding"
+>
+  <div class="logo-container">
+    <img
+      class="header-image"
+      src="assets/images/{{ getBrandName('primary') }}_Logo_{{getLogoTheme()}}.png"
+    />
+  </div>
+  <div class="date-container">
+    <h1 class="date">{{ currentTime }}</h1>
+  </div>
+  <div class="logo-container right">
+    <img
+      class="header-image"
+      src="assets/images/{{ getBrandName('secondary') }}_Logo_{{getLogoTheme()}}.png"
+    />
+  </div>
+</footer>

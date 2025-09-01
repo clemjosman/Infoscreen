@@ -1,0 +1,12 @@
+<div class="pdf-container">
+  <embed
+    *ngIf="base64 && !blobUrl"
+    [src]="base64 | safe"
+    type="application/pdf"
+  />
+  <embed
+    *ngIf="blobUrl"
+    [src]="blobUrl+'#toolbar=0&view=Fit' | safe"
+    type="application/pdf"
+  />
+</div>

@@ -1,0 +1,15 @@
+meta {
+  name: Articles
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://community-admin.uptownbasel.ch/api/v1/articles
+  body: none
+  auth: none
+}
+
+params:query {
+  ~page: 1
+}

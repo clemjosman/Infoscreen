@@ -1,0 +1,27 @@
+meta {
+  name: Guest Network Connection
+  type: http
+  seq: 4
+}
+
+post {
+  url: https://ves-guest.vinci-energies.ch/login.html?redirect=www.msftconnecttest.com/redirect
+  body: multipartForm
+  auth: none
+}
+
+params:query {
+  redirect: www.msftconnecttest.com/redirect
+}
+
+body:multipart-form {
+  buttonClicked: 4
+  err_flag: 0
+  err_msg: 
+  info_flag: 0
+  info_msg: 
+  redirect_url: www.msftconnecttest.com/redirect
+  network_name: Guest Network
+  username: Guest
+  password: V1nC1.2020!$3N3rgi3s
+}

@@ -1,0 +1,16 @@
+meta {
+  name: NewsPublic-DE
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://actemium.ch/wp-json/wp/v2/newspost?per_page=3&lang=de
+  body: none
+  auth: none
+}
+
+params:query {
+  per_page: 3
+  lang: de
+}

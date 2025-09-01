@@ -1,0 +1,30 @@
+<banner-layout [slide]="slide">
+  <div class="slide-container">
+    <div class="title">Infoscreens</div>
+    <div class="status-container">
+      <div
+        class="category-container"
+        *ngFor="let category of nodesStatusForCards; let categoryIndex = index"
+      >
+        <div class="category-name">{{category.categoryName}}</div>
+        <div
+          class="row"
+          *ngFor="let rowIndex of rowIndexesPerCategory[categoryIndex]"
+        >
+          <div
+            class="col card-column"
+            *ngFor="let nodeStatusCard of nodesStatusForCards[categoryIndex].status[rowIndex]"
+          >
+            <infoscreenNodeStatusCard
+              [nodeStatus]="nodeStatusCard"
+            ></infoscreenNodeStatusCard>
+          </div>
+        </div>
+        <hr
+          *ngIf="!isLastCategory(categoryIndex)"
+          style="margin: 15px 0px 15px 0px"
+        />
+      </div>
+    </div>
+  </div>
+</banner-layout>

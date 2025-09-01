@@ -1,0 +1,81 @@
+@keyframes green-bubble{
+    0%{
+        transform: translateX(100%);
+    }
+
+    27.7%{
+        transform: translateX(100%);
+    }
+
+    41.6%{
+        transform: translateX(0%);
+    }
+
+    86.1%{
+        transform: translateX(0%);
+    }
+
+    100%{
+        transform: translateX(100%);
+    }
+}
+@keyframes blue-bubble{
+    0%{
+        transform: translateX(125%);
+    }
+
+    27.7%{
+        transform: translateX(125%);
+    }
+
+    41.6%{
+        transform: translateX(25%);
+    }
+
+    86.1%{
+        transform: translateX(25%);
+    }
+
+    100%{
+        transform: translateX(125%);
+    }
+}
+
+.slideBubble{
+    position: fixed;
+    top: 0vh;
+    right: 0px;
+    height: 24vh;
+    width: 20vw;
+    background-color: #c6d200;
+    padding: 0px 30px;
+    border-radius: 300px;
+    text-align: center;
+    font-size: 4vh;
+    font-weight: bold;
+    color: black;
+    vertical-align: middle;
+    animation: green-bubble 18s;
+    transform: translateX(100%);
+    display: table;
+}
+
+.slideBubble-text{
+    vertical-align: middle;
+    line-height: normal;
+    display: table-cell; 
+    text-align: center; 
+    max-height: 15vh;
+    overflow: hidden;
+}
+
+.blue-bubble{
+    top: 12vh;
+    right: 0px;
+    height: 24vh;
+    width: 20vw;
+    background-color: #004087;
+    border-radius: 300px;
+    animation: blue-bubble 18s;
+    transform: translateX(125%);
+}

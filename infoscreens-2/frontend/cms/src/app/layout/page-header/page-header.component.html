@@ -1,0 +1,10 @@
+<div class="page-header">
+  <breadcrumb
+    [pathArray]="pathArray"
+    [displayBackButton]="displayBreadcrumbBackButton"
+    [backUrl]="backUrl"
+  ></breadcrumb>
+  <div [ngClass]="{ sameLine: !contentOnNewLine, newLine: contentOnNewLine }">
+    <ng-content></ng-content>
+  </div>
+</div>

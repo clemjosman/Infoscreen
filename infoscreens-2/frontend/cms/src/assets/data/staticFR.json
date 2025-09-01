@@ -1,0 +1,40 @@
+{
+    "dev.build": "Build",
+    "devmode": "Mode développeur",
+
+    "general.button.showDetails": "Afficher les details",
+    "general.button.hideDetails": "Cacher les details",
+    "general.error": "Erreur",
+    "http.error.xxx.title": "Une erreur est survenue",
+    "http.error.xxx.subTitle": "Une erreur est survenue pendant une requête et par conséquent votre action n'a pas pu être réalisée. Veuillez contacter le support en faisant référence au message ci dessous.",
+    "http.error.timeout.title": "La requête a expirée",
+    "http.error.timeout.subTitle": "Une erreur est survenue pendant une requête et par conséquent votre action n'a pas pu être réalisée. Veuillez contacter le support en faisant référence au message ci dessous.",
+    "http.error.0.title": "Impossible de se connecter",
+    "http.error.0.subTitle": "Un accès à internet est nécessaire pour utiliser l'application.",
+    "http.error.0.message": "Connexion au serveur impossible. Le problème peut être de notre côté, mais vérifiez d'abord votre connexion internet.",
+
+    "auth.login.again": "Se reconnecter",
+    "auth.loginPortal.title": "Choisissez le mode de connexion",
+    "auth.logout": "Déconnexion",
+    "auth.logout.chooseLogoutType": "Comment voulez-vous vous déconnecter ?",
+    "auth.logout.local": "Application uniquement",
+    "auth.logout.successful": "Déconnexion réussie !",
+    "auth.logout.inProgress": "Déconnexion en cours...",
+    "auth.logout.back": "Retour à l'application",
+    "auth.logout.vinci": "Compte VINCI Energies",
+    "auth.retry": "Réessayer",
+    "auth.userUnknown.title": "Utilisateur introuvable",
+    "auth.userUnknown.subtitle": "L'utilisateur demandé n'a pas pu être trouvé. Veuillez vous enregistrer d'abord.",
+
+    "help.invitationToContact": "Pour tous problèmes ou suggestions, contactez : ",
+    "help.helpPage": "Pages d'aide",
+
+    "maintenance.ongoing": "Une maintenance est en cours",
+    "maintenance.startTime": "Heure de début",
+    "maintenance.endTime": "Heure de fin",
+    "maintenance.currentTenant": "Client actuel",
+
+    "page404.title": "Erreur 404",
+    "page404.subtitle": "Désolé, nous n'avons pas pu trouver cette page.",
+    "page404.backToHome": "Retour à l'application"
+}

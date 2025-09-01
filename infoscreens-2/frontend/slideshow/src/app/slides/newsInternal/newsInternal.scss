@@ -1,0 +1,67 @@
+.content-container {
+  font-size: 20.4pt;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 100%;
+  margin: 0;
+  background-color: var(--background-color);
+}
+
+.title {
+  margin: 10px 0px;
+  font-size: 35pt;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.content {
+  margin: 0px;
+  font-size: 25pt;
+  margin-top: 15px;
+  color: var(--text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* The following was used to limit to 6 lines the content - might be usefull if needed again */
+  /* display: -webkit-box; */
+  /* -webkit-line-clamp: 6; */
+  /* -webkit-box-orient: vertical; */
+}
+
+.content ::ng-deep ul {
+  padding-left: revert;
+  list-style: disc;
+}
+
+.content ::ng-deep ul li {
+  display: list-item;
+  list-style: disc;
+}
+
+.content ::ng-deep a {
+  color: var(--text-link-color);
+}
+
+.news-infos,
+.news-infos i {
+  color: var(--text-color);
+  text-align: left;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+.news-infos hr {
+  height: 1px;
+  background-color: #00458f;
+  border: none;
+  max-width: 450px;
+}
+
+.text-inset {
+  height: 100%;
+  padding: 30px 30px 0px 30px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}

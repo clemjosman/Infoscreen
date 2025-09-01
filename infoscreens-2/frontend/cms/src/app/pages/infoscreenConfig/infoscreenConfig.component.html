@@ -1,0 +1,932 @@
+<div class="page-container">
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg accent"></div>
+
+  <!-- HEADER -->
+  <page-header
+    [pathArray]="pathArray"
+    [displayBreadcrumbBackButton]="true"
+    [backUrl]="'infoscreens'"
+    [contentOnNewLine]="false"
+  >
+    <div *ngIf="infoscreen" class="action-bar">
+      <button mat-raised-button color="fuse-white" (click)="refresh()">
+        <mat-icon>refresh</mat-icon>
+        {{ "general.button.refresh" | translate }}
+      </button>
+    </div>
+  </page-header>
+
+  <!-- LOADING -->
+  <div *ngIf="isLoading" class="fullPage-loadingSpinner-wrapper">
+    <loading-spinner></loading-spinner>
+  </div>
+
+  <!-- METADATA -->
+  <infoscreen-edit-card
+    [isMetadata]="true"
+    [headerLabel]="'label.metadata'"
+    [cancel]="cancelMetadata"
+    [disableCancel]="metadataForm?.pristine"
+    [save]="saveMetadata"
+    [disableSave]="metadataForm?.pristine"
+    [displayButtonsHeader]="false"
+  >
+    <form [formGroup]="metadataForm" *ngIf="metadataForm">
+      <mat-label class="section-header">{{
+        "label.infoscreen.IDs" | translate
+      }}</mat-label>
+      <div class="responsive-fields-group">
+        <!-- Serial Number -->
+        <!-- INFO: Disabled as machineName doesn't help identifying the node -->
+        <!--<mat-form-field class="smaller-field" *ngIf="infoscreenStatus">
+          <mat-label>{{
+            "label.infoscreen.serialNumber" | translate
+          }}</mat-label>
+          <input
+            matInput
+            type="text"
+            disabled
+            [value]="infoscreenStatus.status.machineName"
+          />
+        </mat-form-field>-->
+
+        <!-- Infoscreen ID -->
+        <mat-form-field class="smaller-field">
+          <mat-label>{{ "label.infoscreen.id" | translate }}</mat-label>
+          <input matInput type="text" disabled [value]="infoscreen.id" />
+        </mat-form-field>
+
+        <!-- Node ID -->
+        <mat-form-field>
+          <mat-label>{{ "label.infoscreen.nodeId" | translate }}</mat-label>
+          <input matInput type="text" disabled [value]="infoscreen.nodeId" />
+        </mat-form-field>
+
+        <!-- MSB Node ID -->
+        <mat-form-field class="bigger-field">
+          <mat-label>{{ "label.infoscreen.msbNodeId" | translate }}</mat-label>
+          <input matInput type="text" disabled [value]="infoscreen.msbNodeId" />
+        </mat-form-field>
+      </div>
+      <mat-divider [inset]="true"></mat-divider>
+      <br />
+
+      <mat-label class="section-header">{{
+        "label.infoscreen.CMS" | translate
+      }}</mat-label>
+      <div class="responsive-fields-group">
+        <!-- Default content language-->
+        <mat-form-field *ngIf="languages" class="smaller-field">
+          <mat-label
+            >{{ "label.infoscreen.defaultContentLanguage" | translate
+            }}<requiredStar></requiredStar>
+          </mat-label>
+          <mat-select formControlName="defaultContentLanguage">
+            <mat-option
+              *ngFor="let language of languages"
+              [value]="language.id"
+            >
+              {{
+                language.displayName[
+                  translationService.currentLanguage.value?.cultureCode
+                ]
+              }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- DisplayName -->
+        <mat-form-field>
+          <mat-label
+            >{{ "label.infoscreen.displayName" | translate
+            }}<requiredStar></requiredStar>
+          </mat-label>
+          <input matInput type="text" formControlName="displayName" />
+          <mat-error *ngIf="metadataForm.controls['displayName'].invalid">
+            <div *ngIf="metadataForm.controls['displayName'].errors.required">
+              {{ "label.isRequired" | translate }}
+            </div>
+            <div *ngIf="metadataForm.controls['displayName'].errors.maxlength">
+              {{ "label.tooLong" | translate }} ({{
+                metadataForm.controls["displayName"].value.length
+              }}/200)
+            </div>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Description -->
+        <mat-form-field class="bigger-field">
+          <mat-label>{{
+            "label.infoscreen.description" | translate
+          }}</mat-label>
+          <input matInput type="text" formControlName="description" />
+          <mat-error *ngIf="metadataForm.controls['description'].invalid">
+            <div *ngIf="metadataForm.controls['description'].errors.maxlength">
+              {{ "label.tooLong" | translate }} ({{
+                metadataForm.controls["description"].value.length
+              }}/500)
+            </div>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-divider [inset]="true"></mat-divider>
+      <br />
+
+      <!-- Content admin  -->
+      <mat-label class="section-header">{{
+        "label.infoscreen.contentAdminConfig" | translate
+      }}</mat-label>
+      <div class="responsive-fields-group">
+        <!--Enable mails no content  -->
+        <mat-checkbox formControlName="sendMailNoContent">{{
+          "label.infoscreen.sendMailNoContent" | translate
+        }}</mat-checkbox>
+        <!-- Contact person -->
+        <mat-form-field
+          style="min-width: 350px"
+          *ngIf="metadataForm.controls['sendMailNoContent'].value"
+        >
+          <mat-label>{{
+            "label.infoscreen.contentAdminEmail" | translate
+          }}</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="contentAdminEmail"
+            [placeholder]="contentAdminEmailPlaceholder()"
+          />
+        </mat-form-field>
+      </div>
+    </form>
+  </infoscreen-edit-card>
+
+  <!-- CONFIG -->
+  <infoscreen-edit-card
+    [headerLabel]="'label.config'"
+    [cancel]="cancelConfig"
+    [disableCancel]="false"
+    [save]="saveConfig"
+    [disableSave]="false"
+    [displayButtonsHeader]="true"
+  >
+    <form [formGroup]="configForm" *ngIf="configForm" #configFormNative>
+      <mat-label class="section-header">{{
+        "label.infoscreen.generalConfig" | translate
+      }}</mat-label>
+      <div class="responsive-fields-group">
+        <!-- Display language -->
+        <mat-form-field class="smaller-field" *ngIf="languages">
+          <mat-label>{{
+            "label.infoscreen.displayLanguage" | translate
+          }}</mat-label>
+          <mat-select formControlName="language">
+            <mat-option value="de-CH">
+              {{ getMatchingLanguageObject("de").displayName["de-CH"] }}
+            </mat-option>
+            <mat-option value="fr-CH">
+              {{ getMatchingLanguageObject("fr").displayName["fr-CH"] }}
+            </mat-option>
+            <mat-option value="it-CH">
+              {{ getMatchingLanguageObject("it").displayName["it-CH"] }}
+            </mat-option>
+            <mat-option value="en-GB">
+              {{ getMatchingLanguageObject("en").displayName["en-GB"] }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Timezone not supported yet -->
+
+        <!-- Disable animations -->
+        <mat-checkbox formControlName="disableAnimations">{{
+          "label.infoscreen.disableAnimations" | translate
+        }}</mat-checkbox>
+
+        <!-- Show banner -->
+        <mat-form-field class="smaller-field">
+          <mat-label
+            >{{ "label.infoscreen.bannerStyle" | translate
+            }}<requiredStar></requiredStar>
+          </mat-label>
+          <mat-select formControlName="bannerStyle">
+            <mat-option
+              *ngFor="let style of BannerStyle | keyvalue"
+              [value]="style.value"
+            >
+              {{ "label.bannerStyle." + style.value | translate }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Theme -->
+        <mat-form-field class="smaller-field">
+          <mat-label>{{ "label.infoscreen.theme" | translate }}</mat-label>
+          <mat-select formControlName="theme">
+            <mat-option
+              *ngFor="let theme of Theme | keyvalue"
+              [value]="theme.value"
+            >
+              {{ "label.infoscreen.theme." + theme.value | translate }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="responsive-fields-group">
+        <!-- Footer style -->
+        <mat-form-field class="smaller-field">
+          <mat-label>{{
+            "label.infoscreen.footerStyle" | translate
+          }}</mat-label>
+          <mat-select formControlName="footerStyle">
+            <mat-option
+              *ngFor="let style of FooterStyle | keyvalue"
+              [value]="style.value"
+            >
+              {{ "label.infoscreen.footerStyle." + style.value | translate }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Rolling message -->
+        <mat-form-field
+          *ngIf="
+            this.configForm.controls['footerStyle'].value ===
+            FooterStyle.RollingText
+          "
+        >
+          <mat-label>{{
+            "label.infoscreen.rollingMessage" | translate
+          }}</mat-label>
+          <input matInput type="text" formControlName="rollingMessage" />
+        </mat-form-field>
+
+        <!-- Invert Duo Branding -->
+        <mat-checkbox
+          formControlName="invertDuoBranding"
+          *ngIf="
+            this.configForm.controls['footerStyle'].value ===
+            FooterStyle.DuoBranding
+          "
+          >{{ "label.infoscreen.invertDuoBranding" | translate }}</mat-checkbox
+        >
+      </div>
+
+      <!-- Sleep config -->
+      <mat-label class="section-header">{{
+        "label.infoscreen.sleepConfig" | translate
+      }}</mat-label>
+      <div class="sleep-config" formGroupName="sleepConfig">
+        <!-- Daily sleep config -->
+        <div class="sleep-container" formGroupName="daily">
+          <div class="sleep-container-header">
+            {{ "label.infoscreen.sleepDaily" | translate }}
+          </div>
+          <div class="sleep-container-config">
+            <!-- Start time -->
+            <div formGroupName="startTime" class="time-container">
+              <!-- Hours -->
+              <mat-form-field class="hours">
+                <!--<mat-label>{{ "label.infoscreen.hours" | translate }}</mat-label>-->
+                <input
+                  matInput
+                  type="numeric"
+                  formControlName="hours"
+                  min="0"
+                  max="23"
+                  (change)="force2CharactersOnChange($event)"
+                />
+              </mat-form-field>
+              <div class="colon-separator">:</div>
+              <!-- Minutes -->
+              <mat-form-field class="minutes">
+                <!--<mat-label>{{
+                  "label.infoscreen.minutes" | translate
+                }}</mat-label>-->
+                <input
+                  matInput
+                  type="numeric"
+                  formControlName="minutes"
+                  min="0"
+                  max="59"
+                  (change)="force2CharactersOnChange($event)"
+                />
+              </mat-form-field>
+            </div>
+            <div class="to-separator">→</div>
+            <!-- End time -->
+            <div formGroupName="endTime" class="time-container">
+              <!-- Hours -->
+              <mat-form-field class="hours">
+                <!--<mat-label>{{ "label.infoscreen.hours" | translate }}</mat-label>-->
+                <input
+                  matInput
+                  type="numeric"
+                  formControlName="hours"
+                  min="0"
+                  max="23"
+                  (change)="force2CharactersOnChange($event)"
+                />
+              </mat-form-field>
+              <div class="colon-separator">:</div>
+              <!-- Minutes -->
+              <mat-form-field class="minutes">
+                <!--<mat-label>{{
+                  "label.infoscreen.minutes" | translate
+                }}</mat-label>-->
+                <input
+                  matInput
+                  type="numeric"
+                  formControlName="minutes"
+                  min="0"
+                  max="59"
+                  (change)="force2CharactersOnChange($event)"
+                />
+              </mat-form-field>
+            </div>
+            <div class="resulting-sleep-time">
+              ({{ "label.infoscreen.sleepTime" | translate
+              }}{{ resultingSleepTime("daily") }})
+            </div>
+          </div>
+        </div>
+        <br />
+        <!-- Weekend sleep config -->
+        <div class="sleep-container" formGroupName="weekend">
+          <div class="sleep-container-header">
+            {{ "label.infoscreen.sleepWeekend" | translate }}
+          </div>
+          <div class="sleep-container-config">
+            <!-- Start time -->
+            <div class="time-container" formGroupName="startTime">
+              <!-- Hours -->
+              <mat-form-field class="hours">
+                <!--<mat-label>{{ "label.infoscreen.hours" | translate }}</mat-label>-->
+                <input
+                  matInput
+                  type="numeric"
+                  formControlName="hours"
+                  min="0"
+                  max="23"
+                  (change)="force2CharactersOnChange($event)"
+                />
+              </mat-form-field>
+              <div class="colon-separator">:</div>
+              <!-- Minutes -->
+              <mat-form-field class="minutes">
+                <!--<mat-label>{{
+                  "label.infoscreen.minutes" | translate
+                }}</mat-label>-->
+                <input
+                  matInput
+                  type="numeric"
+                  formControlName="minutes"
+                  min="0"
+                  max="59"
+                  (change)="force2CharactersOnChange($event)"
+                />
+              </mat-form-field>
+            </div>
+            <div class="to-separator">→</div>
+            <!-- End time -->
+            <div formGroupName="endTime" class="time-container">
+              <!-- Hours -->
+              <mat-form-field class="hours">
+                <!--<mat-label>{{ "label.infoscreen.hours" | translate }}</mat-label>-->
+                <input
+                  matInput
+                  type="numeric"
+                  formControlName="hours"
+                  min="0"
+                  max="23"
+                  (change)="force2CharactersOnChange($event)"
+                />
+              </mat-form-field>
+              <div class="colon-separator">:</div>
+              <!-- Minutes -->
+              <mat-form-field class="minutes">
+                <!--<mat-label>{{
+                  "label.infoscreen.minutes" | translate
+                }}</mat-label>-->
+                <input
+                  matInput
+                  type="numeric"
+                  formControlName="minutes"
+                  min="0"
+                  max="59"
+                  (change)="force2CharactersOnChange($event)"
+                />
+              </mat-form-field>
+            </div>
+            <div class="resulting-sleep-time">
+              ({{ "label.infoscreen.sleepTime" | translate
+              }}{{ resultingSleepTime("weekend") }})
+            </div>
+          </div>
+        </div>
+      </div>
+      <mat-divider [inset]="true"></mat-divider>
+      <br />
+
+      <!-- SLIDES -->
+      <div class="slide-selection">
+        <mat-label class="section-header">{{
+          "label.infoscreen.displayedSlides" | translate
+        }}</mat-label>
+        <div
+          class="slide-list"
+          cdkDropList
+          (cdkDropListDropped)="dropSlide($event)"
+          [cdkDropListSortPredicate]="sortSlidePredicate"
+        >
+          <div
+            class="slide-box"
+            [cdkDragData]="i"
+            [cdkDragDisabled]="cannotBeDragged(slide, i)"
+            *ngFor="let slide of showedSlides; index as i"
+            cdkDrag
+          >
+            {{ "slide." + slide | translate }}
+            <button mat-icon-button (click)="removeSlide(i)" class="delete">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+        <button
+          mat-raised-button
+          (click)="addSlide()"
+          color="success"
+          class="add"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <mat-divider [inset]="true"></mat-divider>
+      <br />
+      <div class="responsive-fields-group">
+        <!-- SLIDES CONFIG-->
+        <div class="slide-config">
+          <mat-label class="section-header">{{
+            "label.infoscreen.slideConfig" | translate
+          }}</mat-label>
+          <ng-container *ngFor="let configItem of slideConfigs | keyvalue">
+            <div class="card" *ngIf="getConfigType(configItem.key) as type">
+              <ng-container *ngIf="configItem.value as config">
+                <div class="card-name">
+                  {{ "slide." + configItem.key | translate }}
+                </div>
+                <div class="card-content">
+                  <!-- SimpleSlideConfig -->
+                  <div *ngIf="type === 'SimpleSlideConfig'">
+                    <mat-form-field>
+                      <mat-label>{{
+                        "label.slide.duration" | translate
+                      }}</mat-label>
+                      <input
+                        matInput
+                        type="number"
+                        step="1"
+                        [min]="10"
+                        [ngModelOptions]="{ standalone: true }"
+                        [(ngModel)]="config.duration"
+                        required
+                      />
+                    </mat-form-field>
+                  </div>
+
+                  <!-- SociabbleSlideConfig -->
+                  <div *ngIf="type === 'SociabbleSlideConfig'">
+                    <mat-form-field>
+                      <mat-label>{{
+                        "label.slide.companies" | translate
+                      }}</mat-label>
+                      <mat-select formControlName="sociabbleSources" [(ngModel)]="config.fileNames" multiple>
+                        <mat-option
+                          *ngFor="let sociabbleSource of sociabbleSources"
+                          [value]="sociabbleSource.fileName"
+                        >
+                          {{
+                              sociabbleSource.displayName
+                          }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>{{
+                        "label.slide.duration" | translate
+                      }}</mat-label>
+                      <input
+                        matInput
+                        type="number"
+                        step="1"
+                        [min]="10"
+                        [ngModelOptions]="{ standalone: true }"
+                        [(ngModel)]="config.duration"
+                        required
+                      />
+                    </mat-form-field>
+                  </div>
+
+                  <!-- IframeSlideConfig -->
+                  <div *ngIf="type === 'IframeSlideConfig'">
+                    <div
+                      *ngFor="let page of config.pages; index as i"
+                      class="array-element"
+                    >
+                      <mat-form-field>
+                        <mat-label>{{
+                          "label.slide.url" | translate
+                        }}</mat-label>
+                        <input
+                          matInput
+                          type="url"
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="config.pages[i].url"
+                          required
+                        />
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-label>{{
+                          "label.slide.duration" | translate
+                        }}</mat-label>
+                        <input
+                          matInput
+                          type="number"
+                          step="1"
+                          [min]="10"
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="config.pages[i].duration"
+                          required
+                        />
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-label>{{
+                          "label.slide.bannerTitle" | translate
+                        }}</mat-label>
+                        <input
+                          matInput
+                          type="text"
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="config.pages[i].bannerTitle"
+                          required
+                        />
+                      </mat-form-field>
+
+                      <div class="delete-container">
+                        <button
+                          mat-raised-button
+                          (click)="deleteConfigEntry(configItem.key, i)"
+                          color="danger"
+                          class="delete"
+                        >
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- LocalVideoSlideConfig -->
+                  <div *ngIf="type === 'LocalVideoSlideConfig'">
+                    <div
+                      *ngFor="let video of config.videos; index as i"
+                      class="array-element"
+                    >
+                      <mat-form-field>
+                        <mat-label>{{
+                          "label.slide.file" | translate
+                        }}</mat-label>
+                        <input
+                          matInput
+                          type="text"
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="config.videos[i].file"
+                          required
+                        />
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-label>{{
+                          "label.slide.duration" | translate
+                        }}</mat-label>
+                        <input
+                          matInput
+                          type="number"
+                          step="1"
+                          [min]="10"
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="config.videos[i].duration"
+                          required
+                        />
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-label>{{
+                          "label.slide.title" | translate
+                        }}</mat-label>
+                        <input
+                          matInput
+                          type="text"
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="config.videos[i].title"
+                          required
+                        />
+                      </mat-form-field>
+                      <div class="delete-container">
+                        <button
+                          mat-raised-button
+                          (click)="deleteConfigEntry(configItem.key, i)"
+                          color="danger"
+                          class="delete"
+                        >
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SpotlightSlideConfig -->
+                  <div *ngIf="type === 'SpotlightSlideConfig'">
+                    <div
+                      *ngFor="let page of config.pages; index as i"
+                      class="array-element"
+                    >
+                      <mat-form-field>
+                        <mat-label>{{
+                          "label.slide.url" | translate
+                        }}</mat-label>
+                        <input
+                          matInput
+                          type="url"
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="config.pages[i].url"
+                          required
+                        />
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-label>{{
+                          "label.slide.duration" | translate
+                        }}</mat-label>
+                        <input
+                          matInput
+                          type="number"
+                          step="1"
+                          [min]="10"
+                          [ngModelOptions]="{ standalone: true }"
+                          [(ngModel)]="config.pages[i].duration"
+                          required
+                        />
+                      </mat-form-field>
+                      <div class="delete-container">
+                        <button
+                          mat-raised-button
+                          (click)="deleteConfigEntry(configItem.key, i)"
+                          color="danger"
+                          class="delete"
+                        >
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- StockSlideConfig -->
+                  <div *ngIf="type === 'StockSlideConfig'">
+                    <mat-form-field>
+                      <mat-label>{{
+                        "label.slide.stockUrl" | translate
+                      }}</mat-label>
+                      <input
+                        matInput
+                        type="url"
+                        [ngModelOptions]="{ standalone: true }"
+                        [(ngModel)]="config.stock.url"
+                        required
+                        readonly
+                        disabled
+                      />
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>{{
+                        "label.slide.exchangeUrl" | translate
+                      }}</mat-label>
+                      <input
+                        matInput
+                        type="url"
+                        [ngModelOptions]="{ standalone: true }"
+                        [(ngModel)]="config.exchange.url"
+                        required
+                        readonly
+                        disabled
+                      />
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>{{
+                        "label.slide.duration" | translate
+                      }}</mat-label>
+                      <input
+                        matInput
+                        type="number"
+                        step="1"
+                        [min]="10"
+                        [ngModelOptions]="{ standalone: true }"
+                        [(ngModel)]="config.duration"
+                        required
+                      />
+                    </mat-form-field>
+                  </div>
+
+                  <!-- TrafficSlideConfig -->
+                  <div *ngIf="type === 'TrafficSlideConfig'">
+                    <mat-form-field>
+                      <mat-label>{{
+                        "label.slide.latitude" | translate
+                      }}</mat-label>
+                      <input
+                        matInput
+                        type="number"
+                        step="any"
+                        [ngModelOptions]="{ standalone: true }"
+                        [(ngModel)]="config.gmap.latitude"
+                        required
+                      />
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>{{
+                        "label.slide.longitude" | translate
+                      }}</mat-label>
+                      <input
+                        matInput
+                        type="number"
+                        step="any"
+                        [ngModelOptions]="{ standalone: true }"
+                        [(ngModel)]="config.gmap.longitude"
+                        required
+                      />
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>{{
+                        "label.slide.zoom" | translate
+                      }}</mat-label>
+                      <input
+                        matInput
+                        type="number"
+                        step="1"
+                        [min]="13"
+                        [ngModelOptions]="{ standalone: true }"
+                        [(ngModel)]="config.gmap.zoom"
+                        required
+                      />
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>{{
+                        "label.slide.duration" | translate
+                      }}</mat-label>
+                      <input
+                        matInput
+                        type="number"
+                        step="1"
+                        [min]="10"
+                        [ngModelOptions]="{ standalone: true }"
+                        [(ngModel)]="config.duration"
+                        required
+                      />
+                    </mat-form-field>
+                  </div>
+
+                  <!-- UniversityOverviewSlideConfig -->
+                  <div *ngIf="type === 'UniversityOverviewSlideConfig'">
+                    <mat-form-field>
+                      <mat-label>{{ "label.slide.url" | translate }}</mat-label>
+                      <input
+                        matInput
+                        type="url"
+                        [ngModelOptions]="{ standalone: true }"
+                        [(ngModel)]="config.page.url"
+                        required
+                      />
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>{{
+                        "label.slide.duration" | translate
+                      }}</mat-label>
+                      <input
+                        matInput
+                        type="number"
+                        step="1"
+                        [min]="10"
+                        [ngModelOptions]="{ standalone: true }"
+                        [(ngModel)]="config.duration"
+                        required
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </ng-container>
+              <div
+                class="card-add"
+                *ngIf="canAddSlideConfigEntry(configItem.key)"
+              >
+                <button
+                  mat-raised-button
+                  (click)="addSlideConfigEntry(configItem.key)"
+                  color="success"
+                  class="add"
+                >
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <mat-divider [inset]="true"></mat-divider>
+        <br />
+        <!-- DATA ENDPOINT CONFIG-->
+        <div class="data-endpoint-config">
+          <mat-label class="section-header">{{
+            "label.infoscreen.dataConfig" | translate
+          }}</mat-label>
+          <!-- News Internal -->
+          <div
+            *ngIf="displayNewsInternalDataEndpointConfig() as slide"
+            class="card"
+          >
+            <div class="card-name">
+              {{ "slide." + slide | translate }}
+            </div>
+            <div class="data-endpoint-config-content">
+              <mat-form-field>
+                <mat-label>{{
+                  "label.news.maxNewsCount" | translate
+                }}</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  step="1"
+                  [min]="0"
+                  [ngModelOptions]="{ standalone: true }"
+                  [(ngModel)]="dataEndpointConfigs.newsInternal.maxNewsCount"
+                  [defaultValue]="3"
+                  required
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- News Public -->
+          <div
+            *ngIf="displayNewsPublicDataEndpointConfig() as slide"
+            class="card"
+          >
+            <div class="card-name">
+              {{ "slide." + slide | translate }}
+            </div>
+            <div class="data-endpoint-config-content">
+              <mat-form-field>
+                <mat-label>{{
+                  "label.news.maxNewsCount" | translate
+                }}</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  step="1"
+                  [min]="0"
+                  [max]="10"
+                  [ngModelOptions]="{ standalone: true }"
+                  [(ngModel)]="dataEndpointConfigs.newsPublic.maxNewsCount"
+                  [defaultValue]="3"
+                  required
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- Twenty min -->
+          <div
+            *ngIf="displayTwentyMinDataEndpointConfig() as slide"
+            class="card"
+          >
+            <div class="card-name">
+              {{ "slide." + slide | translate }}
+            </div>
+            <div class="data-endpoint-config-content">
+              <mat-form-field>
+                <mat-label>{{
+                  "label.news.maxNewsDateAge" | translate
+                }}</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  step="1"
+                  [min]="0"
+                  [ngModelOptions]="{ standalone: true }"
+                  [(ngModel)]="dataEndpointConfigs.twentyMin.maxNewsDateAge"
+                  [defaultValue]="14"
+                  required
+                />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </infoscreen-edit-card>
+</div>

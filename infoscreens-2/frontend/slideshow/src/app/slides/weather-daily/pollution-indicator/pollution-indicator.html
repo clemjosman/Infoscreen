@@ -1,0 +1,29 @@
+<div class="pollution-wrapper">
+  <div class="pollution-container">
+    <span>{{'label.pollution' | translateAsync | async}}</span>
+    <span class="unit">(μg/m<sup>3</sup>)</span>
+    <div class="pollution-indicator-container">
+      <div
+        class="pollution-level"
+        *ngFor="let pollutionLevel of pollutionLevels"
+        [ngClass]="['pollution-level-'+pollutionLevel.level, pollutionLevel.activated ? '' : 'pollution-level-not-activated']"
+      ></div>
+    </div>
+  </div>
+  <div class="pollutant-container">
+    <div class="pollutant" *ngFor="let pollutant of pollutants">
+      <div class="pollutant-name" *ngIf="pollutant.pollutant === 'no2'">
+        NO<sub>2</sub>
+      </div>
+      <div class="pollutant-name" *ngIf="pollutant.pollutant === 'pm10'">
+        PM<sub>10</sub>
+      </div>
+      <div class="pollutant-name" *ngIf="pollutant.pollutant === 'o3'">
+        O<sub>3</sub>
+      </div>
+      <div class="pollutant-value" [ngClass]="['level-'+pollutant.level]">
+        {{pollutant.value}}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+<video *ngIf="source" width="100%" height="100%" autoplay>
+  <source [src]="source" type="video/mp4" />
+  {{'error.display' | translateAsync | async}}
+</video>

@@ -1,0 +1,120 @@
+.page-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  .content-container {
+    width: 100%;
+  }
+  .no-content {
+    width: 100%;
+    height: calc(92vh - 30%);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: var(--text-color);
+    background-color: var(--background-color);
+  }
+
+  .text-content {
+    font-size: 20.4pt;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 100%;
+    padding: 30px;
+    margin: 0;
+    background-color: var(--background-color);
+  }
+
+  .title-container {
+    color: var(--text-color);
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    margin: 10px 0px;
+    .title {
+      margin: 0px;
+      font-size: 35pt;
+      font-weight: 700;
+    }
+    .author-container {
+      flex: 0 0 fit-content;
+      align-self: flex-start;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-content: center;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 15px;
+      img.author-avatar {
+        max-width: 50px;
+        border-radius: 50%;
+      }
+      .author-name {
+        font-size: 22pt;
+      }
+    }
+  }
+  .description {
+    margin: 25px 0px;
+    max-height: 550px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 25pt;
+  }
+  .description,
+  .details-container {
+    color: var(--text-color);
+  }
+  .details {
+    font-size: 20pt;
+    hr {
+      height: 1px;
+      background-color: #00458f;
+      border: none;
+      max-width: 450px;
+      margin-bottom: 10px;
+    }
+    .details-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: space-between;
+      align-items: flex-start;
+      .date-time-container {
+        display: grid;
+        justify-items: start;
+        align-items: center;
+        justify-content: start;
+        grid-template-rows: 1fr;
+        grid-template-columns: min-content 1fr;
+        row-gap: 15px;
+        i {
+          justify-self: center;
+          margin-right: 15px;
+        }
+      }
+      .like-comment-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        i {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+}

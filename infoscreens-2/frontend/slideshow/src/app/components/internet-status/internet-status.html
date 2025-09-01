@@ -1,0 +1,5 @@
+<!-- Using ngStyle instead of ngIf, else fontawesome can't download the icon if the connection was lost -->
+<div class="lost-internet-container" [ngClass]="{'hidden': !!isConnected}">
+  <i class="fa fa-wifi"></i>
+  {{ 'internet.lostConnection' | translateAsync | async }}
+</div>

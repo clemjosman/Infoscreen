@@ -1,0 +1,23 @@
+meta {
+  name: Get MSB log level
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{rootUrl}}/v1/mSBLogLevel?NodeId={{nodeId}}
+  body: none
+  auth: none
+}
+
+params:query {
+  NodeId: {{nodeId}}
+}
+
+script:post-response {
+  test("Content-Type is present and is text/plain", function () {
+      expect(res.getHeaders()).to.have.property("Content-Type".toLowerCase());
+      let contentType = res.getHeader("Content-Type");
+      expect(contentType.startsWith("text/plain")).is.true;
+  });
+}

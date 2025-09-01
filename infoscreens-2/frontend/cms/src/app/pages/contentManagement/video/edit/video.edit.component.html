@@ -1,0 +1,597 @@
+<div class="page-container">
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg accent"></div>
+
+  <!-- HEADER -->
+  <page-header
+    [pathArray]="pathArray"
+    [displayBreadcrumbBackButton]="false"
+  ></page-header>
+
+  <!-- VIDEO FORM -->
+  <div
+    *ngIf="isNew !== undefined && video !== undefined"
+    id="video-edit-container"
+  >
+    <div *ngIf="editVideoForm !== undefined">
+      <form
+        [formGroup]="editVideoForm"
+        (ngSubmit)="onSubmit(editVideoForm.value)"
+      >
+        <!-- ACTIONS -->
+        <div id="action-container">
+          <button
+            mat-raised-button
+            [color]="editVideoForm.invalid ? 'disabled' : 'action'"
+            type="submit"
+            [disabled]="editVideoForm.invalid"
+          >
+            <mat-icon>save</mat-icon>
+            {{ "general.button.save" | translate }}
+          </button>
+          <button
+            mat-raised-button
+            color="warning"
+            type="button"
+            (click)="cancelEdit()"
+          >
+            <mat-icon>reply</mat-icon>
+            {{ "general.button.cancel" | translate }}
+          </button>
+          <button
+            mat-raised-button
+            color="danger"
+            type="button"
+            (click)="deleteVideo()"
+            *ngIf="!isNew"
+          >
+            <mat-icon>delete</mat-icon>
+            {{ "video.delete" | translate }}
+          </button>
+        </div>
+
+        <div class="column-container">
+          <div id="video-edit-left-column">
+            <mat-card id="multi-lingual-card">
+              <mat-card-header>
+                <mat-card-title>
+                  {{ "label.multilingualContent" | translate }}
+                </mat-card-title>
+              </mat-card-header>
+              <mat-divider [inset]="true"></mat-divider>
+              <br />
+
+              <!-- MULTILINGUAL PART -->
+              <div
+                formArrayName="multilingualContent"
+                id="languages-content-container"
+              >
+                <mat-expansion-panel
+                  *ngFor="
+                    let multilingualContent of editVideoForm.get(
+                      'multilingualContent'
+                    ).controls;
+                    let multilingualContentIndex = index
+                  "
+                  [formGroupName]="multilingualContentIndex"
+                >
+                  <mat-expansion-panel-header>
+                    <mat-panel-title
+                      [ngClass]="
+                        editVideoForm.controls['multilingualContent'].controls[
+                          multilingualContentIndex
+                        ].invalid
+                          ? 'mat-danger-content'
+                          : ''
+                      "
+                    >
+                      {{
+                        multilingualContent.value.language.displayName[
+                          _translationService.currentLanguage.value?.cultureCode
+                        ]
+                      }}
+                      <button
+                        mat-raised-button
+                        smaller-button
+                        color="danger"
+                        *ngIf="
+                          editVideoForm.get('multilingualContent').controls
+                            .length > 1
+                        "
+                        class="button"
+                        type="button"
+                        (click)="
+                          removeMultilingualFormItem(multilingualContentIndex)
+                        "
+                      >
+                        <mat-icon>delete</mat-icon>
+                        <span>{{ "general.button.delete" | translate }}</span>
+                      </button>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <mat-divider [inset]="true"></mat-divider>
+                  <br />
+
+                  <!-- TITLE -->
+                  <div class="title-container">
+                    <mat-form-field>
+                      <mat-label
+                        >{{ "label.title" | translate
+                        }}<requiredStar></requiredStar>
+                      </mat-label>
+                      <input
+                        matInput
+                        [id]="
+                          'title-' + multilingualContent.value.language.ios2
+                        "
+                        type="text"
+                        formControlName="title"
+                      />
+                      <mat-error
+                        *ngIf="
+                          editVideoForm.controls['multilingualContent']
+                            .controls[multilingualContentIndex].controls[
+                            'title'
+                          ].invalid
+                        "
+                      >
+                        <div
+                          *ngIf="
+                            editVideoForm.controls['multilingualContent']
+                              .controls[multilingualContentIndex].controls[
+                              'title'
+                            ].errors.required
+                          "
+                        >
+                          {{ "label.title.isRequired" | translate }}
+                        </div>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <br />
+
+                  <!-- AUTOMATC TRANSLATION -->
+                  <div
+                    *ngIf="languagesLeftToAdd && languagesLeftToAdd.length > 0"
+                    class="automatic-translation-container"
+                  >
+                    <mat-form-field>
+                      <mat-label>{{
+                        "label.translateInto" | translate
+                      }}</mat-label>
+                      <mat-select [(value)]="selectedNewLanguage">
+                        <mat-option
+                          *ngFor="let language of languagesLeftToAdd"
+                          [value]="language"
+                        >
+                          {{
+                            language.displayName[
+                              _translationService.currentLanguage.value
+                                ?.cultureCode
+                            ]
+                          }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <button
+                      mat-raised-button
+                      smaller-button
+                      color="action"
+                      type="button"
+                      (click)="
+                        addAutomaticalyTranslatedMultilingualItem(
+                          selectedNewLanguage,
+                          multilingualContentIndex
+                        )
+                      "
+                    >
+                      <mat-icon>translate</mat-icon>
+                      <span>{{ "general.button.translate" | translate }}</span>
+                    </button>
+                  </div>
+                </mat-expansion-panel>
+              </div>
+
+              <!-- ADDING NEW LANGUAGE -->
+              <div
+                *ngIf="languagesLeftToAdd && languagesLeftToAdd.length > 0"
+                id="add-new-language-container"
+              >
+                <mat-form-field>
+                  <mat-label>{{ "label.newLanguage" | translate }}</mat-label>
+                  <mat-select [(value)]="selectedNewLanguage">
+                    <mat-option
+                      *ngFor="let language of languagesLeftToAdd"
+                      [value]="language"
+                    >
+                      {{
+                        language.displayName[
+                          _translationService.currentLanguage.value?.cultureCode
+                        ]
+                      }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <button
+                  mat-raised-button
+                  smaller-button
+                  color="action"
+                  (click)="addMultilingualFormItem(selectedNewLanguage)"
+                >
+                  <mat-icon>add</mat-icon>
+                  <span>{{ "general.button.add" | translate }}</span>
+                </button>
+              </div>
+            </mat-card>
+            <br />
+
+            <mat-card id="general-content-card">
+              <mat-card-header>
+                <mat-card-title>{{
+                  "label.generalContent" | translate
+                }}</mat-card-title>
+              </mat-card-header>
+              <mat-divider [inset]="true"></mat-divider>
+              <br />
+
+              <mat-card-content>
+                <!-- URL -->
+                <div id="url-container">
+                  <mat-form-field>
+                    <mat-label
+                      >{{ "label.youtubeLink" | translate
+                      }}<requiredStar></requiredStar>
+                    </mat-label>
+                    <input
+                      matInput
+                      type="url"
+                      formControlName="url"
+                      placeholder="https://youtu.be/..."
+                    />
+                    <mat-error *ngIf="editVideoForm.controls['url'].invalid">
+                      <div
+                        *ngIf="editVideoForm.controls['url'].errors.required"
+                      >
+                        {{ "label.youtubeLink.required" | translate }}
+                      </div>
+                      <div
+                        *ngIf="editVideoForm.controls['url'].errors.invalidUrl"
+                      >
+                        {{ "label.youtubeLink.invalidUrl" | translate }}
+                      </div>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <!-- DURATION -->
+                <div id="duration-container">
+                  <mat-form-field>
+                    <mat-label
+                      >{{ "label.duration.inSeconds" | translate
+                      }}<requiredStar> </requiredStar>
+                    </mat-label>
+                    <input
+                      matInput
+                      type="number"
+                      formControlName="duration"
+                      min="0"
+                    />
+                    <mat-error
+                      *ngIf="editVideoForm.controls['duration'].invalid"
+                    >
+                      <div
+                        *ngIf="
+                          editVideoForm.controls['duration'].errors.required
+                        "
+                      >
+                        {{ "label.duration.isRequired" | translate }}
+                      </div>
+                      <div
+                        *ngIf="editVideoForm.controls['duration'].errors.min"
+                      >
+                        {{
+                          "label.duration.minimalDuration" | translate: CONFIG
+                        }}
+                      </div>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <!-- BACKGROUND -->
+                <div id="background-container">
+                  <mat-form-field>
+                    <mat-label
+                      >{{ "label.backgroundGif" | translate }}
+                    </mat-label>
+                    <mat-select formControlName="background">
+                      <mat-option value="none">{{
+                        "label.backgroundGif.none" | translate
+                      }}</mat-option>
+                      <mat-option
+                        *ngFor="let background of VideoBackground | keyvalue"
+                        [value]="background.value"
+                      >
+                        {{
+                          "label.backgroundGif." + background.value | translate
+                        }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </mat-card-content>
+            </mat-card>
+            <br />
+
+            <mat-card id="publication-card">
+              <mat-card-header>
+                <mat-card-title>{{
+                  "label.publication" | translate
+                }}</mat-card-title>
+              </mat-card-header>
+              <mat-divider [inset]="true"></mat-divider>
+              <br />
+
+              <mat-card-content>
+                <!-- IS VISIBLE -->
+                <div id="publication-radio">
+                  <mat-radio-group formControlName="publication">
+                    <!-- PUBLICATION DATE -->
+                    <mat-radio-button [value]="publicationOptions.publish">
+                      {{ "label.publishedFromOn" | translate }} &nbsp;
+                      <mat-form-field (click)="pubDate.open()">
+                        <mat-label
+                          >{{ "label.publicationDate" | translate
+                          }}<requiredStar> </requiredStar>
+                        </mat-label>
+                        <input
+                          matInput
+                          [matDatepicker]="pubDate"
+                          formControlName="publicationDate"
+                          required="false"
+                        />
+                        <mat-datepicker-toggle matSuffix [for]="pubDate">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #pubDate></mat-datepicker>
+                      </mat-form-field>
+                    </mat-radio-button>
+                    <br />
+                    <mat-radio-button [value]="publicationOptions.draft">
+                      {{ "label.notPublishedDraft" | translate }}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </mat-card-content>
+            </mat-card>
+            <br />
+
+            <mat-card id="expiration-card">
+              <mat-card-header>
+                <mat-card-title>{{
+                  "label.expiration" | translate
+                }}</mat-card-title>
+              </mat-card-header>
+              <mat-divider [inset]="true"></mat-divider>
+              <br />
+              <mat-card-content>
+                <!-- IS VISIBLE -->
+                <div id="expiration-radio">
+                  <mat-radio-group formControlName="expiration">
+                    <!-- EXPIRATION DATE -->
+                    <mat-radio-button [value]="expirationOptions.expire">
+                      {{ "label.publicationExpireOn" | translate }} &nbsp;
+                      <mat-form-field (click)="expDate.open()">
+                        <mat-label
+                          >{{ "label.publicationExpirationDate" | translate }}
+                        </mat-label>
+                        <input
+                          matInput
+                          [matDatepicker]="expDate"
+                          formControlName="expirationDate"
+                          required="false"
+                        />
+                        <mat-datepicker-toggle matSuffix [for]="expDate">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #expDate></mat-datepicker>
+                      </mat-form-field>
+                    </mat-radio-button>
+                    <br />
+                    <mat-radio-button [value]="expirationOptions.persist">
+                      {{ "label.doesNotExpire" | translate }}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </mat-card-content>
+            </mat-card>
+            <br />
+
+            <mat-card id="metadata-card">
+              <mat-card-header>
+                <mat-card-title
+                  >{{ "label.metadata" | translate
+                  }}<span class="card-title-infos"
+                    >({{ "label.metadata.infos" | translate }})</span
+                  ></mat-card-title
+                >
+              </mat-card-header>
+              <mat-divider [inset]="true"></mat-divider>
+              <br />
+              <mat-card-content>
+                <!-- DESCRIPTION -->
+                <div id="description-container">
+                  <mat-form-field>
+                    <mat-label>{{ "label.description" | translate }}</mat-label>
+                    <input
+                      matInput
+                      id="description"
+                      type="text"
+                      formControlName="description"
+                    />
+                    <mat-error
+                      *ngIf="editVideoForm.controls['description'].invalid"
+                    >
+                      <div
+                        *ngIf="
+                          editVideoForm.controls['description'].errors.maxlength
+                        "
+                      >
+                        {{ "label.fieldMax250Characters" | translate }}
+                      </div>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <!-- NOTIFICATION INFO -->
+                <!-- INFO: IS DISABLED FOR THE MOMENT (to activate, remove 'false &&' in the following *ngIf) -->
+                <ng-container
+                  *ngIf="
+                    false &&
+                    video &&
+                    (video.usersNotified ||
+                      (!video.usersNotified &&
+                        video.isVisible &&
+                        isTodayOrBefore(video.publicationDate)))
+                  "
+                >
+                  <br />
+                  <div id="notification-container">
+                    <ng-container *ngIf="video.usersNotified"
+                      >{{ "metadata.notificationsSentOn" | translate
+                      }}{{
+                        video.usersNotified | vesactDate | async
+                      }}</ng-container
+                    >
+                    <ng-container
+                      *ngIf="
+                        !video.usersNotified &&
+                        video.isVisible &&
+                        isTodayOrBefore(video.publicationDate) &&
+                        isForApp()
+                      "
+                    >
+                      {{
+                        "metadata.notificationsNotYetSend" | translate
+                      }}</ng-container
+                    >
+                    <ng-container
+                      *ngIf="
+                        !video.usersNotified &&
+                        video.isVisible &&
+                        isTodayOrBefore(video.publicationDate) &&
+                        !isForApp()
+                      "
+                    >
+                      {{
+                        "metadata.notificationsNotSupported" | translate
+                      }}</ng-container
+                    >
+                  </div>
+                </ng-container>
+
+                <!-- LAST EDITOR -->
+                <ng-container *ngIf="video?.lastEditor">
+                  <br />
+                  <div id="last-edit-container">
+                    <p class="last-editor">
+                      {{ "metadata.lastEditor" | translate
+                      }}{{ video.lastEditor.displayName }}
+                    </p>
+                    <p class="last-edit-date">
+                      {{ "metadata.lastEditDate" | translate
+                      }}{{ video.lastEditDate | vesactDateFromNow | async }}
+                    </p>
+                  </div>
+                </ng-container>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <!-- CHANNEL AND INFOSCREEN ASSIGNMENT COLUMN -->
+          <div id="video-edit-right-column">
+            <!-- CHANNEL -->
+            <mat-card
+              id="channels-card"
+              *ngIf="tenantService.currentTenant.appName"
+            >
+              <mat-card-header>
+                <mat-card-title>{{
+                  "label.channels" | translate
+                }}</mat-card-title>
+              </mat-card-header>
+              <mat-divider [inset]="true"></mat-divider>
+              <br />
+
+              <mat-card-content>
+                <div class="channels-container">
+                  <div class="channel">
+                    <mat-checkbox formControlName="isForInfoscreens">
+                      {{ "label.infoscreens" | translate }}
+                    </mat-checkbox>
+                  </div>
+                  <div class="channel">
+                    <mat-checkbox formControlName="isForApp">
+                      {{ tenantService.currentTenant.appName }}
+                    </mat-checkbox>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+
+            <!-- CATEGORY ASSIGNMENT -->
+            <categories-input-card
+              id="categories-card"
+              [selectedCategories]="categories"
+              [allCategories]="allCategories"
+            ></categories-input-card>
+
+            <!-- INFOSCREEN ASSIGNMENT -->
+            <mat-card id="infoscreens-card">
+              <mat-card-header>
+                <mat-card-title>{{
+                  "label.infoscreens" | translate
+                }}</mat-card-title>
+              </mat-card-header>
+              <mat-divider [inset]="true"></mat-divider>
+              <br />
+
+              <mat-card-content>
+                <div
+                  *ngFor="let group of infoscreenGroups"
+                  class="infoscreen-group"
+                >
+                  <mat-checkbox
+                    [checked]="isGroupChecked(group.id)"
+                    [indeterminate]="isGroupIndeterminate(group.id)"
+                    (change)="groupChange(group.id, $event.checked)"
+                  >
+                    {{ group.name }}
+                  </mat-checkbox>
+                  <div
+                    *ngFor="let infoscreen of getInfoscreensOfGroup(group.id)"
+                    class="infoscreen"
+                  >
+                    <mat-checkbox
+                      [checked]="isInfoscreenChecked(infoscreen.id)"
+                      (change)="infoscreenChange(infoscreen.id, $event.checked)"
+                      [matTooltip]="infoscreen.description"
+                      matTooltipShowDelay="300"
+                      matTooltipPosition="left"
+                    >
+                      {{ infoscreen.displayName }}
+                    </mat-checkbox>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <div *ngIf="isLoading" class="fullPage-loadingSpinner-wrapper">
+    <loading-spinner></loading-spinner>
+  </div>
+</div>

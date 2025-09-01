@@ -1,0 +1,13 @@
+<banner-layout [slide]="slide">
+  <split-content firstContentProportion="10">
+    <title-content
+      firstContent
+      [title]="localVideoTitle"
+      theme="dark"
+    ></title-content>
+    <local-video-content
+      secondContent
+      [source]="localVideoLink"
+    ></local-video-content>
+  </split-content>
+</banner-layout>

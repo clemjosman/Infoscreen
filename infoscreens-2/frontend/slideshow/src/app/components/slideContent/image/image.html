@@ -1,0 +1,8 @@
+<div *ngIf="url" class="image-container">
+  <div
+    class="image-background"
+    [style.backgroundImage]="'url('+ url +')'"
+  ></div>
+  <div class="image-center"><img [src]="url" /></div>
+</div>
+<title-content *ngIf="!url" textCode="error.display"></title-content>

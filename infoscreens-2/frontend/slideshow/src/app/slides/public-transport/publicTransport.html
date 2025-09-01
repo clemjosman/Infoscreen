@@ -1,0 +1,38 @@
+<banner-layout [slide]="slide">
+  <div class="public-transport-container">
+    <ng-container *ngIf="publicTransportData">
+      <div
+        class="cards-container"
+        *ngIf="publicTransportData.destinationGroups.length > 0"
+      >
+        <div
+          class="card"
+          *ngFor="let destinationGroup of publicTransportData.destinationGroups"
+          [ngClass]="{'card1': publicTransportData.destinationGroups.length === 1,
+                        'card2': publicTransportData.destinationGroups.length === 2,
+                        'card3': publicTransportData.destinationGroups.length === 3,
+                        'card4': publicTransportData.destinationGroups.length === 4}"
+        >
+          <div class="card-name">
+            {{destinationGroup.name | translateAsync | async}}
+          </div>
+
+          <transportTable
+            [stationBoard]="destinationGroup.stationBoard"
+            [maxDisplayed]="2"
+          >
+          </transportTable>
+        </div>
+      </div>
+
+      <div class="container schedule-table card">
+        <div class="station-name">{{ publicTransportData.station.name }}</div>
+        <transportTable
+          [stationBoard]="publicTransportData.stationBoard"
+          [maxDisplayed]="7"
+        >
+        </transportTable>
+      </div>
+    </ng-container>
+  </div>
+</banner-layout>

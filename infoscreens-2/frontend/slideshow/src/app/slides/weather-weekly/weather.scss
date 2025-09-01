@@ -1,0 +1,146 @@
+.current-weather-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  padding: 0px 10px;
+}
+
+.current-weather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 fit-content;
+}
+
+img.current-weather-icon {
+  margin-right: 5rem;
+  height: 222px;
+}
+
+i.current-weather-icon {
+  margin-right: 5rem;
+  font-size: 7rem;
+}
+
+img.daily-weather-icon {
+  height: 199px;
+}
+
+i.daily-weather-icon {
+  font-size: 5rem;
+}
+
+.current-temp {
+  font-size: 99px;
+  left: -13px;
+  position: relative;
+}
+
+.celsius {
+  font-size: 55px;
+  position: relative;
+  top: -31px;
+}
+
+.vl-0 {
+  border-left: 1px solid black;
+  height: 77px;
+  margin: 0 45px 0 30px;
+}
+
+.vl-1 {
+  border-left: 1px solid black;
+  height: 77px;
+  margin: 0 30px 0 30px;
+}
+
+.daily-weather-container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}
+
+.chart {
+  flex: 0 0 auto;
+}
+
+.daily-weather-td {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.daily-weather-day {
+  font-size: 33px;
+}
+
+.daily-weather-morning-temp {
+  font-size: 27px;
+  font-weight: 500;
+  color: var(--text-color-secondary);
+}
+
+.daily-weather-afternoon-temp {
+  font-size: 27px;
+  font-weight: 500;
+}
+
+.daily-weather-rain,
+.daily-weather-humidity,
+.daily-weather-pressure,
+.daily-weather-uv-index {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.current-weather-details {
+  font-size: 22px;
+}
+
+.current-weather-wind-details {
+  font-size: 22px;
+}
+
+i.current-weather-wind-direction {
+  width: fit-content;
+  font-size: 3rem;
+  display: block;
+  margin: 0 auto;
+  opacity: 0.55;
+}
+
+img.current-weather-wind-direction {
+  width: 55px;
+  display: block;
+  margin: 0 auto;
+  opacity: 0.55;
+}
+
+.daily-weather-wind-details {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+i.daily-weather-wind-direction {
+  width: fit-content;
+  font-size: 3rem;
+  display: block;
+  margin: 0 auto;
+  opacity: 0.55;
+}
+
+img.daily-weather-wind-direction {
+  width: 33px;
+  display: block;
+  margin: 0 auto;
+  opacity: 0.55;
+}

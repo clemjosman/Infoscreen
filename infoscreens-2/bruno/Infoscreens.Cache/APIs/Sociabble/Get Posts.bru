@@ -1,0 +1,15 @@
+meta {
+  name: Get Posts
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://apigateway.sociabble.com/streams/daafea17-d53e-4e73-a458-6cf6bb07cc43/rss
+  body: none
+  auth: none
+}
+
+headers {
+  X-Sociabble-SubscriptionKey: 7e8550ec08bd490f8e63cdf437145918
+}

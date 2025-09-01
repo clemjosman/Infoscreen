@@ -1,0 +1,12 @@
+<div class="snackbar">
+    <span *ngIf="data.type === 'error'" class="material-icons mat-danger-content">
+        error
+    </span>
+    <span *ngIf="data.type === 'warning'" class="material-icons mat-warning-content">
+        warning
+    </span>
+    <span *ngIf="data.type === 'success'" class="material-icons mat-success-content">
+        done
+    </span>
+    <span>{{data.message}}</span>
+</div>

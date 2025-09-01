@@ -1,0 +1,19 @@
+[
+	{
+		"title": "Test title for job offer NUMBER 4",
+		"description": "This is a description and should be a longer text but not too long. Given that there are others things to display on this screen. But if you are interested, contact us and we will be glad to have an interview with you.",
+		"skills": [
+			"C#",
+			"But also longer",
+			"AndAcceptQuiteLongWords",
+			"Maybe this too",
+			"Five seems correct"
+		],
+		"contact": {
+			"name": "HABERKORN Jonas",
+			"email": "thisisa.testemail@actemium.ch",
+			"phone": "+41 12 345 67 89",
+			"address": "Wienstrasse 2, 4002 Basel"
+		}
+	}
+]

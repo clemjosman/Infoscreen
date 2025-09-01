@@ -1,0 +1,16 @@
+meta {
+  name: Update Firmware Node
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://microservicebus.com/api/nodes/099d4e4e-69e1-4674-b779-2aac4822d35c/connectionstate
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjY1MjQ5MjNkLTRiZTgtNDY3MC1iYzZiLTJmY2YwYzNjYjMwZCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJqb25hcy5oYWJlcmtvcm5AYWN0ZW1pdW0uY2giLCJleHAiOjIxNDU4MzA0MDAsImlzcyI6Im1pY3Jvc2VydmljZWJ1cy5jb20iLCJhdWQiOiJtaWNyb3NlcnZpY2VidXMuYXBpIn0.EGC7BHdwYqSnLqj1Ejghy7_VAgSoqY7aygAzjQrXmi0
+  ~Accept: application/json
+}

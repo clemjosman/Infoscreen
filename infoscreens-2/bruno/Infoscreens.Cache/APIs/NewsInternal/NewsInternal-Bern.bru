@@ -1,0 +1,17 @@
+meta {
+  name: NewsInternal-Bern
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://infoscreen.actemium.ch/wp-json/wp/v2/posts?_embed&per_page=3&filter[category_name]=local-news-de,bern
+  body: none
+  auth: none
+}
+
+params:query {
+  _embed: null
+  per_page: 3
+  filter[category_name]: local-news-de,bern
+}

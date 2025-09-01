@@ -1,0 +1,26 @@
+<banner-layout [slide]="slide">
+  <split-content [firstContentProportion]="40" layout="horizontal">
+    <image-content firstContent [url]="postImageSource"></image-content>
+
+    <ng-container secondContent>
+      <div class="page-container">
+        <div class="content-container">
+          <div class="text-content" *ngIf="post">
+            <div class="title">{{ post.title }}</div>
+            <div class="content">{{ post.description }}</div>
+            <div class="details-container">
+              <hr />
+              <div class="publication-container">
+                <i class="fa fa-calendar"></i>
+                <p>{{ post.date }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="no-content" *ngIf="!post">
+            <p>{{'sociabble.noPost' | translateAsync | async}}</p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </split-content>
+</banner-layout>

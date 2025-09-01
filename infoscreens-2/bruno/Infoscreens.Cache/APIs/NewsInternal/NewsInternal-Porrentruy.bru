@@ -1,0 +1,17 @@
+meta {
+  name: NewsInternal-Porrentruy
+  type: http
+  seq: 7
+}
+
+get {
+  url: http://infoscreen.actemium.ch/wp-json/wp/v2/posts?_embed&per_page=3&filter[category_name]=news-local-fr,porrentruy
+  body: none
+  auth: none
+}
+
+params:query {
+  _embed: null
+  per_page: 3
+  filter[category_name]: news-local-fr,porrentruy
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Infoscreen</title>
+    <base href="" />
+
+    <meta name="viewport" />
+    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico" />
+
+    <style>
+      body {
+        /* fallback for old browsers */
+        background: var(--body-gradient-end-color);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(
+          to right,
+          var(--body-gradient-start-color),
+          var(--body-gradient-end-color)
+        );
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(
+          to right,
+          var(--body-gradient-start-color),
+          var(--body-gradient-end-color)
+        );
+      }
+    </style>
+  </head>
+
+  <body class="theme-light-default">
+    <app-root style="height: 100%; display: block"></app-root>
+  </body>
+</html>

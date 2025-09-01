@@ -1,0 +1,34 @@
+meta {
+  name: Put news
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{rootUrl}}/v1/news/{{tenantCode}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "id":1,
+    "title": {
+      "EN":"Heading",
+      "FR":"Titre"
+      
+    },
+    "content": {
+      "EN":"My text",
+      "FR":"Mon text"
+    },
+    "isVisible":false,
+    "publicationDate":"",
+    "attachments":null,
+    "assignedToInfoscreenIds":[2,3]
+  }
+}

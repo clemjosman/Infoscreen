@@ -1,0 +1,16 @@
+meta {
+  name: PublicTransport-DreispitzTram
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://transport.opendata.ch/v1/stationboard?limit=50&id=8500096
+  body: none
+  auth: none
+}
+
+params:query {
+  limit: 50
+  id: 8500096
+}

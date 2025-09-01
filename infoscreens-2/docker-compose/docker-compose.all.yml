@@ -1,0 +1,41 @@
+name: infoscreens
+services:
+    infoscreens-frontend-cms:
+        extends:
+            file: ./docker-compose.front.yml
+            service: infoscreens-frontend-cms
+
+    infoscreens-frontend-slideshow:
+        extends:
+            file: ./docker-compose.front.yml
+            service: infoscreens-frontend-slideshow
+
+    infoscreens-frontend-sync:
+        extends:
+            file: ./docker-compose.front.yml
+            service: infoscreens-frontend-sync
+
+    infoscreens-backend-cache:
+        extends:
+            file: ./docker-compose.back.yml
+            service: infoscreens-backend-cache
+
+    infoscreens-backend-cms:
+        extends:
+            file: ./docker-compose.back.yml
+            service: infoscreens-backend-cms
+    infoscreens-blob:
+        extends:
+            file: ./docker-compose.back.yml
+            service: infoscreens-blob
+
+    infoscreens-sql-server:
+        extends:
+            file: ./docker-compose.back.yml
+            service: infoscreens-sql-server
+
+volumes:
+    azurite-data:
+        name: infoscreens-backend-blob
+    sql-server-data:
+        name: infoscreens-sql-server

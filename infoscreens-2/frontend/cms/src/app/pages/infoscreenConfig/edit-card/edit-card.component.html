@@ -1,0 +1,33 @@
+<mat-card class="edit-card" [ngClass]="isMetadata ? 'metadata' : ''">
+  <!-- Header -->
+  <mat-card-header class="edit-card-header">
+    <mat-card-title>{{ headerLabel | translate }}</mat-card-title>
+    <div class="edit-buttons" *ngIf="displayButtonsHeader">
+      <infoscreen-edit-card-action-buttons
+        [save]="saveCallback"
+        [disableSave]="disableSave"
+        [cancel]="cancelCallback"
+        [disableCancel]="disableCancel"
+      ></infoscreen-edit-card-action-buttons>
+    </div>
+  </mat-card-header>
+  <mat-divider [inset]="true"></mat-divider>
+  <br />
+
+  <mat-card-content>
+    <!-- Content -->
+    <div class="edit-card-content">
+      <ng-content></ng-content>
+    </div>
+
+    <!-- Footer -->
+    <div class="edit-card-footer">
+      <infoscreen-edit-card-action-buttons
+        [save]="saveCallback"
+        [disableSave]="disableSave"
+        [cancel]="cancelCallback"
+        [disableCancel]="disableCancel"
+      ></infoscreen-edit-card-action-buttons>
+    </div>
+  </mat-card-content>
+</mat-card>

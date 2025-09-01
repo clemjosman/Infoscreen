@@ -1,0 +1,99 @@
+<mat-card>
+  <mat-card-content>
+    <!-- FULL CARD LOADING SPINNER -->
+    <div *ngIf="isLoading || isQueryOngoing" class="loading-spinner-wrapper">
+      <loading-spinner></loading-spinner>
+    </div>
+
+    <div *ngIf="!isLoading && !isQueryOngoing" class="card-container">
+      <div class="search-container">
+        <!-- TEXT SEARCH -->
+        <mat-form-field floatLabel="always" class="search-form-field">
+          <mat-label>{{ "search.text.label" | translate }}</mat-label>
+          <mat-icon matPrefix>search</mat-icon>
+          <input
+            matInput
+            type="search"
+            [placeholder]="'search.text.placeholder' | translate"
+            class="search-input"
+            [(ngModel)]="searchText"
+          />
+          <button
+            *ngIf="searchText"
+            matSuffix
+            mat-icon-button
+            (click)="searchText = ''"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <!-- INFOSCREEN SELECTION -->
+        <mat-form-field floatLabel="always" class="select-form-field">
+          <mat-label>{{ "search.infoscreens.label" | translate }}</mat-label>
+          <mat-icon matPrefix>desktop_windows</mat-icon>
+          <mat-select
+            [formControl]="selectedInfoscreenIds"
+            multiple
+            [placeholder]="'search.infoscreen.select' | translate"
+          >
+            <mat-select-trigger>
+              {{ "search.infoscreen.numberSelected" | translate
+              }}{{ selectedInfoscreenIds.value?.length || 0 }}
+            </mat-select-trigger>
+            <mat-optgroup
+              *ngFor="let grouppedInf of groupedInfoscreens"
+              [label]="grouppedInf.group.name"
+            >
+              <mat-option
+                *ngFor="let infoscreen of grouppedInf.infoscreens"
+                [value]="infoscreen.id"
+              >
+                {{ infoscreen.displayName }}
+              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- CATEGORIES SELECTION -->
+        <mat-form-field floatLabel="always" class="select-form-field">
+          <mat-label>{{
+            (!categories || categories?.length === 0
+              ? "search.categories.noneAvailable"
+              : "search.categories.label"
+            ) | translate
+          }}</mat-label>
+          <mat-icon matPrefix>label</mat-icon>
+          <mat-select
+            [formControl]="selectedCategoryIds"
+            multiple
+            [disabled]="!categories || categories?.length === 0"
+            [placeholder]="'search.categories.select' | translate"
+          >
+            <mat-select-trigger>
+              {{ "search.categories.numberSelected" | translate
+              }}{{ selectedCategoryIds.value?.length || 0 }}
+            </mat-select-trigger>
+            <mat-option
+              *ngFor="let category of categories"
+              [value]="category.id"
+            >
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="action-container">
+        <button mat-raised-button (click)="clearFilters()">
+          <mat-icon>clear</mat-icon>
+          {{ "general.button.clearFilters" | translate }}
+        </button>
+
+        <button mat-raised-button (click)="search()" color="action">
+          <mat-icon>search</mat-icon>
+          {{ "general.button.search" | translate }}
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

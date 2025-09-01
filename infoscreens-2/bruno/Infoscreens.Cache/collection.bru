@@ -1,0 +1,19 @@
+meta {
+  name: Infoscreens.Cache
+  seq: 1
+}
+
+auth {
+  mode: none
+}
+
+vars:pre-request {
+  API_Version: v1
+}
+
+script:post-response {
+  test("Status code is 200", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+  
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "cachedFilename": "DE.json",
+    "params": [
+      {
+        "key": "lang",
+        "value": "de"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "FR.json",
+    "params": [
+      {
+        "key": "lang",
+        "value": "fr"
+      }
+    ]
+  }
+]

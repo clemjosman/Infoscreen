@@ -1,0 +1,65 @@
+[
+  {
+    "cachedFilename": "FutureLab.json",
+    "params": [
+      {
+        "key": "filter[category_name]",
+        "value": "local-news-de,future-lab"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Wienstrasse.json",
+    "params": [
+      {
+        "key": "filter[category_name]",
+        "value": "local-news-de,wien-strasse-5"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Bern.json",
+    "params": [
+      {
+        "key": "filter[category_name]",
+        "value": "local-news-de,bern"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Wettingen.json",
+    "params": [
+      {
+        "key": "filter[category_name]",
+        "value": "local-news-de,wettingen"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Monthey.json",
+    "params": [
+      {
+        "key": "filter[category_name]",
+        "value": "news-local-fr,monthey"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Clarens.json",
+    "params": [
+      {
+        "key": "filter[category_name]",
+        "value": "news-local-fr,clarens"
+      }
+    ]
+  },
+  {
+    "cachedFilename": "Porrentruy.json",
+    "params": [
+      {
+        "key": "filter[category_name]",
+        "value": "news-local-fr,porrentruy"
+      }
+    ]
+  }
+]

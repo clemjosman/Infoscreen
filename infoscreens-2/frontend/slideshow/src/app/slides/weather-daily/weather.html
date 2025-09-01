@@ -1,0 +1,131 @@
+<banner-layout [slide]="slide">
+  <split-content firstContentProportion="40">
+    <div firstContent class="current-weather-container">
+      <div class="current-weather" *ngIf="weather !== undefined">
+        <img
+          *ngIf="!useIcons"
+          class="current-weather-icon"
+          src="assets/images/weatherIcons/{{weather.current.weather[0].icon}}.png"
+          alt="{{weather.current.weather[0].description}}"
+        />
+        <i
+          *ngIf="useIcons && getIconName(weather.current.weather[0].icon) as icon"
+          class="wi current-weather-icon"
+          [ngClass]="icon.class"
+          [ngStyle]="{'color': icon.color}"
+        ></i>
+        <span class="current-temp"
+          >{{Math.round(weather.current.temp) || 0}}<span class="celsius"
+            >°C</span
+          ></span
+        >
+        <div class="vl-0"></div>
+        <div class="current-weather-details">
+          <span class="current-humidity"
+            >{{'label.humidity' | translateAsync | async}} :
+            {{weather.current.humidity || 0}}<span class="pct">%</span></span
+          >
+          <br />
+          <span class="current-pressure"
+            >{{'label.pressure' | translateAsync | async}} :
+            {{weather.current.pressure || 0}}<span class="pct"> hPa</span></span
+          >
+          <br />
+          <span class="current-uv-index"
+            >{{'label.uvi' | translateAsync | async}} : {{weather.current.uvi ||
+            0}}</span
+          >
+        </div>
+        <div class="vl-1"></div>
+        <div class="current-weather-wind-details">
+          <span class="current-windspeed"
+            >{{'label.windspeed' | translateAsync | async}} :
+            {{weather.current.wind_speed || 0}}<span class="pct">
+              m/s</span
+            ></span
+          >
+          <br />
+          <img
+            class="current-weather-wind-direction"
+            src="assets/images/weatherIcons/arrow.png"
+            alt="{{weather.current.wind_deg}}"
+            [ngStyle]="{'transform': 'rotate(' + weather.current.wind_deg + 'deg)'}"
+            *ngIf="!useIcons"
+          />
+          <i
+            *ngIf="useIcons"
+            class="wi wi-wind towards-0-deg current-weather-wind-direction"
+            [ngStyle]="{'transform': 'rotate(' + weather.current.wind_deg + 'deg)'}"
+          ></i>
+        </div>
+        <div class="vl-0"></div>
+        <pollution-indicator></pollution-indicator>
+      </div>
+      <canvas #DailyWeatherChart class="chart" height="150px"></canvas>
+    </div>
+    <div
+      class="daily-weather-container"
+      *ngIf="weather !== undefined"
+      secondContent
+    >
+      <div
+        *ngFor="let daily of weather.hourly | slice:1:7"
+        class="daily-weather-td"
+      >
+        <div class="daily-weather-day">
+          {{getHour(daily.dt) | translateAsync | async}}
+        </div>
+        <img
+          class="daily-weather-icon"
+          src="assets/images/weatherIcons/{{daily.weather[0].icon}}.png"
+          alt="{{daily.weather[0].description}}"
+          *ngIf="!useIcons"
+        />
+        <i
+          class="wi daily-weather-icon"
+          *ngIf="useIcons && getIconName(daily.weather[0].icon) as icon"
+          [ngClass]="icon.class"
+          [ngStyle]="{'color': icon.color}"
+        ></i>
+        <div class="hourly-weather-temp">
+          &nbsp;{{Math.round(daily.temp) || 0}}°
+        </div>
+        <div class="daily-weather-details">
+          <div class="daily-weather-rain">
+            {{'label.cloudiness' | translateAsync | async}} :
+            {{Math.round(daily.clouds) || 0}}%
+          </div>
+          <div class="daily-weather-humidity">
+            {{'label.humidity' | translateAsync | async}} : {{daily.humidity ||
+            0}}<span class="pct">%</span>
+          </div>
+          <div class="daily-weather-pressure">
+            {{'label.pressure' | translateAsync | async}} : {{daily.pressure ||
+            0}}<span class="pct"> hPa</span>
+          </div>
+          <div class="daily-weather-uv-index">
+            {{'label.uvi' | translateAsync | async}} : {{daily.uvi || 0}}
+          </div>
+        </div>
+        <div class="daily-weather-wind-details">
+          <div class="daily-windspeed">
+            {{'label.windspeed' | translateAsync | async}} : {{daily.wind_speed
+            || 0}}<span class="pct"> m/s</span>
+          </div>
+          <img
+            class="daily-weather-wind-direction"
+            src="assets/images/weatherIcons/arrow_grey.png"
+            alt="{{daily.wind_deg}}"
+            [ngStyle]="{'transform': 'rotate(' + daily.wind_deg + 'deg)'}"
+            *ngIf="!useIcons"
+          />
+          <i
+            *ngIf="useIcons"
+            class="wi wi-wind towards-0-deg daily-weather-wind-direction"
+            [ngStyle]="{'transform': 'rotate(' + daily.wind_deg + 'deg)'}"
+          ></i>
+        </div>
+      </div>
+    </div>
+  </split-content>
+</banner-layout>

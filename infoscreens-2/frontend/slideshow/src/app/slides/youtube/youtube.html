@@ -1,0 +1,24 @@
+<banner-layout [slide]="slide">
+  <split-content firstContentProportion="10">
+    <title-content
+      firstContent
+      [title]="youtubeVideoTitle"
+      theme="dark"
+    ></title-content>
+    <iframe-content
+      secondContent
+      [url]="youtubeVideoLink"
+      *ngIf="!background"
+    ></iframe-content>
+    <div
+      *ngIf="background"
+      secondContent
+      class="content-container"
+      [ngStyle]="{'background-image': 'url(assets/images/background/' + background + '.gif)'}"
+    >
+      <div class="iframe-wrapper">
+        <iframe-content [url]="youtubeVideoLink"></iframe-content>
+      </div>
+    </div>
+  </split-content>
+</banner-layout>

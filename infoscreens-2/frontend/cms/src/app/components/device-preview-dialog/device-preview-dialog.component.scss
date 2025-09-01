@@ -1,0 +1,419 @@
+.modern-dialog {
+  width: 100%;
+  max-width: 520px;
+  position: relative; /* AJOUTÉ */
+  
+  .dialog-header {
+    display: flex;
+    justify-content: flex-start; /* CHANGÉ */
+    align-items: flex-start;
+    padding: 24px 60px 0 24px; /* MODIFIÉ - padding-right pour laisser place à la croix */
+    margin-bottom: 0;
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      
+      .header-icon {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        mat-icon {
+          color: white;
+          font-size: 24px;
+          width: 24px;
+          height: 24px;
+        }
+      }
+      
+      .header-text {
+        h2 {
+          margin: 0 0 4px 0;
+          font-size: 20px;
+          font-weight: 600;
+          color: #333;
+        }
+        
+        p {
+          margin: 0;
+          font-size: 14px;
+          color: #666;
+          line-height: 1.4;
+        }
+      }
+    }
+    
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.04);
+      z-index: 10; /* AJOUTÉ pour s'assurer qu'il est au-dessus */
+      
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.08);
+      }
+      
+      mat-icon {
+        margin-bottom: 5px;
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        color: #666;
+      }
+    }
+  }
+}
+
+.dialog-body {
+  padding: 24px;
+  overflow-x: hidden; /* AJOUTÉ pour éviter les débordements horizontaux */
+  
+  .section {
+    margin-bottom: 32px;
+    
+    &:last-child {
+      margin-bottom: 16px;
+    }
+    
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 16px 0;
+      font-size: 16px;
+      font-weight: 500;
+      color: #333;
+      
+      mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        color: #1976d2;
+      }
+    }
+  }
+}
+
+// Liste pour toutes les résolutions
+.preset-list {
+  .preset-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: white;
+    
+    &:hover {
+      border-color: #1976d2;
+      background: #f8f9fa;
+    }
+    
+    &.selected {
+      border-color: #1976d2;
+      background: linear-gradient(135deg, #f3f8ff 0%, #e8f2ff 100%);
+    }
+    
+    .preset-row-icon {
+      color: #666;
+      margin-right: 12px;
+      font-size: 20px;
+      flex-shrink: 0; /* AJOUTÉ */
+    }
+    
+    .preset-row-info {
+      display: flex;
+      flex-direction: column;
+      min-width: 120px;
+      flex-shrink: 0; /* AJOUTÉ */
+      
+      .preset-row-name {
+        font-weight: 500;
+        color: #333;
+        font-size: 14px;
+      }
+      
+      .preset-row-resolution {
+        font-family: 'Monaco', 'Menlo', monospace;
+        color: #1976d2;
+        font-size: 11px;
+      }
+    }
+    
+    .preset-row-description {
+      flex: 1;
+      font-size: 12px;
+      color: #666;
+      margin-left: 16px;
+      overflow: hidden; /* AJOUTÉ */
+      text-overflow: ellipsis; /* AJOUTÉ */
+      white-space: nowrap; /* AJOUTÉ */
+    }
+    
+    .preset-row-check {
+      color: #4caf50;
+      margin-left: 12px;
+      flex-shrink: 0; /* AJOUTÉ */
+    }
+  }
+}
+
+// Card pour dimensions personnalisées - VERSION CORRIGÉE
+.custom-card {
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+  max-width: 100%; /* AJOUTÉ */
+  box-sizing: border-box; /* AJOUTÉ */
+  
+  &:hover {
+    border-color: #1976d2;
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.15);
+  }
+  
+  &.selected {
+    border-color: #1976d2;
+    background: linear-gradient(135deg, #f3f8ff 0%, #e8f2ff 100%);
+  }
+  
+  .custom-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    
+    mat-icon:first-child {
+      color: #1976d2;
+      flex-shrink: 0; /* AJOUTÉ */
+    }
+    
+    span {
+      flex: 1;
+      font-weight: 500;
+      color: #333;
+      overflow: hidden; /* AJOUTÉ */
+      text-overflow: ellipsis; /* AJOUTÉ */
+      white-space: nowrap; /* AJOUTÉ */
+    }
+    
+    .custom-check {
+      color: #4caf50;
+      flex-shrink: 0; /* AJOUTÉ */
+    }
+  }
+  
+  .custom-inputs {
+    margin-top: 16px;
+    width: 100%; /* AJOUTÉ */
+    overflow: hidden; /* AJOUTÉ */
+    
+    .input-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 100%; /* AJOUTÉ */
+      
+      mat-form-field {
+        flex: 1;
+        min-width: 0; /* AJOUTÉ - Important pour flex dans Firefox */
+        max-width: calc(50% - 18px); /* AJOUTÉ - 18px = gap + separator */
+        
+        input {
+          text-align: center;
+          font-family: 'Monaco', 'Menlo', monospace;
+          font-weight: 500;
+          width: 100%; /* AJOUTÉ */
+        }
+        
+        .mat-form-field-wrapper {
+          padding-bottom: 0;
+          width: 100%; /* AJOUTÉ */
+        }
+        
+        .mat-form-field-flex {
+          width: 100%; /* AJOUTÉ */
+        }
+        
+        .mat-form-field-infix {
+          width: 100%; /* AJOUTÉ */
+          border-top: none; /* AJOUTÉ pour outline appearance */
+        }
+      }
+      
+      .separator {
+        font-size: 18px;
+        font-weight: 600;
+        color: #666;
+        flex-shrink: 0;
+        width: 12px; /* AJOUTÉ - largeur fixe */
+        text-align: center; /* AJOUTÉ */
+      }
+    }
+  }
+}
+
+// Résumé de la sélection
+.preview-summary {
+  padding: 16px;
+  background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 100%);
+  border: 1px solid #c8e6c9;
+  border-radius: 12px;
+  margin-top: 8px;
+  
+  .summary-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    
+    .summary-icon {
+      color: #4caf50;
+      font-size: 24px;
+      flex-shrink: 0; /* AJOUTÉ */
+    }
+    
+    .summary-text {
+      flex: 1; /* AJOUTÉ */
+      min-width: 0; /* AJOUTÉ */
+      
+      .summary-title {
+        font-weight: 600;
+        color: #333;
+        font-size: 14px;
+        margin-bottom: 2px;
+      }
+      
+      .summary-details {
+        font-size: 12px;
+        color: #666;
+        font-family: 'Monaco', 'Menlo', monospace;
+      }
+    }
+  }
+}
+
+// Actions du dialog
+.dialog-actions {
+  padding: 16px 24px 24px 24px;
+  margin: 0;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  
+  .cancel-button {
+    color: #666;
+    
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+  
+  .launch-button {
+    .mat-button-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    &:disabled {
+      opacity: 0.6;
+    }
+  }
+}
+
+// Responsive - VERSION AMÉLIORÉE
+@media (max-width: 600px) {
+  .modern-dialog {
+    max-width: 95vw;
+  }
+  
+  .dialog-body {
+    padding: 16px;
+  }
+  
+  .preset-row {
+    .preset-row-description {
+      display: none !important; /* AJOUTÉ - Masquer sur mobile */
+    }
+  }
+  
+  .custom-inputs .input-group {
+    flex-direction: column;
+    gap: 16px;
+    
+    mat-form-field {
+      max-width: 100%;
+      width: 100%;
+    }
+    
+    .separator {
+      transform: rotate(90deg);
+      margin: 8px 0;
+    }
+  }
+  
+  .dialog-header {
+    padding: 16px 16px 0 16px;
+    
+    .header-content {
+      gap: 12px;
+      
+      .header-icon {
+        width: 40px;
+        height: 40px;
+        
+        mat-icon {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+  
+  .dialog-actions {
+    padding: 16px;
+    flex-direction: column;
+    
+    button {
+      width: 100%;
+      order: 2;
+      
+      &.cancel-button {
+        order: 1;
+      }
+    }
+  }
+}
+
+// Ajouts spécifiques pour Angular Material
+::ng-deep .modern-dialog {
+  .mat-form-field-appearance-outline {
+    .mat-form-field-outline {
+      color: #e0e0e0;
+    }
+    
+    &.mat-focused .mat-form-field-outline-thick {
+      color: #1976d2;
+    }
+  }
+  
+  .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 12px 14px;
+  }
+}

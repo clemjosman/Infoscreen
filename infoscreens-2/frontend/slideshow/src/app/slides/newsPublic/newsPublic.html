@@ -1,0 +1,34 @@
+<banner-layout [slide]="slide">
+  <ng-container *ngIf="!news">
+    <centered-text-content textCode="newsPublic.noNews"></centered-text-content>
+  </ng-container>
+
+  <ng-container *ngIf="news">
+    <split-content [firstContentProportion]="30">
+      <image-content firstContent [url]="newsImageLink"></image-content>
+
+      <div secondContent class="content-container" *ngIf="news">
+        <div class="text-inset">
+          <h1 class="title" [innerHTML]="news.title"></h1>
+          <div
+            class="content"
+            [innerHTML]="news.content"
+            style="
+              display: -webkit-box;
+              -webkit-line-clamp: 6;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            "
+          ></div>
+          <div class="news-infos" *ngIf="news.publicationDate">
+            <hr />
+            {{news.publicationDate}} -
+            <i class="fa fa-globe"></i> {{'newsPublic.public' | translateAsync |
+            async}}
+          </div>
+        </div>
+      </div>
+    </split-content>
+  </ng-container>
+</banner-layout>

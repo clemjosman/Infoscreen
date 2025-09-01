@@ -1,0 +1,36 @@
+<div class="slide-banner" *ngIf="bannerStyle === leftBannerStyle">
+  <div
+    class="slide-banner-background"
+    [ngStyle]="{'background-image': 'linear-gradient(180deg, white 0%, white 23%, ' + backgroundColor + ' 100%), url(' + backgroundPath + ')', 'filter': 'grayscale('+filter.grayScale+'%) brightness('+filter.brightness+'%) sepia('+filter.sepia+'%) hue-rotate('+filter.hueRotate+'deg) saturate('+filter.saturate+'%) contrast('+filter.contrast+')'}"
+  ></div>
+  <div class="title" *ngIf="!isTwentyMin && !isTwitter">
+    {{forcedTitle || title}}
+  </div>
+  <img
+    *ngIf="isTwentyMin"
+    src="assets/images/slideIcons/TwentyMinLogo.png"
+    class="twenty-min-logo"
+  />
+  <img
+    *ngIf="isTwitter"
+    src="assets/images/slideIcons/TwitterLogo.png"
+    class="twitter-logo"
+  />
+  <!--<img [src]="bannerIconSource">-->
+</div>
+<div
+  class="title-top-banner-container"
+  *ngIf="bannerStyle === topBannerStyle && showTopBanner()"
+>
+  <img
+    *ngIf="isTwitter"
+    src="assets/images/slideIcons/TwitterLogo.png"
+    class="image-top-banner"
+  />
+  <img
+    *ngIf="isTwentyMin"
+    src="assets/images/slideIcons/TwentyMinLogo.png"
+    class="image-top-banner"
+  />
+  <p class="title-top-banner" *ngIf="!isTwitter">{{forcedTitle || title}}</p>
+</div>

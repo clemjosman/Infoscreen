@@ -1,0 +1,21 @@
+meta {
+  name: Twitter-ActemiumCH
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=ActemiumCH&count=20&tweet_mode=extended
+  body: none
+  auth: bearer
+}
+
+params:query {
+  screen_name: ActemiumCH
+  count: 20
+  tweet_mode: extended
+}
+
+auth:bearer {
+  token: AAAAAAAAAAAAAAAAAAAAAKfSAQEAAAAAFNRfFyw7lJ%2BoqA828h58yW9RStg%3Dj9m8IplGWzUtCeXmSgewzdSmmMKTmvfVrSiby90j5EMSYRl7U5
+}

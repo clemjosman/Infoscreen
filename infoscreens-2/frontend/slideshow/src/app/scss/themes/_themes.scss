@@ -1,0 +1,163 @@
+$themes: (
+  light-default: (
+    // Common colors
+    "text-color": #00458f,
+    "text-link-color": #039be5,
+    "text-color-secondary": #808080,
+    "background-color": #ffffff,
+    "body-gradient-start-color": #e2e2e2,
+    "body-gradient-end-color": #c9d6ff,
+
+    // Footer
+    "footer-text-color": #00458f,
+    "footer-background-color": #f5f5f5,
+    "footer-rolling-message-shadow": #0059815e,
+
+    // Banner
+    "left-banner-text-color": #ffffff,
+    "top-banner-text-color": #00458f,
+    "top-banner-background-color": #f5f5f5,
+
+    // For headers when a dark background is needed like for videos
+    "dark-text-color": #ffffff,
+    "dark-background-color": #000000,
+
+    // For cards like twitter
+    "card-border-color": #c4c4c4,
+    "card-border-color-lighter": #e0e0e0,
+
+    // Job offer
+    "job-offer-icons-color": #000000,
+
+    // Public transport
+    "public-transport-table-line-contrast-background": #eeeeee,
+    "public-transport-slide-contrast-background": #d8d8d8,
+
+    // Weather
+    "weather-chart-line-color": rgba(255, 204, 0, 0.77),
+    "weather-chart-background-color": rgba(255, 204, 0, 0.22),
+  ),
+  light-and-dark-blue-footer: (
+    // Common colors
+    "text-color": #00458f,
+    "text-link-color": #039be5,
+    "text-color-secondary": #808080,
+    "background-color": #ffffff,
+    "body-gradient-start-color": #e2e2e2,
+    "body-gradient-end-color": #c9d6ff,
+
+    // Footer
+    "footer-text-color": #fcfcfc,
+    "footer-background-color": #023e74,
+    "footer-rolling-message-shadow": #f5f5f55e,
+
+    // Banner
+    "left-banner-text-color": #ffffff,
+    "top-banner-text-color": #fcfcfc,
+    "top-banner-background-color": #023e74,
+
+    // For headers when a dark background is needed like for videos
+    "dark-text-color": #fcfcfc,
+    "dark-background-color": #023e74,
+
+    // For cards like twitter
+    "card-border-color": #c4c4c4,
+    "card-border-color-lighter": #e0e0e0,
+
+    // Job offer
+    "job-offer-icons-color": #000000,
+
+    // Public transport
+    "public-transport-table-line-contrast-background": #eeeeee,
+    "public-transport-slide-contrast-background": #d8d8d8,
+
+    // Weather
+    "weather-chart-line-color": rgba(255, 204, 0, 0.77),
+    "weather-chart-background-color": rgba(255, 204, 0, 0.22),
+  ),
+  uptown-blue-footer: (
+    // Common colors
+    "text-color": #00458f,
+    "text-link-color": #039be5,
+    "text-color-secondary": #808080,
+    "background-color": #ffffff,
+    "body-gradient-start-color": #e2e2e2,
+    "body-gradient-end-color": #c9d6ff,
+
+    // Footer
+    "footer-text-color": black,
+    "footer-background-color": white,
+    "footer-rolling-message-shadow": #f5f5f55e,
+
+    // Banner
+    "left-banner-text-color": #ffffff,
+    "top-banner-text-color": black,
+    "top-banner-background-color": #6f9ed4,
+
+    // For headers when a dark background is needed like for videos
+    "dark-text-color": #fcfcfc,
+    "dark-background-color": #023e74,
+
+    // For cards like twitter
+    "card-border-color": #6f9ed4,
+    "card-border-color-lighter": #e0e0e0,
+
+    // Job offer
+    "job-offer-icons-color": #000000,
+
+    // Public transport
+    "public-transport-table-line-contrast-background": #eeeeee,
+    "public-transport-slide-contrast-background": #d8d8d8,
+
+    // Weather
+    "weather-chart-line-color": rgba(255, 204, 0, 0.77),
+    "weather-chart-background-color": rgba(255, 204, 0, 0.22),
+  ),
+  robomat-orange: (
+    // Common colors
+    "text-color": #00458f,
+    "text-link-color": #039be5,
+    "text-color-secondary": #808080,
+    "background-color": #ffffff,
+    "body-gradient-start-color": #e2e2e2,
+    "body-gradient-end-color": #e6cdb2,
+
+    // Footer
+    "footer-text-color": #fcfcfc,
+    "footer-background-color": #f38801,
+    "footer-rolling-message-shadow": #f5f5f55e,
+
+    // Banner
+    "left-banner-text-color": #ffffff,
+    "top-banner-text-color": #fcfcfc,
+    "top-banner-background-color": #f38801,
+
+    // For headers when a dark background is needed like for videos
+    "dark-text-color": #fcfcfc,
+    "dark-background-color": #f38801,
+
+    // For cards like twitter
+    "card-border-color": #c4c4c4,
+    "card-border-color-lighter": #e0e0e0,
+
+    // Job offer
+    "job-offer-icons-color": #000000,
+
+    // Public transport
+    "public-transport-table-line-contrast-background": #eeeeee,
+    "public-transport-slide-contrast-background": #d8d8d8,
+
+    // Weather
+    "weather-chart-line-color": rgba(255, 204, 0, 0.77),
+    "weather-chart-background-color": rgba(255, 204, 0, 0.22),
+  ),
+);
+
+@each $name, $map in $themes {
+  body.theme-#{$name},
+  body.theme-#{$name} * {
+    @each $key, $value in $map {
+      --#{$key}: #{$value};
+    }
+  }
+}

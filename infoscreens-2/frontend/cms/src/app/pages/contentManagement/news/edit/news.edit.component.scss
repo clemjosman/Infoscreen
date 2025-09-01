@@ -1,0 +1,368 @@
+@import "src/mixins";
+
+.top-bg {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 191px;
+
+  @include media-breakpoint("lt-md") {
+    height: 141px;
+  }
+}
+
+mat-panel-title {
+  align-items: center;
+  font-weight: bold;
+
+  button:nth-child(1) {
+    margin-left: auto;
+  }
+}
+
+#news-edit-container {
+  .card-title-infos {
+    margin-left: 10px;
+    font-size: 0.7em;
+    color: #818181;
+  }
+
+  // AJOUTE ces styles à la fin du fichier news.edit.component.scss
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px 0;
+  border-top: 1px solid #e0e0e0;
+}
+.preview-button {
+  margin-left: 12px;
+  
+  mat-icon {
+    margin-right: 8px;
+  }
+  
+  &[disabled] {
+    opacity: 0.6;
+  }
+}
+
+// Optionnel : bouton flottant pour la prévisualisation
+.floating-preview {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  
+  .mat-fab {
+    background-color: #ff6d00;
+    color: white;
+    
+    &:hover {
+      background-color: #e65100;
+    }
+  }
+}
+
+.preview-slideshow-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  position: relative;
+  
+  mat-icon {
+    margin-right: 8px;
+  }
+  
+  .preview-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 12px;
+    background: #ff4444;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  }
+  
+  &:disabled {
+    background: #ccc;
+    color: #999;
+    transform: none;
+    box-shadow: none;
+    
+    .preview-badge {
+      background: #999;
+    }
+  }
+}
+
+/* Animation pour attirer l'attention */
+@keyframes pulse-preview {
+  0% {
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+  }
+}
+
+.preview-slideshow-button {
+  animation: pulse-preview 2s infinite;
+}
+
+  // Styles pour le bouton de preview
+  #action-container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+
+    .preview-button {
+      background: linear-gradient(45deg, #4CAF50, #2196F3);
+      color: white;
+      font-weight: 500;
+      
+      &:hover:not([disabled]) {
+        background: linear-gradient(45deg, #45a049, #1976D2);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      }
+
+      &[disabled] {
+        background: #ccc;
+        color: #666;
+      }
+
+      mat-icon {
+        margin-right: 8px;
+      }
+    }
+
+    button {
+      min-width: 140px;
+      
+      mat-icon {
+        margin-right: 6px;
+      }
+    }
+  }
+
+  // Style responsive pour mobile
+  @media (max-width: 768px) {
+    #action-container {
+      flex-direction: column;
+      align-items: stretch;
+      
+      button {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  .column-container {
+    display: flex;
+    flex-flow: row;
+  }
+
+  #news-edit-left-column {
+    margin-right: 16px;
+    flex: 0 0 calc(75% + 16px);
+
+    #add-new-language-container {
+      margin-left: 16px;
+      margin-top: 16px;
+
+      mat-form-field {
+        min-width: 150px;
+      }
+
+      button {
+        margin-left: 10px;
+      }
+    }
+
+    #languages-content-container {
+      mat-expansion-panel {
+        margin-bottom: 10px;
+
+        .content-container,
+        .title-container {
+          mat-form-field {
+            width: 100%;
+          }
+
+          .editor-warning-message {
+            color: #ec9800db;
+            background-color: #feeabb;
+            border: 1px solid #ffc681;
+            border-radius: 4px;
+            padding: 10px 15px;
+            margin-top: 10px;
+          }
+        }
+      }
+
+      mat-expansion-panel:nth-last-child(1) {
+        margin-bottom: 0px;
+      }
+
+      .automatic-translation-container {
+        float: right;
+
+        mat-form-field {
+          min-width: 150px;
+        }
+
+        button {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    #general-content-card {
+      mat-card-content {
+        margin-left: 16px;
+      }
+
+      #image-container {
+        #image-preview-container {
+          background-color: #ececec;
+          justify-content: center;
+          display: flex;
+          height: fit-content;
+          margin-bottom: 15px;
+
+          img {
+            max-height: 275px;
+          }
+        }
+
+        button {
+          margin-right: 15px;
+        }
+      }
+    }
+
+    #layout-config-card {
+      .layout-icons {
+        width: 77px;
+      }
+
+      .layout-radio-div {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .percent-sign {
+        margin-right: 55px;
+      }
+
+      .layout-content-type {
+        width: 177px;
+      }
+
+      .layout-box-number {
+        font-size: 17px;
+        margin-right: 17px;
+      }
+    }
+
+    #publication-card {
+      mat-card-content {
+        margin-left: 16px;
+      }
+
+      #publication-date-container {
+        input {
+          cursor: pointer;
+        }
+      }
+    }
+
+    #metadata-card {
+      background-color: #dbebf5;
+
+      mat-card-content {
+        margin: 0px 16px;
+      }
+
+      #description-container {
+        mat-form-field {
+          width: 100%;
+        }
+      }
+      #last-edit-container {
+        margin: 16px 0px;
+        p {
+          margin: 0px;
+        }
+      }
+    }
+  }
+
+  #news-edit-right-column {
+    flex: 0 0 calc(25% - 16px);
+    gap: 16px;
+    max-width: calc(25% - 16px);
+    display: flex;
+    flex-direction: column;
+
+    #channels-card {
+      .channels-container {
+        margin-left: 16px;
+
+        .channel:not(:first-child) {
+          margin-top: 5px;
+        }
+      }
+    }
+
+    #infoscreens-card {
+      flex: 1 0;
+
+      .infoscreen-group:first-child {
+        margin-top: 0px;
+      }
+
+      .infoscreen-group {
+        font-weight: bold;
+        margin-top: 20px;
+        margin-left: 16px;
+      }
+
+      .infoscreen {
+        padding-left: 18px;
+        margin-top: 5px;
+        font-weight: normal;
+        overflow: hidden;
+      }
+    }
+  }
+
+  [mat-raised-button][smaller-button] {
+    line-height: 0.5em;
+    padding: 2px 6px;
+
+    mat-icon {
+      margin-right: 3px;
+    }
+  }
+}

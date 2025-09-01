@@ -1,0 +1,28 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  .search-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    column-gap: 32px;
+    .search-form-field {
+      flex: 1 0 500px;
+    }
+    .select-form-field {
+      flex: 1 0 300px;
+    }
+
+    mat-form-field mat-icon {
+      margin-right: 5px;
+    }
+  }
+  .action-container {
+    align-self: flex-end;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+}

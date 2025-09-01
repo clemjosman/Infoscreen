@@ -1,0 +1,18 @@
+<div class="pdf-container">
+  <embed
+    *ngIf="base64 && !blobUrl"
+    [src]="base64 | safe"
+    type="application/pdf"
+  />
+  <!-- Zoom of 0.99 is needed to remove the scrolling bar -->
+  <pdf-viewer
+    *ngIf="blobUrl"
+    [src]="blobUrl"
+    [render-text]="true"
+    [original-size]="false"
+    [fit-to-page]="true"
+    [zoom]="0.99"
+    [zoom-scale]="'page-fit'"
+    style="width: 100%; height: 100%"
+  ></pdf-viewer>
+</div>

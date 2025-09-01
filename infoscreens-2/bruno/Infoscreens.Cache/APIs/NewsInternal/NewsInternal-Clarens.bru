@@ -1,0 +1,17 @@
+meta {
+  name: NewsInternal-Clarens
+  type: http
+  seq: 6
+}
+
+get {
+  url: http://infoscreen.actemium.ch/wp-json/wp/v2/posts?_embed&per_page=3&filter[category_name]=news-local-fr,clarens
+  body: none
+  auth: none
+}
+
+params:query {
+  _embed: null
+  per_page: 3
+  filter[category_name]: news-local-fr,clarens
+}

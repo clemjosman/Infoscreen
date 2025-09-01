@@ -1,0 +1,28 @@
+.page-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  ::ng-deep .sameLine {
+    justify-self: flex-end;
+    margin-left: auto;
+
+    .action-bar {
+      button {
+        margin: 0px 0px 0px 10px;
+      }
+    }
+  }
+
+  ::ng-deep .newLine {
+    flex-basis: 100%;
+
+    .action-bar {
+      button {
+        margin: 0px 10px 15px 0px;
+      }
+    }
+  }
+}

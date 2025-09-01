@@ -1,0 +1,25 @@
+<!-- Use the default-app-layout -->
+<default-app-layout
+    [languages]="languages"
+    [selectedLanguage]="selectedLanguage"
+    [onLanguageChange]="onLanguageChange"
+    [tenants]="tenants"
+    [selectedTenant]="selectedTenant"
+    [onTenantChange]="onTenantChange"
+    [maintenanceData]="maintenanceData"
+    [helpData]="helpData"
+    [footerData]="footerData"
+>
+</default-app-layout>
+
+<div class="app-container" [class.fullscreen]="isFullscreenRoute()">
+  
+  <!-- Navigation (masquée en mode plein écran) -->
+  <app-navigation *ngIf="!isFullscreenRoute()"></app-navigation>
+  
+  <!-- Contenu principal -->
+  <main class="main-content" [class.no-navigation]="isFullscreenRoute()">
+    <router-outlet></router-outlet>
+  </main>
+  
+</div>

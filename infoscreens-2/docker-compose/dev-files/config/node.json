@@ -1,0 +1,7 @@
+{
+    "msbNodeName": "INF-DEV-0001",
+    "maintenanceMode": false,
+    "maintenanceEndDate": "2019-01-01 00:00",
+    "azureFunctionEndpoint": "https://infoscreens-cache-staging.actemium.ch",
+    "nodeTags": ["#ALL", "#InfoscreenDev", "#ActemiumCH"]
+}

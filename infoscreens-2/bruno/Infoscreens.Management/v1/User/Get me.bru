@@ -1,0 +1,11 @@
+meta {
+  name: Get me
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{rootUrl}}/v1/user/me
+  body: none
+  auth: inherit
+}

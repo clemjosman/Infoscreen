@@ -1,0 +1,204 @@
+<div class="page-container">
+  <!-- FULL PAGE LOADING SPINNER -->
+  <div *ngIf="fullPageLoading" class="fullPage-loadingSpinner-wrapper">
+    <loading-spinner></loading-spinner>
+  </div>
+
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg accent"></div>
+
+  <!-- HEADER -->
+  <page-header
+    [pathArray]="pathArray"
+    [displayBreadcrumbBackButton]="false"
+    [contentOnNewLine]="true"
+  >
+    <content-search-card
+      [onSearch]="search"
+      [initialValues]="filters"
+    ></content-search-card>
+    <div class="action-bar">
+      <button mat-raised-button color="action" (click)="createNew()">
+        <mat-icon>add</mat-icon>
+        {{ "general.button.create" | translate }}
+      </button>
+      <button
+        mat-raised-button
+        color="danger"
+        (click)="deleteSelected()"
+        [disabled]="this.selection.selected.length == 0"
+      >
+        <mat-icon>delete</mat-icon>
+        {{ "general.button.deleteSelected" | translate }}
+      </button>
+    </div>
+  </page-header>
+
+  <div class="mat-elevation-z8">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      [matSortActive]="filters?.sortActive || 'status'"
+      [matSortDirection]="filters?.sortDirection || 'desc'"
+      (matSortChange)="onSortChange($event)"
+      matSortDisableClear
+    >
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <!-- select all checkbox
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>-->
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(element) : null"
+            [checked]="selection.isSelected(element)"
+          >
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "label.title" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element" (click)="edit(element)">
+          {{ getNewsTitle(element) }}
+        </td>
+      </ng-container>
+
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "label.description" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element" (click)="edit(element)">
+          {{ element.description || "-" }}
+        </td>
+      </ng-container>
+
+      <!-- Publication Date Column -->
+      <ng-container matColumnDef="publicationDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "label.publicationDate" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container
+            *ngIf="
+              element.isVisible &&
+              !element.hasExpired &&
+              isToday(element.publicationDate)
+            "
+          >
+            {{ "label.today" | translate }}
+          </ng-container>
+          <ng-container
+            *ngIf="
+              element.isVisible &&
+              !element.hasExpired &&
+              !isToday(element.publicationDate)
+            "
+          >
+            {{ element.publicationDate | vesactDateFromToday | async }}
+          </ng-container>
+          <ng-container *ngIf="element.isVisible && element.hasExpired">
+            {{ element.publicationDate | vesactDateFromToday | async }}
+          </ng-container>
+          <ng-container *ngIf="!element.isVisible">
+            {{ "label.draft" | translate }}
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "label.status" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngIf="element.isVisible && !element.hasExpired">
+            <mat-icon
+              *ngIf="isInTheFuture(element.publicationDate)"
+              class="isVisible"
+              [matTooltip]="'label.planned' | translate"
+              matTooltipPosition="left"
+            >
+              alarm
+            </mat-icon>
+            <mat-icon
+              *ngIf="!isInTheFuture(element.publicationDate)"
+              class="isVisible"
+              [matTooltip]="'label.published' | translate"
+              matTooltipPosition="left"
+            >
+              visibility
+            </mat-icon>
+          </ng-container>
+          <mat-icon
+            *ngIf="element.isVisible && element.hasExpired"
+            class="hasExpired"
+            [matTooltip]="'label.expired' | translate"
+            matTooltipPosition="left"
+          >
+            alarm_off
+          </mat-icon>
+          <mat-icon
+            *ngIf="!element.isVisible"
+            class="isNotVisible"
+            [matTooltip]="'label.draft' | translate"
+            matTooltipPosition="left"
+          >
+            visibility_off
+          </mat-icon>
+        </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "label.actions" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-raised-button
+            class="datatable-mat-button"
+            color="action"
+            (click)="edit(element)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-raised-button
+            class="datatable-mat-button"
+            color="danger"
+            (click)="delete(element)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <!-- LOADING TABLE DATA -->
+    <div *ngIf="isLoading" class="tableCard-loadingSpinner-wrapper">
+      <loading-spinner></loading-spinner>
+    </div>
+
+    <mat-paginator
+      [pageSizeOptions]="[10, 25, 50, 100, 150, 200]"
+      [pageSize]="filters?.pageSize || 10"
+      [pageIndex]="filters?.pageIndex || 0"
+      (page)="onPageChange($event)"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>

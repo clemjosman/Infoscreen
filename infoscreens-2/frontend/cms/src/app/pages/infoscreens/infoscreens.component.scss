@@ -1,0 +1,38 @@
+@import "src/mixins";
+
+.top-bg {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 149px;
+
+  @include media-breakpoint("lt-md") {
+    height: 149px;
+  }
+}
+
+.infoscreen-group-container {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+
+  .infoscreen-group-card {
+    margin-bottom: 15px;
+    mat-panel-title {
+      align-items: center;
+      font-weight: 700;
+      font-size: x-large;
+    }
+    .infoscreen-card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-content: space-between;
+      > infoscreen-card {
+        margin: 0px 15px 15px 0px;
+      }
+    }
+  }
+}

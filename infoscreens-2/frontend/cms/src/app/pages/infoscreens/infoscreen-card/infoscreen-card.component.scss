@@ -1,0 +1,90 @@
+@import "~@vesact/web-ui-template/lib/default-colors.scss";
+
+.infoscreen-card {
+  height: 100%;
+  width: 300px;
+  max-width: 100vw;
+  border: black solid 1px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 14px -7px rgba(0, 0, 0, 0.75);
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+
+  .infoscreen-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 5px;
+    margin-bottom: 10px;
+
+    .infoscreen-status.unknown {
+      mat-icon {
+        animation: rotating 2s linear infinite;
+      }
+      color: gray;
+    }
+
+    .infoscreen-status.online {
+      color: green;
+    }
+
+    .infoscreen-status.offline {
+      color: red;
+    }
+
+    .infoscreen-names {
+      flex: 1 1 0;
+      .infoscreen-name {
+        font-weight: bold;
+        font-size: large;
+        text-align: center;
+      }
+      .node-id {
+        text-align: center;
+        color: #c4c4c4;
+        font-style: italic;
+        font-size: 10px;
+      }
+    }
+  }
+
+  .infoscreen-content {
+    flex: 1 1 0%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    .infoscreen-description {
+      text-align: justify;
+    }
+    .versions-container {
+      margin-top: 10px;
+      .version-entry {
+        .entry-title {
+          font-weight: bold;
+        }
+        .match {
+          color: green;
+        }
+        .missmatch {
+          color: red;
+        }
+      }
+    }
+  }
+
+  .infoscreen-footer {
+    display: flex;
+    flex-direction: row-reverse;
+
+    .edit-button {
+      color: $action;
+    }
+  }
+}

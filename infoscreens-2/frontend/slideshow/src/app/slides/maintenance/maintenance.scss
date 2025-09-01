@@ -1,0 +1,21 @@
+.text-content {
+  font-size: 20.4pt;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 100%;
+  padding: 30px;
+  margin: 0;
+  background-color: var(--background-color);
+  text-align: center;
+  display: table;
+  width: 100%;
+}
+
+.title {
+  margin: 10px 0px;
+  font-size: 35pt;
+  font-weight: 700;
+  color: var(--text-color);
+  display: table-cell;
+  vertical-align: middle;
+}

@@ -1,0 +1,59 @@
+<banner-layout [slide]="slide">
+  <split-content [firstContentProportion]="40" layout="vertical">
+    <image-content firstContent [url]="eventImageSource"></image-content>
+
+    <ng-container secondContent>
+      <div class="page-container">
+        <div class="content-container">
+          <div class="text-content" *ngIf="event">
+            <div class="title-container">
+              <h1 class="title">{{event.title}}</h1>
+              <div class="author-container">
+                <img class="author-avatar" [src]="event.author.avatar" />
+                <p class="author-name">{{event.author.fullName}}</p>
+              </div>
+            </div>
+            <div class="description">{{ event.description }}</div>
+            <div class="details">
+              <hr />
+              <div class="details-container">
+                <div class="date-time-container">
+                  <ng-container *ngIf="event.date">
+                    <i class="fa fa-calendar"></i>
+                    <p>{{ event.date }}</p>
+                  </ng-container>
+                  <ng-container *ngIf="event.location">
+                    <i class="fa fa-map-marker"></i>
+                    <p>{{ event.location }}</p>
+                  </ng-container>
+                  <ng-container *ngIf="event.usersCount">
+                    <i class="fa fa-user"></i>
+                    <p>
+                      {{ event.usersCount }}<ng-container *ngIf="event.capacity"
+                        >&nbsp;/&nbsp;{{event.capacity}}</ng-container
+                      >
+                    </p>
+                  </ng-container>
+                  <ng-container *ngIf="event.price">
+                    <i class="fa fa-money"></i>
+                    <p>{{ event.price }}&nbsp;CHF</p>
+                  </ng-container>
+                </div>
+                <div class="like-comment-container">
+                  <i class="fa fa-heart"></i>
+                  <p>{{ event.likeCount }}</p>
+                  <i class="fa fa-comment"></i>
+                  <p>{{ event.commentCount }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="no-content" *ngIf="!event">
+            <p>{{'uptown.noEvent' | translateAsync | async}}</p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </split-content>
+</banner-layout>

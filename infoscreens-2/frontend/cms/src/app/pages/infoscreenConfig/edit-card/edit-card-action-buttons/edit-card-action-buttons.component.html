@@ -1,0 +1,22 @@
+<div class="action-buttons-container">
+  <button
+    *ngIf="cancelCallback"
+    mat-raised-button
+    [color]="disableCancel ? 'disabled' : 'warning'"
+    (click)="cancel()"
+    [disabled]="disableCancel"
+  >
+    <mat-icon>replay</mat-icon>
+    {{ "general.button.cancel" | translate }}
+  </button>
+  <button
+    *ngIf="saveCallback"
+    mat-raised-button
+    [color]="disableSave ? 'disabled' : 'success'"
+    (click)="save()"
+    [disabled]="disableSave"
+  >
+    <mat-icon>save</mat-icon>
+    {{ "general.button.save" | translate }}
+  </button>
+</div>

@@ -1,0 +1,55 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ "label.categories" | translate }}</mat-card-title>
+  </mat-card-header>
+  <mat-divider [inset]="true"></mat-divider>
+  <br />
+
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>{{ "label.categories" | translate }}</mat-label>
+      <mat-chip-list
+        #categoryList
+        [attr.aria-label]="'label.categories' | translate"
+        [selectable]="false"
+      >
+        <mat-chip
+          *ngFor="let category of selectedCategories"
+          (removed)="remove(category)"
+          color="accent"
+        >
+          {{ category }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <input
+          [placeholder]="'label.categories.new' | translate"
+          #categoryInput
+          [formControl]="categoryCtrl"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="categoryList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)"
+        />
+      </mat-chip-list>
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="selected($event)"
+      >
+        <mat-option
+          *ngFor="let category of filteredCategories | async"
+          [value]="category"
+        >
+          {{ category }}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-hint align="end"
+        ><em
+          >({{ "label.categories.pressEnter" | translate }})&nbsp;&nbsp;{{
+            categoryInput.value?.length || 0
+          }}
+          / {{ CATEGOY_NAME_MAX_LENGTH }}</em
+        ></mat-hint
+      >
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>

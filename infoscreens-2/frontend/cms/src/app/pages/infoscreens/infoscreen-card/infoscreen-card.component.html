@@ -1,0 +1,70 @@
+<div *ngIf="!infoscreen">...</div>
+<div *ngIf="infoscreen" class="infoscreen-card">
+  <div class="infoscreen-header">
+    <!-- Name-->
+    <div class="infoscreen-names">
+      <div class="infoscreen-name">{{ infoscreen.displayName }}</div>
+      <div class="node-id">{{ infoscreen.nodeId }}</div>
+    </div>
+
+    <!-- Status-->
+    <div
+      *ngIf="status"
+      class="infoscreen-status"
+      [ngClass]="{ offline: !status.isOnlineMsb, online: status.isOnlineMsb }"
+    >
+      <mat-icon *ngIf="!status.isOnlineMsb">wifi_off</mat-icon>
+      <mat-icon *ngIf="status.isOnlineMsb">wifi</mat-icon>
+    </div>
+    <div *ngIf="!status" class="infoscreen-status unknown">
+      <mat-icon>refresh</mat-icon>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="infoscreen-content">
+    <div class="infoscreen-description">{{ infoscreen.description }}</div>
+    <div class="versions-container" *ngIf="status">
+      <div class="version-entry" *ngIf="status.uiVersion">
+        <span class="entry-title">{{
+          "label.infoscreen.uiVersion" | translate
+        }}</span
+        ><span
+          [className]="
+            status.uiVersion === status.desiredUiVersion &&
+            status.uiVersion !== '?'
+              ? 'match'
+              : 'missmatch'
+          "
+          >{{ status.uiVersion
+          }}<ng-container *ngIf="status.desiredUiVersion"
+            >&nbsp;/&nbsp;{{ status.desiredUiVersion }}</ng-container
+          ></span
+        >
+      </div>
+      <div class="version-entry" *ngIf="status.firmwareVersion">
+        <span class="entry-title">{{
+          "label.infoscreen.firmwareVersion" | translate
+        }}</span
+        ><span
+          [className]="
+            status.firmwareVersion === status.desiredFirmwareVersion &&
+            status.firmwareVersion !== '?'
+              ? 'match'
+              : 'missmatch'
+          "
+          >{{ status.firmwareVersion
+          }}<ng-container *ngIf="status.desiredFirmwareVersion"
+            >&nbsp;/&nbsp;{{ status.desiredFirmwareVersion }}</ng-container
+          ></span
+        >
+      </div>
+    </div>
+  </div>
+  <div class="infoscreen-footer">
+    <!-- Edit -->
+    <button class="edit-button" mat-icon-button (click)="config(infoscreen)">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+</div>

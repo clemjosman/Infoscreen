@@ -1,0 +1,23 @@
+meta {
+  name: Get custom job offer
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{rootUrl}}/v1/customJobOffer?NodeId={{nodeId}}
+  body: none
+  auth: none
+}
+
+params:query {
+  NodeId: {{nodeId}}
+}
+
+script:post-response {
+  test("Content-Type is present and is application/json", function () {
+      expect(res.getHeaders()).to.have.property("Content-Type".toLowerCase());
+      let contentType = res.getHeader("Content-Type");
+      expect(contentType.startsWith("application/json")).is.true;
+  });
+}

@@ -1,0 +1,35 @@
+name: infoscreens-frontend
+services:
+    infoscreens-frontend-cms:
+        hostname: infoscreens-frontend-cms
+        container_name: infoscreens-frontend-cms
+        build:
+            context: ../frontend
+            dockerfile: Dockerfile.cms
+        restart: unless-stopped
+        ports:
+            - 4200:80
+
+    infoscreens-frontend-slideshow:
+        hostname: infoscreens-frontend-slideshow
+        container_name: infoscreens-frontend-slideshow
+        build:
+            context: ../frontend
+            dockerfile: Dockerfile.slideshow
+        restart: unless-stopped
+        ports:
+            - 4201:80
+        volumes:
+            - ./dev-files/cache:/usr/share/nginx/html/cache
+            - ./dev-files/videos:/usr/share/nginx/html/assets/videos
+
+    infoscreens-frontend-sync:
+        hostname: infoscreens-frontend-sync
+        container_name: infoscreens-frontend-sync
+        build:
+            context: ../frontend
+            dockerfile: Dockerfile.sync
+        restart: unless-stopped
+        volumes:
+            - ./dev-files/cache:/usr/src/app/cache
+            - ./dev-files/config:/usr/files/config

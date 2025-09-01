@@ -1,0 +1,24 @@
+meta {
+  name: Translate news
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{rootUrl}}/v1/news/{{tenantCode}}/translate
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "from": "EN",
+    "to": "FR",
+    "title": "This is a title",
+    "content": "And this is the content."
+  }
+}

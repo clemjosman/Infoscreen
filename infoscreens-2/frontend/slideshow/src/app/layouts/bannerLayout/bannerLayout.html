@@ -1,0 +1,9 @@
+<slide-banner
+  [slide]="slide"
+  [headerWhenHidden]="headerWhenBannerHidden"
+  [showTopBanner]="showTopBanner"
+  *ngIf="showBanner()"
+></slide-banner>
+<div class="banner-layout-content">
+  <ng-content></ng-content>
+</div>
