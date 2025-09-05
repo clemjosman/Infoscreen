@@ -1,7 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Platform } from '@angular/cdk/platform';
-import { Subject } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -177,7 +177,7 @@ export class AppComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
         // Subscribe to config changes
-        this._fuseConfigService.config
+        of(this._fuseConfigService.config)
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((config) => {
 
@@ -237,7 +237,7 @@ export class AppComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next();
+        this._unsubscribeAll.next(void 0);
         this._unsubscribeAll.complete();
     }
     isFullscreenRoute(): boolean {
