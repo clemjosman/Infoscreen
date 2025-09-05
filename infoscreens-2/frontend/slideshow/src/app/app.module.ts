@@ -3,14 +3,17 @@ import '../polyfills';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 // Third party plugings
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { QRCodeModule } from 'angularx-qrcode';
+
 
 // App
 import { AppComponent } from './app.component';
@@ -61,6 +64,9 @@ import { SlideBannerComponent } from './components/slideBanner/slideBanner.compo
 import { SlideBubbleComponent } from './components/slideBubble/slideBubble.component';
 import { SplitContentComponent } from './components/slideContent/splitContent/splitContent.component';
 import { TitleContentComponent } from './components/slideContent/title/title.component';
+import { StarComponent } from './slides/ideabox/rating-component/star/star.component';
+import { RatingComponent } from './slides/ideabox/rating-component/rating.component';
+
 
 // Layouts
 import { BannerLayoutComponent } from './layouts/bannerLayout/bannerLayout.component';
@@ -68,10 +74,6 @@ import { BannerLayoutComponent } from './layouts/bannerLayout/bannerLayout.compo
 // Pipes
 import { SafePipe } from './helpers/SafePipe';
 import { TranslationPipe } from './pipes/translation.pipe';
-
-// 3rd party modules
-import { MaterializeModule } from 'angular2-materialize';
-import { StarRatingModule } from 'angular-star-rating';
 
 // i18n
 import { LOCALE_ID } from '@angular/core';
@@ -143,6 +145,8 @@ registerLocaleData(localeDECH);
         SlideBubbleComponent,
         SplitContentComponent,
         TitleContentComponent,
+        StarComponent,
+        RatingComponent,
 
         // Layout
         BannerLayoutComponent,
@@ -155,15 +159,16 @@ registerLocaleData(localeDECH);
         AppRoutingModule,
         BrowserAnimationsModule,
         BrowserModule,
+        CommonModule,
         FormsModule,
         GoogleMapsModule,
         HttpClientJsonpModule,
         HttpClientModule,
-        MaterializeModule,
         PdfViewerModule,
         QRCodeModule,
         RouterModule,
-        StarRatingModule.forRoot()
+        MatIconModule
+ 
     ],
     providers: [
         // Local used for i18n extraction and by i18n pipes like DatePipe
