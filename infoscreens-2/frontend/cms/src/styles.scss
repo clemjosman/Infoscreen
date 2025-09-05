@@ -1,14 +1,35 @@
 //***************************
 //  TEMPLATE BASIC STYLING
 //***************************
-@import "~@vesact/web-ui-template/lib/styles";
+@import "../node_modules/@vesact/web-ui-template/lib/styles.scss";
 @import "mixins";
+
+//***************************
+//  FIX POUR STYLES MANQUANTS
+//***************************
+// Import direct des fichiers scss du template
+@import "../node_modules/@vesact/web-ui-template/lib/scss/theme.scss";
+
+//***************************
+//  FIX POUR ICONES BOUTONS MDC
+//***************************
+.mat-mdc-button .mat-icon, 
+.mat-mdc-raised-button .mat-icon,
+.mat-mdc-outlined-button .mat-icon,
+.mat-mdc-unelevated-button .mat-icon {
+  font-size: 21px !important;
+
+
+
+  margin: 0 auto !important;
+  text-align: center !important;
+}
 
 //***************************
 //         THEMING
 //***************************
-@import "~@vesact/web-ui-template/lib/default-theming.scss"; // Themes with color palettes
-@import "~@vesact/web-ui-template/lib/default-colors.scss"; // Colors for mat elements (used by auth pages in template)
+@import "../node_modules/@vesact/web-ui-template/lib/default-theming.scss";
+@import "../node_modules/@vesact/web-ui-template/lib/default-colors.scss";
 
 .page-container {
   padding: 10px 40px;
@@ -19,16 +40,14 @@
 //***************************
 //     MARKDOWN EDITOR
 //***************************
-@import "~@vesact/web-ui-template/lib/markdown-editor.scss"; // Editor's Dependency Style
+@import "../node_modules/@vesact/web-ui-template/lib/markdown-editor.scss";
 
-// Override the font-size set to all i elements by materials inside out markdown editor
 .tui-editor-contents {
   i {
     font-size: 13px !important;
   }
 }
 
-// Override default padding for better integration in our app's theme
 .tui-editor-defaultUI-toolbar {
   padding: 0px 10px !important;
 }
